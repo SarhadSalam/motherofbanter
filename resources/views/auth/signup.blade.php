@@ -35,6 +35,12 @@
                     <span class="help-block">{{ $errors->first('password_confirmation') }}</span> 
                 @endif
             </div>
+            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : ''}}">
+                {!! app('captcha')->display(); !!}
+                @if ($errors->has('g-recaptcha-response'))
+                    <span class="help-block">{{ $errors->first('g-recaptcha-response') }}</span> 
+                @endif
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Sign up</button>
             </div>
