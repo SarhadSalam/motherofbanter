@@ -56,7 +56,7 @@ class AuthController extends Controller
 
 	public function userHasLoggedIn($user){
 		Auth::login($user);
-		return redirect()->route('home');
+		return redirect()->route('home')->with('info', 'Login Sucessful');
 	}
 
 	public function getSignout()

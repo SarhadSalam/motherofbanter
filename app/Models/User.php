@@ -32,6 +32,7 @@ class User extends Model implements AuthenticatableContract
     'location',
     'provider_id',
     'provider',
+    'profileImage'
     ];
 
     /**
@@ -72,14 +73,10 @@ class User extends Model implements AuthenticatableContract
     }
 
     public function getAvatarUrl()
-    {
-        // return "https://www.gravatar.com/avatar/{{ md5($this->email) }}?d=wavatar";
-
-        $filename = 'uploads/profileImages/' . $this->getUsername() . '/profileImg';
-
-        if(file_exists($filename))
+    { 
+        if($this -> profileImage)
         {
-           return asset('uploads/profileImages/' . $this->getUsername() . '/profileImg');
+           return asset($this->profileImage);
         }
         else
         {

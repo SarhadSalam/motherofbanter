@@ -41,12 +41,13 @@ class ProfileController extends Controller
 
 		if (Input::hasFile('images')){
 			$imageFile = Input::file('images');
-
-			$filename= 'profileImg';
-
+			$filename= $imageFile->getClientOriginalName() . uniqid() . $imageFile->getClientOriginalExtension();
 			$path = 'uploads/profileImages/' . Auth::user()->getUsername(). '/';
-			
 			$imageFile -> move($path, $filename);
+
+			Auth::user()->update([
+		                     	'profileImage' => $request -> input($path, $path.$filename),
+		                     ]);
 		}
 
 		if (Input::has('password')){
@@ -59,7 +60,6 @@ class ProfileController extends Controller
 		                     	'first_name' => $request->input('first_name'),
 		                     	'last_name' => $request->input('last_name'),
 		                     	'location' => $request->input('location'),
-		                     	//'profileImage_path' => $request -> input($path, $path.$filename),
 		                     ]);
 
 		return redirect()->route('profile.edit')->with('info', "Your Profile Has Been Updated.");

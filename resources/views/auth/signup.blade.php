@@ -16,7 +16,7 @@
             </div>
             <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
                 <label for="username" class="control-label">Choose a username</label>
-                <input type="text" name="username" class="form-control" placeholder="YOU CAN'T CHANGE USERNAME LATER! Username can only be Alphabets, Dashes and Numbers. Required. Required." id="username" value="{{ Request::old('username') ?: '' }}"> 
+                <input type="text" name="username" class="form-control" placeholder="Please Choose an Username" id="username" value="{{ Request::old('username') ?: '' }}"> 
                 @if ($errors->has('username'))
                  <span class="help-block">{{ $errors->first('username') }}</span> 
                 @endif
