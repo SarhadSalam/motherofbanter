@@ -1,0 +1,26 @@
+/*Icon Sizes start Here*/
+
+.bigIcon .icon {
+    font-size: 2em;
+    color: #2966b3;
+}
+
+.bigIcon .icon:hover {
+    color: #1f4e89
+}
+
+.comments .icon {
+    font-size: 1.3em;
+    color: #2966b3;
+}
+
+.alert .icon-exclamation-circle {
+    font-size: 1.4em;
+}
+
+.comments .icon:hover {
+    color: #1f4e89;
+}
+
+
+/*Icon Sizes end Here*/

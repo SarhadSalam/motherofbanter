@@ -1,0 +1,50 @@
+Gray Base-
+#0D0D0D
+
+Brand Primary-
+#2f75ce
+Brand Success-
+#67D772
+Brand Info-
+#FFFE98
+Brand Warning-
+#FA4848
+Brand Danger-
+#FF2400
+
+Body Background-
+#FFFBFB
+
+Buttons Text-
+#EAE9E9
+
+Forms Background-
+#F0F0F0
+Input Border-
+#E9E9E9
+Input Focus-
+#2f75ce
+Placeholder-
+#999
+
+Dropdown Divider-
+#D9D9D9
+Dropdown bg-
+#F6F6F6
+
+Navbar-
+Default BG-
+#FAFAFA
+#D9D9D9
+
+#212121
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+"Open Sans", sans-serif
+
+@import url(https://fonts.googleapis.com/css?family=Source+Serif+Pro);
+font-family: 'Source Serif Pro', serif;
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
+You ight just need to edit @dropdown-link-hover-bg or @dropdown-
