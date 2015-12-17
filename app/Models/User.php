@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use MotherOfBanter\Models\Social;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -30,9 +31,7 @@ class User extends Model implements AuthenticatableContract
     'first_name',
     'last_name',
     'location',
-    'provider_id',
-    'provider',
-    'profileImage'
+    'profileImage',
     ];
 
     /**
@@ -87,6 +86,11 @@ class User extends Model implements AuthenticatableContract
     public function image()
     {
         return $this->hasMany('MotherOfBanter\Models\Image', 'user_id');
+    }
+
+      public function social()
+    {
+        return $this->hasMany('MotherOfBanter\Models\Social');
     }
 
     public function friendsOfMine()

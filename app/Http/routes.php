@@ -56,11 +56,16 @@ Route::get('/signout', [
 * Social Auth Begins Here
 */
 
-Route::get('/login/{provider?}', [
-           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@postSocialSignIn',
-           'middleware' => ['guest']
+Route::get('/social/redirect/{provider?}', [
+           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSocialRedirect',
+           'middleware' => ['guest'],
+           'as' => 'social.redirect',
            ]);
-
+Route::get('/social/handle/{provider?}', [
+           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSocialHandle',
+           'middleware' => ['guest'],
+           'as' => 'social.handle',
+           ]);
 /**
 *Search
 */

@@ -5,10 +5,18 @@ namespace MotherOfBanter\Http\Controllers;
 use Auth;
 use Illuminate\http\Request;
 use MotherOfBanter\Models\User;
-use MotherOfBanter\AuthenticateSocialUser;
+use MotherOfBanter\Models\Social;
+use Illuminate\Contracts\Auth\Guard;
+use Socialite;
 
 class AuthController extends Controller
 {
+	protected $auth;
+    public function __construct( Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
 	public function getSignup()
 	{
 		return view('auth.signup');
@@ -49,20 +57,81 @@ class AuthController extends Controller
 		return redirect()->route('home')->with('info', 'You are now signed in.');
 	}
 
-	public function postSocialSignIn(AuthenticateSocialUser $authenticateSocialUser, Request $request, $provider = null)
-	{
-		return $authenticateSocialUser->execute($request->all(), $this, $provider);
-	}
-
-	public function userHasLoggedIn($user){
-		Auth::login($user);
-		return redirect()->route('home')->with('info', 'Login Sucessful');
-	}
-
 	public function getSignout()
 	{
 		Auth::logout();
 
 		return redirect()->back()->with('info', 'Sad to see you go! Hope you visit back.');
+	}
+
+	//Everything related to social authentication and database entries goes in here
+
+	//This gets the redirect of the user	
+	public function getSocialRedirect($provider)
+	{
+		$providerKey = \Config::get('services.' . $provider);
+		if(empty($providerKey)){
+			return view('auth.sigin')->with('info', 'Oops, No such provider.');
+		}
+
+		return Socialite::driver($provider)->redirect();
+	}
+
+	//This handles the data provided to us by the user
+	public function getSocialHandle($provider)
+	{
+		$user = Socialite::driver($provider)->user();
+		$socialUser = null;
+		$userCheck = User::where('email', '=', $user->email)->first();
+		$specialId = substr($user->id, 0, 4);
+		$username = str_replace(" ", "", $user->name);
+		$specialUsername = $username.$specialId;
+		//This checks if the email already exists in our database.
+		if(!empty($userCheck))
+		{
+			$socialUser = $userCheck;
+		}
+		else //Otherwise we search for the social user
+		{
+			$sameSocialId = Social::where('social_id', '=', $user->id)->where('provider', '=', $provider)->first();
+
+			// If there is no existing user this gets called
+			if(empty($sameSocialId))
+			{
+				$newSocialUser = new User;
+				$newSocialUser->email = $user->email;
+				$newSocialUser->username = $specialUsername;
+				//This checks if the users name has multiple words.
+				if(strpos($user->name, " ")){
+					$name = explode(' ', $user->name);
+					$newSocialUser->first_name = $name[0];
+					$newSocialUser->last_name = $name[1];
+				} else {
+					$newSocialUser->first_name = $user->name;
+				}
+				//Getting the avatar
+				if($provider == 'twitter' || $provider == 'facebook'){
+					$newSocialUser->profileImage = $user->avatar_original;
+				}
+				if($provider == 'google'){
+					$googleAvatarBig = substr_replace($user->avatar, '500', -2);
+					$newSocialUser->profileImage = $googleAvatarBig;
+				}
+				$newSocialUser->save();
+
+				$socialData = new Social;
+				$socialData->social_id = $user->id;
+				$socialData->provider = $provider;
+				$newSocialUser->social()->save($socialData);
+				$socialUser = $newSocialUser;
+			}
+			else //This is called when the user exists
+			{
+				$socialUser = $sameSocialId->user;
+			}
+		}
+		$this->auth->login($socialUser, true);
+
+		return redirect()->route('home')->with('You are inside the coolest of networks.');
 	}
 }

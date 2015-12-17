@@ -38,19 +38,19 @@ return [
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://motherofbanter.dev:8000/login/twitter',
+        'redirect' => 'http://motherofbanter.dev:8000/social/handle/twitter',
     ],
 
     'facebook' => [
     'client_id' => env('FACEBOOK_CLIENT_ID'),
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-    'redirect' => 'http://motherofbanter.dev:8000/login/facebook',
+    'redirect' => 'http://motherofbanter.dev:8000/social/handle/facebook',
     ],
 
     'google' => [
     'client_id' => env('GOOGLE_CLIENT_ID'),
     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => 'http://motherofbanter.dev:8000/login/google',
+    'redirect' => 'http://motherofbanter.dev:8000/social/handle/google',
     ],
 
 ];
