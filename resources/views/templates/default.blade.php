@@ -37,13 +37,15 @@
         <meta name="msapplication-TileImage" content="{{ URL::asset('assets/img/mstile-144x144.png') }}">
         <meta name="msapplication-config" content="{{ URL::asset('assets/img/browserconfig.xml') }}">
         <meta name="theme-color" content="#2f75ce"> {{-- Script --}}
+        <script type="text/javascript">@yield('formValidationScripts')</script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
     </head>
 
     <body>
         @include('templates.partials.navigation')
         <div class="container">
-            @include('templates.partials.alerts') @yield('content')
+            @include('templates.partials.alerts') 
+            @yield('content')
         </div>
         <script>
         $(document).on('ready', function() {

@@ -51,4 +51,13 @@
 
 6. Copyrigths belongs to MotherOfBanter 
 7. Navbar was inspired from the google page and created with the help of codrops.com
-8. Autocomplete by https://github.com/yuku-t/jquery-textcomplete*/
+8. Autocomplete by https://github.com/yuku-t/jquery-textcomplete
+9.Parsley
+/*!
+* Parsley.js
+* Version 2.2.0-rc4 - built Thu, Oct 29th 2015, 4:25 pm
+* http://parsleyjs.org
+* Guillaume Potier - <guillaume@wisembly.com>
+* Marc-Andre Lafortune - <petroselinum@marc-andre.ca>
+* MIT Licensed
+*/

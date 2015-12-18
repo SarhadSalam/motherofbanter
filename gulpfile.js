@@ -36,5 +36,6 @@ elixir(function(mix) {
                 'textcomplete.js',
                 'emojione.js',
                 'autoCompleteEmoji.js',
+                'parsley.js',
                 ], 'public/assets/js/MotherOfBanter.js');
 });

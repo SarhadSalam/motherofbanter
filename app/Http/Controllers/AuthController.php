@@ -71,7 +71,7 @@ class AuthController extends Controller
 	{
 		$providerKey = \Config::get('services.' . $provider);
 		if(empty($providerKey)){
-			return view('auth.sigin')->with('info', 'Oops, No such provider.');
+			return redirect()->route('auth.signin')->with('info', 'Oops, No such provider.');
 		}
 
 		return Socialite::driver($provider)->redirect();
@@ -80,6 +80,11 @@ class AuthController extends Controller
 	//This handles the data provided to us by the user
 	public function getSocialHandle($provider)
 	{
+		 $code = \Input::get('code');
+        if(!$code){
+            return redirect()->route('auth.signin')
+                ->with('info', 'You did not share your profile data with us.');
+        }
 		$user = Socialite::driver($provider)->user();
 		$socialUser = null;
 		$userCheck = User::where('email', '=', $user->email)->first();
