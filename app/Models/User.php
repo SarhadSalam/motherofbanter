@@ -32,6 +32,8 @@ class User extends Model implements AuthenticatableContract
     'last_name',
     'location',
     'profileImage',
+    'activation_code',
+    'activation',
     ];
 
     /**
@@ -91,6 +93,17 @@ class User extends Model implements AuthenticatableContract
       public function social()
     {
         return $this->hasMany('MotherOfBanter\Models\Social');
+    }
+
+    public function accountIsActive($code)
+    {
+        $user = User::where('activation_code', '=', $code)->first();
+        if($user->activation == 0){
+            $user->activation = 1;
+            $user->activation_code = '';
+            $user->save();
+        }
+        return true;
     }
 
     public function friendsOfMine()

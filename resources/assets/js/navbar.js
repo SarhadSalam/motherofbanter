@@ -78,7 +78,7 @@ if (mobilecheck() !== true) {
     function toggleNav() {
         if ($('.menuWrapper').hasClass('openAll')) {
             $('.menuWrapper').removeClass('openAll');
-            $('.menuWrapper').removeClass('openPart');
+            // $('.menuWrapper').removeClass('openPart');
             $('.icon-menu').removeClass('selected');
         } else {
             // $('.menuWrapper').addClass('openPart');

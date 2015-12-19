@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('profileImage')->nullable();
             $table->string('location')->nullable();
+            $table->boolean('activation')->default(0);
+            $table->string('activation_code')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use MotherOfBanter\Models\User;
 use MotherOfBanter\Models\Social;
 use Illuminate\Contracts\Auth\Guard;
 use Socialite;
+use Mail;
 
 class AuthController extends Controller
 {
@@ -31,15 +32,27 @@ class AuthController extends Controller
 		                'password_confirmation' => 'required|min:6',
 		                'g-recaptcha-response' => 'required|captcha'
 		                ]);
+		//Activation code & mailData to be passed on to view
+		$activationCode = sha1(mt_rand(60, 90)."MOB".str_random(30));
+		$mailData = array(
+		                  'username' => $request->input('username'),
+		                  'code' => $activationCode 
+		                  );
 
-		User::create([
+		$user = User::create([
 		             	'email' => $request->input('email'),
 		             	'username' => $request->input('username'),
-		             	'password' => bcrypt($request->input('password')), 
+		             	'password' => bcrypt($request->input('password')),
+		             	'activation_code' => $activationCode,
 		             ]);
 
-		return redirect()->route('auth.signin')->with('info', 'Your account has been created and you can now sign in. I would like to welcome you to the face of the INTERNET!!!!');
-}
+		Mail::queue('email.activateAccount', $mailData, function($message)use($user){
+			$message->subject('Activate Your Account');
+			$message->to($user->email);
+		});
+
+		return redirect()->route('auth.verify')->with('info', 'Your account has been created and you can now activate your account by visiting your email.');
+	}
 
 	public function getSignin()
 	{
@@ -60,12 +73,10 @@ class AuthController extends Controller
 	public function getSignout()
 	{
 		Auth::logout();
-
 		return redirect()->back()->with('info', 'Sad to see you go! Hope you visit back.');
 	}
 
 	//Everything related to social authentication and database entries goes in here
-
 	//This gets the redirect of the user	
 	public function getSocialRedirect($provider)
 	{
@@ -80,6 +91,7 @@ class AuthController extends Controller
 	//This handles the data provided to us by the user
 	public function getSocialHandle($provider)
 	{
+		//This checks if the user denies us permission.
 		 $code = \Input::get('code');
         if(!$code){
             return redirect()->route('auth.signin')
@@ -95,8 +107,7 @@ class AuthController extends Controller
 		if(!empty($userCheck))
 		{
 			$socialUser = $userCheck;
-		}
-		else //Otherwise we search for the social user
+		} else //Otherwise we search for the social user
 		{
 			$sameSocialId = Social::where('social_id', '=', $user->id)->where('provider', '=', $provider)->first();
 
@@ -111,6 +122,7 @@ class AuthController extends Controller
 					$name = explode(' ', $user->name);
 					$newSocialUser->first_name = $name[0];
 					$newSocialUser->last_name = $name[1];
+					$newSocialUser->activation = true;
 				} else {
 					$newSocialUser->first_name = $user->name;
 				}
@@ -129,14 +141,25 @@ class AuthController extends Controller
 				$socialData->provider = $provider;
 				$newSocialUser->social()->save($socialData);
 				$socialUser = $newSocialUser;
-			}
-			else //This is called when the user exists
+			} else //This is called when the user exists
 			{
 				$socialUser = $sameSocialId->user;
 			}
 		}
 		$this->auth->login($socialUser, true);
-
 		return redirect()->route('home')->with('You are inside the coolest of networks.');
+	}
+
+	public function activateAccount($code, User $user)
+	{
+		if($user->accountIsActive($code)){
+			return redirect()->route('auth.signin')->with('info', 'Your account has been activated. You can now log in.');
+		}
+		return redirect()->route('auth.signup')->with('info', 'Sorry, couldn\'t activate your account. Please try again. I believe it\'s already activated');
+	}
+
+	public function getActivation()
+	{
+		return view('auth.verify');
 	}
 }

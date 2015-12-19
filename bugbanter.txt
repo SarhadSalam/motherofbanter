@@ -1,0 +1,15 @@
+#Bugs
+1. Change the style for all error messages
+2. Define alerts in a better and cooler way
+3. Think of what to do with users who don't verify themselves.
+4. Fix the username in sign up option.
+6. Update so that users can update their username
+7. Switch to mailgun maybe.
+
+
+#Not Bugs
+1. Implement a forget your password
+2. Implement resend mail functionality
+3. Think of logic for admin and normal users
+4. Create videos, blogs, blah blah blah
+5. Think about dropzone.js, looks like a nice option.

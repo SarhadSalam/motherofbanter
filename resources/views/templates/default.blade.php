@@ -36,17 +36,16 @@
         <meta name="msapplication-TileColor" content="#2b5797">
         <meta name="msapplication-TileImage" content="{{ URL::asset('assets/img/mstile-144x144.png') }}">
         <meta name="msapplication-config" content="{{ URL::asset('assets/img/browserconfig.xml') }}">
-        <meta name="theme-color" content="#2f75ce"> {{-- Script --}}
+        <meta name="theme-color" content="#2f75ce"> 
+        {{-- Script --}}
         <script type="text/javascript">@yield('formValidationScripts')</script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
     </head>
 
     <body>
         @include('templates.partials.navigation')
-        <div class="container">
-            @include('templates.partials.alerts') 
-            @yield('content')
-        </div>
+        @include('templates.partials.alerts') 
+        @yield('content')
         <script>
         $(document).on('ready', function() {
             $("#input-4").fileinput({
@@ -68,6 +67,19 @@
                 showCaption: false,
                 showUpload: false,
                 browseClass: "btn btn-primary",
+                browseIcon: "<i class=\"icon icon-image\"></i> ",
+                removeClass: "btn btn-danger",
+                removeLabel: "Delete",
+                removeIcon: "<i class=\"icon icon-trash\"></i> ",
+            });
+        });
+        $(document).on('ready', function() {
+            $("#input-3").fileinput({
+                allowedFileExtensions: ["jpg", "png", "gif"],
+                previewFileType: "image",
+                showCaption: false,
+                showUpload: false,
+                browseClass: "btn btn-danger",
                 browseIcon: "<i class=\"icon icon-image\"></i> ",
                 removeClass: "btn btn-danger",
                 removeLabel: "Delete",

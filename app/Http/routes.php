@@ -52,6 +52,17 @@ Route::get('/signout', [
             'middleware' => ['auth'],
            ]);
 
+Route::get('/register/activate/{code}', [
+           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@activateAccount',
+           'middleware' => ['guest'],
+           ]);
+
+Route::get('/register/user/activate', [
+           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getActivation',
+           'as' => 'auth.verify',
+           'middleware' => ['guest'],
+           ]);
+
 /**
 * Social Auth Begins Here
 */

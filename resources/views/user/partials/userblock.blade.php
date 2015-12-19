@@ -1,11 +1,9 @@
-<div class="media">
-    <a class="pull-left" href="{{ route('profile.index', ['username' => $user-> username]) }}">
-	    <img class="media-object" alt="{{ $user->getNameOrUsername() }}" src="{{ $user->getAvatarUrl() }}" height="40" width="40">
+<div class="userblock text-center">
+    <h3><a href="{{ route('profile.index', ['username' => $user-> username]) }}" style="color:white;">{{ $user->getNameOrUsername() }}</a></h3>
+    <a href="{{ route('profile.index', ['username' => $user-> username]) }}">
+	    <img class="img-circle" alt="{{ $user->getNameOrUsername() }}" src="{{ $user->getAvatarUrl() }}" height="140" width="140">
     </a>
-    <div class="media-body">
-        <h4 class="media-heading"><a href="{{ route('profile.index', ['username' => $user-> username]) }}">{{ $user->getNameOrUsername() }}</a></h4>
-         @if ($user->location)
-	        <p>{{ $user->location }}</p>
-        @endif
-    </div>
+     @if ($user->location)
+        <h5>{{ $user->location }}</h5>
+    @endif
 </div>
