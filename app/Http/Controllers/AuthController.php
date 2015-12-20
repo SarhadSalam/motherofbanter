@@ -9,9 +9,11 @@ use MotherOfBanter\Models\Social;
 use Illuminate\Contracts\Auth\Guard;
 use Socialite;
 use Mail;
+use MotherOfBanter\Traits\CaptchaTrait;
 
 class AuthController extends Controller
 {
+	use CaptchaTrait;
 	protected $auth;
     public function __construct( Guard $auth)
     {
@@ -30,8 +32,12 @@ class AuthController extends Controller
 		                'username' => 'required|unique:users|alpha_dash|max:32',
 		                'password' => 'required|min:6|confirmed',
 		                'password_confirmation' => 'required|min:6',
-		                'g-recaptcha-response' => 'required|captcha'
+		                'g-recaptcha-response' => 'required',
 		                ]);
+
+		if($this->captchaCheck() == false){
+			return redirect()->back()->with('danger', 'Wrong Captcha');
+		}
 		//Activation code & mailData to be passed on to view
 		$activationCode = sha1(mt_rand(60, 90)."MOB".str_random(30));
 		$mailData = array(
@@ -51,7 +57,7 @@ class AuthController extends Controller
 			$message->to($user->email);
 		});
 
-		return redirect()->route('auth.verify')->with('info', 'Your account has been created and you can now activate your account by visiting your email.');
+		return redirect()->route('auth.verify')->with('success', 'Your account has been created and you can now activate your account by visiting your email.');
 	}
 
 	public function getSignin()
@@ -64,10 +70,15 @@ class AuthController extends Controller
 		$field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
 		if (!Auth::attempt(array($field=> $request->input('login'), 'password' => $request->input('password')), true)) {
-			return redirect()->back()->with('info', 'Error 404, Your details aren\'t right. Please try again.');
+			return redirect()->back()->with('danger', 'Error 404, Your details aren\'t right. Please try again.');
 		}
-
-		return redirect()->route('home')->with('info', 'You are now signed in.');
+		$user = Auth::getLastAttempted();
+		if($user->activation == 0){
+			Auth::logout();
+			return redirect()->route('auth.verify')->with('danger', 'Please activate your account. Please check your account for an email.');
+		} elseif($user->activation == 1){
+			return redirect()->route('home')->with('success', 'You have logged in successfully.');
+		}
 	}
 
 	public function getSignout()
@@ -82,7 +93,7 @@ class AuthController extends Controller
 	{
 		$providerKey = \Config::get('services.' . $provider);
 		if(empty($providerKey)){
-			return redirect()->route('auth.signin')->with('info', 'Oops, No such provider.');
+			return redirect()->route('auth.signin')->with('danger', 'Oops, No such provider.');
 		}
 
 		return Socialite::driver($provider)->redirect();
@@ -95,7 +106,7 @@ class AuthController extends Controller
 		 $code = \Input::get('code');
         if(!$code){
             return redirect()->route('auth.signin')
-                ->with('info', 'You did not share your profile data with us.');
+                ->with('danger', 'You did not share your profile data with us.');
         }
 		$user = Socialite::driver($provider)->user();
 		$socialUser = null;
@@ -147,15 +158,15 @@ class AuthController extends Controller
 			}
 		}
 		$this->auth->login($socialUser, true);
-		return redirect()->route('home')->with('You are inside the coolest of networks.');
+		return redirect()->route('home')->with('success', 'You are inside the coolest of networks.');
 	}
 
 	public function activateAccount($code, User $user)
 	{
 		if($user->accountIsActive($code)){
-			return redirect()->route('auth.signin')->with('info', 'Your account has been activated. You can now log in.');
+			return redirect()->route('auth.signin')->with('success', 'Your account has been activated. You can now log in.');
 		}
-		return redirect()->route('auth.signup')->with('info', 'Sorry, couldn\'t activate your account. Please try again. I believe it\'s already activated');
+		return redirect()->route('auth.signup')->with('danger', 'Sorry, couldn\'t activate your account. Please try again. I believe it\'s already activated');
 	}
 
 	public function getActivation()

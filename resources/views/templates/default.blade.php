@@ -7,7 +7,7 @@
         <meta name="description" content="Mother of Banter has everything you need for a good laugh. Also it might help you get a girlfriend." />
         <meta name="keywords" content="Hilarious, Funny, Silly, Stupid, OMG, Seriously?, Elegant, Irresponsible, Immature, Coolest Thing To Ever Happen, Facebook Page, Greatest of 'em all, We are Batman, Funniest, Reason to laugh" />
         <meta name="author" content="metatags generator">
-        <meta meta="revisit-after" content="7 days">
+        <meta meta="revisit-after" content="3 days">
         <meta meta="copyright" content="Copyright © 2015 Mother of Banter. All Rights Reserved.">
         <meta meta="author" content="Mother of Banter">
         <meta meta="language" content="English">
@@ -15,7 +15,11 @@
         {{-- Title --}}
         <title>@yield('title')- Mother of Banter</title>
         {{-- Stylesheet --}}
-        <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/MotherOfBanter.css') }}"> {{-- Icons EVERY DAMNED SIZE--}}
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/MotherOfBanter.css') }}"> 
+        <!--[if lt IE 8]><!-->
+        <link rel="stylesheet" href="{{ URL::asset('assets/css/ie7.css') }}">
+        <!--<![endif]-->
+        {{-- Icons EVERY DAMNED SIZE--}}
         <link rel="apple-touch-icon" sizes="57x57" href="{{ URL::asset('assets/img/apple-touch-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ URL::asset('assets/img/apple-touch-icon-60x60.png') }}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ URL::asset('assets/img/apple-touch-icon-72x72.png') }}">
@@ -38,7 +42,10 @@
         <meta name="msapplication-config" content="{{ URL::asset('assets/img/browserconfig.xml') }}">
         <meta name="theme-color" content="#2f75ce"> 
         {{-- Script --}}
-        <script type="text/javascript">@yield('formValidationScripts')</script>
+        <script type="text/javascript">window.ParsleyConfig = {
+            errorsWrapper: '<div></div>',
+            errorTemplate: '<div class="alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
+        };</script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
     </head>
 

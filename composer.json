@@ -9,7 +9,7 @@
         "laravel/framework": "5.1.*",
         "intervention/image": "^2.3",
         "laravel/socialite": "^2.0",
-        "anhskohbo/no-captcha": "^2.0"
+        "google/recaptcha": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -72,7 +72,7 @@
         </script>
     @endif
 
-    <form role="form" action="{{ route('image.post')}}" method="post" method="post" enctype="multipart/form-data">
+    <form role="form" action="{{ route('image.post')}}" method="post" method="post" enctype="multipart/form-data" data-parsley-validate>
         <!-- Modal -->
         <div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -82,7 +82,7 @@
                         <h4 class="modal-title Status" id="myModalLabel Status">Post something funny: </h4>
                     </div>
                     <div class="modal-body form-group{{ $errors->has('status') ? ' has-error': '' }} test11">
-                        <textarea id="status" placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'" name="status" class="form-control emojiArea" rows="2" id="postStatus"></textarea>
+                        <textarea id="status" placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'" name="status" class="form-control emojiArea" rows="2" id="postStatus" required="" data-parsley-required-message="You must add a heading!" data-parsley-trigger="change focusout" data-parsley-maxlength="2000"></textarea>
                         @if($errors->has('status'))
                             <span class="help-block">{{ $errors->first('status') }}</span> 
                         @endif
@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-md-6 pull-left text-left">
                                 <div class="form-group{{ $errors->has('images') ? ' has-error': '' }} imageButton">
-                                    <input id="input-4" type="file" name="images" accept="image/*" class="file-loading" alt="Please select an image to upload."> 
+                                    <input id="input-4" type="file" name="images" accept="image/*" class="file-loading" alt="Please select an image to upload." data-parsley-filemimetypes="image/jpeg, image/png, image/gif" data-parsley-filemimetypes-message="Only JPEG, GIF & PNG is supported." data-parsley-trigger="change focusout" data-parsley-maxfilesize="3" required="" data-parsley-required-message="A Picture Is Necessary"> 
                                     @if($errors->has('images'))
                                         <span class="help-block">{{ $errors->first('images') }}</span> 
                                     @endif

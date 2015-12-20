@@ -3,13 +3,6 @@
         Sign Up 
     @stop
 
-    @section('formValidationScripts') 
-        window.ParsleyConfig = {
-            errorsWrapper: '<div></div>',
-            errorTemplate: '<div class="alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
-        };
-    @stop
-
     @section('content')
     <div class="container">
         <form class="form-signin" role="form" method="post" action="{{route ('auth.signup') }}" data-parsley-validate>
@@ -23,7 +16,7 @@
             </div>
             <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
                 <label for="username" class="sr-only">Choose an username</label>
-                <input type="text" name="username" class="form-control" placeholder="Please Choose an Username" id="username" value="{{ Request::old('username') ?: '' }}" required="" data-parsley-pattern="/^[a-zA-Z\d]+$/" data-parsley-trigger="change focusout" data-parsley-required-message="An Username is required." data-parsley-minlength="3" data-parsley-maxlength="32"> 
+                <input type="text" name="username" class="form-control" placeholder="Please Choose an Username" id="username" value="{{ Request::old('username') ?: '' }}" required="" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-required-message="An Username is required." data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed."> 
                 @if ($errors->has('username'))
                  <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('username') }}</div> 
                 @endif
@@ -42,10 +35,10 @@
                    <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('password_confirmation') }}</div> 
                 @endif
             </div>
-            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : ''}}" style="margin-top:10px; margin-bottom:10px;" data-parsley-required-message="The recaptcha is required" required="">
-                {!! app('captcha')->display(); !!}
+            <div class="form-group{{ $errors->has('g-recaptcha') ? ' has-error' : ''}}" style="margin-top:10px; margin-bottom:10px;" >
+                 <div class="g-recaptcha" data-sitekey="{{ env('RE_CAPTCHA_SITEKEY') }}" data-parsley-required-message="The recaptcha is required" required=""></div>
                 @if ($errors->has('g-recaptcha-response'))
-                    <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('g-recaptcha-response') }}</div>
+                    <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('g-recaptcha') }}Recaptcha Is Required</div>
                 @endif
             </div>
             <div class="form-group">
@@ -58,6 +51,9 @@
             <a href="{{ route('social.redirect', ['provider' => 'facebook']) }}" class="btn btn-lg btn-block facebook" display="popup">Login With Facebook</a>
             <a href="{{ route('social.redirect', ['provider' => 'twitter']) }}" class="btn btn-lg btn-block twitter">Login With Twitter</a>
             <a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg btn-block google">Login With Google</a>
+            <h4>Already Signed Up? Then Login...</h4>
+            <a href="{{route('auth.signin')}}" class="btn btn-lg btn-block btn-primary">Sign In</a>
         </div>
     </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 @stop

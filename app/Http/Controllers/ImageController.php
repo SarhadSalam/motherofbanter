@@ -79,7 +79,7 @@ class ImageController extends Controller
 			}
 		}
 
-		return redirect()->route('home')->with('info', 'Image Posted');
+		return redirect()->route('home')->with('success', 'Image Posted');
 	}
 
 	//This method deals with what happens after the user replies to an Image
@@ -111,7 +111,7 @@ class ImageController extends Controller
 			//When the user messes with the website and tries to mess with other status by changing the inspect element condition.
 			$image = Image::notReply()-> find($imageId);
 			if(!$image) {
-				return redirect()->back()->with('info', "Oops Something Went Wrong.");
+				return redirect()->back()->with('danger', "Oops Something Went Wrong.");
 			}
 
 			//The database is associated and saved.
@@ -122,14 +122,14 @@ class ImageController extends Controller
 
 			$image->replies()->save($reply);
 
-			return redirect()->back()->with('info', 'Comment Posted');
+			return redirect()->back()->with('success', 'Comment Posted');
 		} else {
 
 		//The database is associated and saved.
 			$image = Image::notReply()-> find($imageId);
 
 			if(!$image) {
-				return redirect()->back()->with('info', "Oops Something Went Wrong.");
+				return redirect()->back()->with('danger', "Oops Something Went Wrong.");
 			}
 
 			$reply = Image::create([
@@ -138,7 +138,7 @@ class ImageController extends Controller
 
 			$image->replies()->save($reply);
 
-			return redirect()->back()->with('info', 'Comment Posted');
+			return redirect()->back()->with('success', 'Comment Posted');
 		}
 	}
 

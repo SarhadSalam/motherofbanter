@@ -22,6 +22,9 @@ elixir(function(mix) {
                'Style.css',
                'emojione.css',
                ], 'public/assets/css/MotherOfBanter.css');
+     mix.styles([
+               'ie7.css',
+               ], 'public/assets/css/ie7.css');
 
     mix.scripts([
                 'copyrights.js',

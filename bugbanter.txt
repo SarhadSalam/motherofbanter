@@ -1,15 +1,15 @@
 #Bugs
-1. Change the style for all error messages
-2. Define alerts in a better and cooler way
-3. Think of what to do with users who don't verify themselves.
-4. Fix the username in sign up option.
-6. Update so that users can update their username
-7. Switch to mailgun maybe.
-
+1. Think of what to do with users who don't verify themselves.
+2. Update so that users can update their username
+3. Update the filesystem, should be easy.
+4. update users table so that it contains a specific site_id for each user.
+5. Idea on how to use resend email:
+	a. Create a resent unit, and make sure it's smaller than 5 always.
+	b. Use the resent unit to validate the user if he is eligible,
+	c. to resend the email, just get the email or the username of the user 		   trying to login and send the email to that address again, if it's above 	   5 time, say fuck you user.
 
 #Not Bugs
 1. Implement a forget your password
-2. Implement resend mail functionality
 3. Think of logic for admin and normal users
 4. Create videos, blogs, blah blah blah
 5. Think about dropzone.js, looks like a nice option.

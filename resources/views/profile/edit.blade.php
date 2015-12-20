@@ -3,13 +3,6 @@
         Edit Profile
     @stop 
 
-    @section('formValidationScripts') 
-        window.ParsleyConfig = {
-            errorsWrapper: '<div></div>',
-            errorTemplate: '<div class="alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
-        };
-    @stop
-
     @section('content')
     <div class="container" style="margin:0;padding:0;width:100%;">
         <form class="form-vertical" role="form" method="post" action="{{ route('post.edit')}}" enctype="multipart/form-data" data-parsley-validate>
@@ -19,7 +12,7 @@
                 <img class="img-circle" src="{{ Auth::user()->getAvatarUrl() }}" height="140" width="140">
                 <div class="form-group{{ $errors->has('images') ? ' has-error': '' }}">
                     <label class="control-label">Upload a profile picture</label>
-                    <input id="input-3" type="file" name="images" accept="image/*" class="file-loading" > 
+                    <input id="input-3" type="file" name="images" accept="image/*" class="file-loading" data-parsley-filemimetypes="image/jpeg, image/png, image/gif" data-parsley-filemimetypes-message="Only JPEG, GIF & PNG is supported." data-parsley-trigger="change focusout"> 
                     @if($errors->has('images'))
                        <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('images') }}</div> 
                     @endif
@@ -29,14 +22,14 @@
             <div class="form-signup">
             <div class="form-group{{ $errors->has('first_name') ? ' has-error': ''}}">
                 <label for="first_name" class="sr-only">First Display name</label>
-                <input type="text" name="first_name" class="form-control" id="first_name" value="{{ Request::old('first_name')  ?: Auth::user()->first_name }}" placeholder="Enter Your First Display Name" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32"> 
+                <input type="text" name="first_name" class="form-control" id="first_name" value="{{ Request::old('first_name')  ?: Auth::user()->first_name }}" placeholder="Enter Your First Display Name" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Display name can only containt Letters, Numbers and Underscores"> 
                 @if ($errors->has('first_name'))
                     <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('first_name') }}</div> 
                 @endif
             </div>
             <div class="form-group{{ $errors->has('last_name') ? ' has-error': ''}}">
                 <label for="last_name" class="sr-only">Last Display name</label>
-                <input type="text" name="last_name" class="form-control" id="last_name" value="{{ Request::old('last_name')  ?: Auth::user()->last_name }}" placeholder="Enter Your Last Display Name" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32"> 
+                <input type="text" name="last_name" class="form-control" id="last_name" value="{{ Request::old('last_name')  ?: Auth::user()->last_name }}" placeholder="Enter Your Last Display Name" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Display name can only containt Letters, Numbers and Underscores"> 
                 @if ($errors->has('last_name'))
                    <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('last_name') }}</div> 
                 @endif
@@ -58,7 +51,7 @@
             </div>
             <div class="form-group{{ $errors->has('location') ? ' has-error': ''}}">
                 <label for="location" class="sr-only">Location</label>
-                <input type="text" name="location" class="form-control" id="location" value="{{ Request::old('location')  ?: Auth::user()->location }}" placeholder="If I like you, I might come to visit you." data-parsley-patter="/^[A-Za-z0-9,\. ]{3,50}$/"> 
+                <input type="text" name="location" class="form-control" id="location" value="{{ Request::old('location')  ?: Auth::user()->location }}" placeholder="If I like you, I might come to visit you." data-parsley-pattern="/^[A-Za-z0-9,\. ]{3,50}$/" data-parsley-trigger="change focusout" data-parsley-pattern-message="Location can only contain Letters, Numbers and Commas."> 
                 @if ($errors->has('location'))
                    <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('location') }}</div> 
                 @endif

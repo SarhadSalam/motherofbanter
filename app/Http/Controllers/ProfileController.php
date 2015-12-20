@@ -62,6 +62,6 @@ class ProfileController extends Controller
 		                     	'location' => $request->input('location'),
 		                     ]);
 
-		return redirect()->route('profile.edit')->with('info', "Your Profile Has Been Updated.");
+		return redirect()->route('profile.edit')->with('success', "Your Profile Has Been Updated.");
 	}
 }
