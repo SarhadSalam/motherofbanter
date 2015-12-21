@@ -109,11 +109,11 @@ body {
     width: 60px;
     border-top: 1px solid #c6d0da;
     background: #FFFFFF;
-    transform: translateX(-60px);
     -moz-transform: translateX(-60px);
     -o-transform: translateX(-60px);
     -webkit-transform: translateX(-60px);
     -ms-transform: translateX(-60px);
+    transform: translateX(-60px);
     transition: transform 0.3s, width 0.3s;
     -moz-transition: transform 0.3s, width 0.3s;
     -o-transition: transform 0.3s, width 0.3s;
@@ -359,6 +359,8 @@ input.search:focus {
 .menuWrapper.openPart {
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    -ms-transform: translateX(0px);
     transform: translateX(0px);
 }
 
@@ -374,6 +376,8 @@ input.search:focus {
     .menuWrapper.openAll {
         -webkit-transform: translateX(0px);
         -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        -o-transform: translateX(0px);
         transform: translateX(0px);
         width: 100%;
     }
@@ -453,6 +457,4 @@ input.search:focus {
 .signIn a:hover {
     color: #2f75ce;
 }
-
-
 /*Navigation Bar Ends here*/

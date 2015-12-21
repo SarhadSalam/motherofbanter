@@ -87,13 +87,11 @@ img.emojione {
     color: #4f4f4f;
 }
 
-.dropdown-menu .active,
-.dropdown-menu li:hover {
+.dropdown-menu .active, .dropdown-menu li:hover {
     background: #6E6E6E;
     color: white;
 }
 
-.dropdown-menu .active a,
-.dropdown-menu li:hover a {
+.dropdown-menu .active a, .dropdown-menu li:hover a {
     color: inherit;
 }

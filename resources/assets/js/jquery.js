@@ -130,7 +130,8 @@
                     if (d = b.call(a[e], e, a[e]), d === !1) break
             } else
                 for (e in a)
-                    if (d = b.call(a[e], e, a[e]), d === !1) break; return a
+                    if (d = b.call(a[e], e, a[e]), d === !1) break;
+            return a
         },
         trim: function(a) {
             return null == a ? "" : (a + "").replace(o, "")
@@ -551,7 +552,8 @@
                             } else if (s && (j = (b[u] || (b[u] = {}))[a]) && j[0] === w) m = j[1];
                             else
                                 while (l = ++n && l && l[p] || (m = n = 0) || o.pop())
-                                    if ((h ? l.nodeName.toLowerCase() === r : 1 === l.nodeType) && ++m && (s && ((l[u] || (l[u] = {}))[a] = [w, m]), l === b)) break; return m -= e, m === d || m % d === 0 && m / d >= 0
+                                    if ((h ? l.nodeName.toLowerCase() === r : 1 === l.nodeType) && ++m && (s && ((l[u] || (l[u] = {}))[a] = [w, m]), l === b)) break;
+                            return m -= e, m === d || m % d === 0 && m / d >= 0
                         }
                     }
                 },
@@ -2345,8 +2347,7 @@
     }), n.extend({
         attr: function(a, b, c) {
             var d, e, f = a.nodeType;
-            if (a && 3 !== f && 8 !== f && 2 !== f) return typeof a.getAttribute === U ? n.prop(a, b, c) : (1 === f && n.isXMLDoc(a) || (b = b.toLowerCase(), d = n.attrHooks[b] || (n.expr.match.bool.test(b) ? Za : Ya)),
-                void 0 === c ? d && "get" in d && null !== (e = d.get(a, b)) ? e : (e = n.find.attr(a, b), null == e ? void 0 : e) : null !== c ? d && "set" in d && void 0 !== (e = d.set(a, c, b)) ? e : (a.setAttribute(b, c + ""), c) : void n.removeAttr(a, b))
+            if (a && 3 !== f && 8 !== f && 2 !== f) return typeof a.getAttribute === U ? n.prop(a, b, c) : (1 === f && n.isXMLDoc(a) || (b = b.toLowerCase(), d = n.attrHooks[b] || (n.expr.match.bool.test(b) ? Za : Ya)), void 0 === c ? d && "get" in d && null !== (e = d.get(a, b)) ? e : (e = n.find.attr(a, b), null == e ? void 0 : e) : null !== c ? d && "set" in d && void 0 !== (e = d.set(a, c, b)) ? e : (a.setAttribute(b, c + ""), c) : void n.removeAttr(a, b))
         },
         removeAttr: function(a, b) {
             var c, d, e = 0,

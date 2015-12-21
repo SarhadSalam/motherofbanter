@@ -3002,13 +3002,11 @@
     ns.unicodeAlt = true; // use the unicode char as the alt attribute (makes copy and pasting the resulting text better)
     ns.ascii = false; // change to true to convert ascii smileys
     ns.cacheBustParam = '?v=1.2.4'; // you can [optionally] modify this to force browsers to refresh their cache. it will be appended to the send of the filenames
-
     ns.toImage = function(str) {
         str = ns.unicodeToImage(str);
         str = ns.shortnameToImage(str);
         return str;
     };
-
     // Uses toShort to transform all unicode into a standard shortname
     // then transforms the shortname into unicode
     // This is done for standardization when converting several unicode types
@@ -3017,7 +3015,6 @@
         str = ns.shortnameToUnicode(str);
         return str;
     };
-
     // Replace shortnames (:wink:) with Ascii equivalents ( ;^) )
     // Useful for systems that dont support unicode nor images
     ns.shortnameToAscii = function(str) {
@@ -3026,7 +3023,6 @@
             // half of the ascii text "emojis" because the unicode numbers are duplicated
             // this is ok for what it's being used for
             unicodeToAscii = ns.objectFlip(ns.asciiList);
-
         str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function(shortname) {
             if ((typeof shortname === 'undefined') || (shortname === '') || (!(shortname in ns.emojioneList))) {
                 // if the shortname doesnt exist just return the entire match
@@ -3042,7 +3038,6 @@
         });
         return str;
     };
-
     // will output unicode from shortname
     // useful for sending emojis back to mobile devices
     ns.shortnameToUnicode = function(str) {
@@ -3056,25 +3051,20 @@
             unicode = ns.emojioneList[shortname][ns.emojioneList[shortname].length - 1].toUpperCase();
             return ns.convert(unicode);
         });
-
         // if ascii smileys are turned on, then we'll replace them!
         if (ns.ascii) {
-
             str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function(entire, m1, m2, m3) {
                 if ((typeof m3 === 'undefined') || (m3 === '') || (!(ns.unescapeHTML(m3) in ns.asciiList))) {
                     // if the shortname doesnt exist just return the entire match
                     return entire;
                 }
-
                 m3 = ns.unescapeHTML(m3);
                 unicode = ns.asciiList[m3].toUpperCase();
                 return m2 + ns.convert(unicode);
             });
         }
-
         return str;
     };
-
     ns.shortnameToImage = function(str) {
         // replace regular shortnames first
         var replaceWith, unicode, alt;
@@ -3084,10 +3074,8 @@
                 return shortname;
             } else {
                 unicode = ns.emojioneList[shortname][ns.emojioneList[shortname].length - 1].toUpperCase();
-
                 // depending on the settings, we'll either add the native unicode as the alt tag, otherwise the shortname
                 alt = (ns.unicodeAlt) ? ns.convert(unicode) : shortname;
-
                 if (ns.imageType === 'png') {
                     if (ns.sprites) {
                         replaceWith = '<span class="emojione-' + unicode + '" title="' + shortname + '">' + alt + '</span>';
@@ -3102,26 +3090,20 @@
                         replaceWith = '<object class="emojione" data="' + ns.imagePathSVG + unicode + '.svg' + ns.cacheBustParam + '" type="image/svg+xml" standby="' + alt + '">' + alt + '</object>';
                     }
                 }
-
                 return replaceWith;
             }
         });
-
         // if ascii smileys are turned on, then we'll replace them!
         if (ns.ascii) {
-
             str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function(entire, m1, m2, m3) {
                 if ((typeof m3 === 'undefined') || (m3 === '') || (!(ns.unescapeHTML(m3) in ns.asciiList))) {
                     // if the shortname doesnt exist just return the entire match
                     return entire;
                 }
-
                 m3 = ns.unescapeHTML(m3);
                 unicode = ns.asciiList[m3].toUpperCase();
-
                 // depending on the settings, we'll either add the native unicode as the alt tag, otherwise the shortname
                 alt = (ns.unicodeAlt) ? ns.convert(unicode) : ns.escapeHTML(m3);
-
                 if (ns.imageType === 'png') {
                     if (ns.sprites) {
                         replaceWith = m2 + '<span class="emojione-' + unicode.toUpperCase() + '" title="' + ns.escapeHTML(m3) + '">' + alt + '</span>';
@@ -3136,23 +3118,17 @@
                         replaceWith = m2 + '<object class="emojione" data="' + ns.imagePathSVG + unicode + '.svg' + ns.cacheBustParam + '" type="image/svg+xml" standby="' + alt + '">' + alt + '</object>';
                     }
                 }
-
                 return replaceWith;
             });
         }
-
         return str;
     };
-
     ns.unicodeToImage = function(str) {
-
         var replaceWith, unicode, alt;
-
         if ((!ns.unicodeAlt) || (ns.sprites)) {
             // if we are using the shortname as the alt tag then we need a reversed array to map unicode code point to shortnames
             var mappedUnicode = ns.mapShortToUnicode();
         }
-
         str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.unicodeRegexp + ")", "gi"), function(unicodeChar) {
             if ((typeof unicodeChar === 'undefined') || (unicodeChar === '') || (!(unicodeChar in ns.jsecapeMap))) {
                 // if the unicodeChar doesnt exist just return the entire match
@@ -3160,10 +3136,8 @@
             } else {
                 // get the unicode codepoint from the actual char
                 unicode = ns.jsecapeMap[unicodeChar];
-
                 // depending on the settings, we'll either add the native unicode as the alt tag, otherwise the shortname
                 alt = (ns.unicodeAlt) ? ns.convert(unicode) : mappedUnicode[unicode];
-
                 if (ns.imageType === 'png') {
                     if (ns.sprites) {
                         replaceWith = '<span class="emojione-' + unicode.toUpperCase() + '" title="' + mappedUnicode[unicode] + '">' + alt + '</span>';
@@ -3178,14 +3152,11 @@
                         replaceWith = '<img class="emojione" alt="' + alt + '" src="' + ns.imagePathSVG + unicode + '.svg' + ns.cacheBustParam + '"/>';
                     }
                 }
-
                 return replaceWith;
             }
         });
-
         return str;
     };
-
     // super simple loop to replace all unicode emoji to shortnames
     // needs to be improved into one big replacement instead, for performance reasons
     ns.toShort = function(str) { // this is really just unicodeToShortname() but I opted for the shorthand name to match toImage()
@@ -3200,7 +3171,6 @@
         }
         return str;
     };
-
     // for converting unicode code points and code pairs to their respective characters
     ns.convert = function(unicode) {
         if (unicode.indexOf("-") > -1) {
@@ -3229,7 +3199,6 @@
             }
         }
     };
-
     ns.escapeHTML = function(string) {
         var escaped = {
             '&': '&amp;',
@@ -3238,7 +3207,6 @@
             '"': '&quot;',
             '\'': '&#039;'
         };
-
         return string.replace(/[&<>"']/g, function(match) {
             return escaped[match];
         });
@@ -3261,7 +3229,6 @@
             '&#39;': '\'',
             '&#x27;': '\''
         };
-
         return string.replace(/&(?:amp|#38|#x26|lt|#60|#x3C|gt|#62|#x3E|apos|#39|#x27|quot|#34|#x22);/ig, function(match) {
             return unescaped[match];
         });
@@ -3281,31 +3248,23 @@
     //reverse an object
     ns.objectFlip = function(obj) {
         var key, tmp_obj = {};
-
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 tmp_obj[obj[key]] = key;
             }
         }
-
         return tmp_obj;
     };
-
     ns.escapeRegExp = function(string) {
         return string.replace(/[-[\]{}()*+?.,;:&\\^$|#\s]/g, "\\$&");
     };
-
     ns.replaceAll = function(string, find, replaceWith) {
-
         var search = new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + find + ")", "gi");
-
         // callback prevents replacing anything inside of these common html tags as well as between an <object></object> tag
         var replace = function(entire, m1) {
             return ((typeof m1 === 'undefined') || (m1 === '')) ? entire : replaceWith;
         };
-
         return string.replace(search, replace);
     };
-
 }(this.emojione = this.emojione || {}));
 if (typeof module === "object") module.exports = this.emojione;

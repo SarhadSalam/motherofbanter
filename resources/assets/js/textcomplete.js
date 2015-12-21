@@ -10,7 +10,6 @@
         factory(jQuery);
     }
 }(function(jQuery) {
-
     /*!
      * jQuery.textcomplete
      *
@@ -18,22 +17,16 @@
      * License:    MIT (https://github.com/yuku-t/jquery-textcomplete/blob/master/LICENSE)
      * Author:     Yuku Takahashi
      */
-
     if (typeof jQuery === 'undefined') {
         throw new Error('jQuery.textcomplete requires jQuery');
-    }
-
-    + function($) {
+    } + function($) {
         'use strict';
-
         var warn = function(message) {
             if (console.warn) {
                 console.warn(message);
             }
         };
-
         var id = 1;
-
         $.fn.textcomplete = function(strategies, option) {
             var args = Array.prototype.slice.call(arguments);
             return this.each(function() {
@@ -72,12 +65,8 @@
                 }
             });
         };
-
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         // Exclusive execution control utility.
         //
         // func - The function to be locked. It is executed with a function named
@@ -102,7 +91,6 @@
         // Returns a wrapped function.
         var lock = function(func) {
             var locked, queuedArgsToReplay;
-
             return function() {
                 // Convert arguments into a real array.
                 var args = Array.prototype.slice.call(arguments);
@@ -133,15 +121,12 @@
                 func.apply(this, args);
             };
         };
-
         var isString = function(obj) {
             return Object.prototype.toString.call(obj) === '[object String]';
         };
-
         var isFunction = function(obj) {
             return Object.prototype.toString.call(obj) === '[object Function]';
         };
-
         var uniqueId = 0;
 
         function Completer(element, option) {
@@ -150,11 +135,9 @@
             this.strategies = [];
             this.views = [];
             this.option = $.extend({}, Completer._getDefaults(), option);
-
             if (!this.$el.is('input[type=text]') && !this.$el.is('textarea') && !element.isContentEditable && element.contentEditable != 'true') {
                 throw new Error('textcomplete must be called on a Textarea or a ContentEditable.');
             }
-
             if (element === document.activeElement) {
                 // element has already been focused. Initialize view objects immediately.
                 this.initialize()
@@ -166,7 +149,6 @@
                 });
             }
         }
-
         Completer._getDefaults = function() {
             if (!Completer.DEFAULTS) {
                 Completer.DEFAULTS = {
@@ -174,24 +156,19 @@
                     zIndex: '100'
                 };
             }
-
             return Completer.DEFAULTS;
         }
-
         $.extend(Completer.prototype, {
             // Public properties
             // -----------------
-
             id: null,
             option: null,
             strategies: null,
             adapter: null,
             dropdown: null,
             $el: null,
-
             // Public methods
             // --------------
-
             initialize: function() {
                 var element = this.$el.get(0);
                 // Initialize view objects.
@@ -209,7 +186,6 @@
                 }
                 this.adapter = new Adapter(element, this, this.option);
             },
-
             destroy: function() {
                 this.$el.off('.' + this.id);
                 if (this.adapter) {
@@ -220,7 +196,6 @@
                 }
                 this.$el = this.adapter = this.dropdown = null;
             },
-
             // Invoke textcomplete.
             trigger: function(text, skipUnchangedTerm) {
                 if (!this.dropdown) {
@@ -241,17 +216,14 @@
                     this.dropdown.deactivate();
                 }
             },
-
             fire: function(eventName) {
                 var args = Array.prototype.slice.call(arguments, 1);
                 this.$el.trigger(eventName, args);
                 return this;
             },
-
             register: function(strategies) {
                 Array.prototype.push.apply(this.strategies, strategies);
             },
-
             // Insert the value into adapter view. It is called when the dropdown is clicked
             // or selected.
             //
@@ -264,16 +236,12 @@
                 this.fire('change').fire('textComplete:select', value, strategy);
                 this.adapter.focus();
             },
-
             // Private properties
             // ------------------
-
             _clearAtNext: true,
             _term: null,
-
             // Private methods
             // ---------------
-
             // Parse the given text and extract the first matching strategy.
             //
             // Returns an array including the strategy, the query term and the match
@@ -295,7 +263,6 @@
                 }
                 return []
             },
-
             // Call the search method of selected strategy..
             _search: lock(function(free, strategy, term, match) {
                 var self = this;
@@ -317,7 +284,6 @@
                     }
                 }, match);
             }),
-
             // Build a parameter for Dropdown#render.
             //
             // Examples
@@ -334,15 +300,10 @@
                 });
             }
         });
-
         $.fn.textcomplete.Completer = Completer;
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         var $window = $(window);
-
         var include = function(zippedData, datum) {
             var i, elem;
             var idProperty = datum.strategy.idProperty
@@ -357,7 +318,6 @@
             }
             return false;
         };
-
         var dropdownViews = {};
         $(document).on('click', function(e) {
             var id = e.originalEvent && e.originalEvent.keepTextCompleteDropdown;
@@ -367,7 +327,6 @@
                 }
             });
         });
-
         var commands = {
             SKIP_DEFAULT: 0,
             KEY_UP: 1,
@@ -377,10 +336,8 @@
             KEY_PAGEDOWN: 5,
             KEY_ESCAPE: 6
         };
-
         // Dropdown view
         // =============
-
         // Construct Dropdown object.
         //
         // element - Textarea or contenteditable element.
@@ -391,7 +348,6 @@
             this._data = []; // zipped data.
             this.$inputEl = $(element);
             this.option = option;
-
             // Override setPosition method.
             if (option.listPosition) {
                 this.setPosition = option.listPosition;
@@ -408,34 +364,26 @@
             this._bindEvents(element);
             dropdownViews[this.id] = this;
         }
-
         $.extend(Dropdown, {
             // Class methods
             // -------------
-
             createElement: function(option) {
                 var $parent = option.appendTo;
                 if (!($parent instanceof $)) {
                     $parent = $($parent);
                 }
-                var $el = $('<ul></ul>')
-                    .addClass('dropdown-menu textcomplete-dropdown')
-                    .attr('id', 'textcomplete-dropdown-' + option._oid)
-                    .css({
-                        display: 'none',
-                        left: 0,
-                        position: 'relative',
-                        zIndex: 1050,
-                    })
-                    .appendTo($parent);
+                var $el = $('<ul></ul>').addClass('dropdown-menu textcomplete-dropdown').attr('id', 'textcomplete-dropdown-' + option._oid).css({
+                    display: 'none',
+                    left: 0,
+                    position: 'relative',
+                    zIndex: 1050,
+                }).appendTo($parent);
                 return $el;
             }
         });
-
         $.extend(Dropdown.prototype, {
             // Public properties
             // -----------------
-
             $el: null, // jQuery object of ul.dropdown-menu element.
             $inputEl: null, // jQuery object of target textarea.
             completer: null,
@@ -447,21 +395,17 @@
             shown: false,
             data: [], // Shown zipped data.
             className: '',
-
             // Public methods
             // --------------
-
             destroy: function() {
                 // Don't remove $el because it may be shared by several textcompletes.
                 this.deactivate();
-
                 this.$el.off('.' + this.id);
                 this.$inputEl.off('.' + this.id);
                 this.clear();
                 this.$el = this.$inputEl = this.completer = null;
                 delete dropdownViews[this.id]
             },
-
             render: function(zippedData) {
                 var contentsHtml = this._buildContents(zippedData);
                 var unzippedData = $.map(this.data, function(d) {
@@ -482,10 +426,8 @@
                     this.deactivate();
                 }
             },
-
             setPosition: function(pos) {
                 this.$el.css(this._applyPlacement(pos));
-
                 // Make the dropdown fixed if the input is also fixed
                 // This can't be done during init, as textcomplete may be used on multiple elements on the same page
                 // Because the same dropdown is reused behind the scenes, we need to recheck every time the dropdown is showed
@@ -502,17 +444,14 @@
                 this.$el.css({
                     position: position
                 }); // Update positioning
-
                 return this;
             },
-
             clear: function() {
                 this.$el.html('');
                 this.data = [];
                 this._index = 0;
                 this._$header = this._$footer = this._$noResultsMessage = null;
             },
-
             activate: function() {
                 if (!this.shown) {
                     this.clear();
@@ -525,7 +464,6 @@
                 }
                 return this;
             },
-
             deactivate: function() {
                 if (this.shown) {
                     this.$el.hide();
@@ -537,51 +475,40 @@
                 }
                 return this;
             },
-
             isUp: function(e) {
                 return e.keyCode === 38 || (e.ctrlKey && e.keyCode === 80); // UP, Ctrl-P
             },
-
             isDown: function(e) {
                 return e.keyCode === 40 || (e.ctrlKey && e.keyCode === 78); // DOWN, Ctrl-N
             },
-
             isEnter: function(e) {
                 var modifiers = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
                 return !modifiers && (e.keyCode === 13 || e.keyCode === 9 || (this.option.completeOnSpace === true && e.keyCode === 32)) // ENTER, TAB
             },
-
             isPageup: function(e) {
                 return e.keyCode === 33; // PAGEUP
             },
-
             isPagedown: function(e) {
                 return e.keyCode === 34; // PAGEDOWN
             },
-
             isEscape: function(e) {
                 return e.keyCode === 27; // ESCAPE
             },
-
             // Private properties
             // ------------------
-
             _data: null, // Currently shown zipped data.
             _index: null,
             _$header: null,
             _$noResultsMessage: null,
             _$footer: null,
-
             // Private methods
             // ---------------
-
             _bindEvents: function() {
                 this.$el.on('mousedown.' + this.id, '.textcomplete-item', $.proxy(this._onClick, this));
                 this.$el.on('touchstart.' + this.id, '.textcomplete-item', $.proxy(this._onClick, this));
                 this.$el.on('mouseover.' + this.id, '.textcomplete-item', $.proxy(this._onMouseover, this));
                 this.$inputEl.on('keydown.' + this.id, $.proxy(this._onKeydown, this));
             },
-
             _onClick: function(e) {
                 var $el = $(e.target);
                 e.preventDefault();
@@ -601,7 +528,6 @@
                     }
                 }, 0);
             },
-
             // Activate hovered item.
             _onMouseover: function(e) {
                 var $el = $(e.target);
@@ -612,22 +538,17 @@
                 this._index = parseInt($el.data('index'), 10);
                 this._activateIndexedItem();
             },
-
             _onKeydown: function(e) {
                 if (!this.shown) {
                     return;
                 }
-
                 var command;
-
                 if ($.isFunction(this.option.onKeydown)) {
                     command = this.option.onKeydown(e, commands);
                 }
-
                 if (command == null) {
                     command = this._defaultKeydown(e);
                 }
-
                 switch (command) {
                     case commands.KEY_UP:
                         e.preventDefault();
@@ -655,7 +576,6 @@
                         break;
                 }
             },
-
             _defaultKeydown: function(e) {
                 if (this.isUp(e)) {
                     return commands.KEY_UP;
@@ -671,7 +591,6 @@
                     return commands.KEY_ESCAPE;
                 }
             },
-
             _up: function() {
                 if (this._index === 0) {
                     this._index = this.data.length - 1;
@@ -681,7 +600,6 @@
                 this._activateIndexedItem();
                 this._setScroll();
             },
-
             _down: function() {
                 if (this._index === this.data.length - 1) {
                     this._index = 0;
@@ -691,13 +609,11 @@
                 this._activateIndexedItem();
                 this._setScroll();
             },
-
             _enter: function(e) {
                 var datum = this.data[parseInt(this._getActiveElement().data('index'), 10)];
                 this.completer.select(datum.value, datum.strategy, e);
                 this.deactivate();
             },
-
             _pageup: function() {
                 var target = 0;
                 var threshold = this._getActiveElement().position().top - this.$el.innerHeight();
@@ -711,7 +627,6 @@
                 this._activateIndexedItem();
                 this._setScroll();
             },
-
             _pagedown: function() {
                 var target = this.data.length - 1;
                 var threshold = this._getActiveElement().position().top + this.$el.innerHeight();
@@ -725,16 +640,13 @@
                 this._activateIndexedItem();
                 this._setScroll();
             },
-
             _activateIndexedItem: function() {
                 this.$el.find('.textcomplete-item.active').removeClass('active');
                 this._getActiveElement().addClass('active');
             },
-
             _getActiveElement: function() {
                 return this.$el.children('.textcomplete-item:nth(' + this._index + ')');
             },
-
             _setScroll: function() {
                 var $activeEl = this._getActiveElement();
                 var itemTop = $activeEl.position().top;
@@ -747,7 +659,6 @@
                     this.$el.scrollTop(itemTop + itemHeight + visibleTop - visibleHeight);
                 }
             },
-
             _buildContents: function(zippedData) {
                 var datum, i, index;
                 var html = '';
@@ -765,7 +676,6 @@
                 }
                 return html;
             },
-
             _renderHeader: function(unzippedData) {
                 if (this.header) {
                     if (!this._$header) {
@@ -775,7 +685,6 @@
                     this._$header.html(html);
                 }
             },
-
             _renderFooter: function(unzippedData) {
                 if (this.footer) {
                     if (!this._$footer) {
@@ -785,7 +694,6 @@
                     this._$footer.html(html);
                 }
             },
-
             _renderNoResultsMessage: function(unzippedData) {
                 if (this.noResultsMessage) {
                     if (!this._$noResultsMessage) {
@@ -795,7 +703,6 @@
                     this._$noResultsMessage.html(html);
                 }
             },
-
             _renderContents: function(html) {
                 if (this._$footer) {
                     this._$footer.before(html);
@@ -803,7 +710,6 @@
                     this.$el.append(html);
                 }
             },
-
             _fitToBottom: function() {
                 var windowScrollBottom = $window.scrollTop() + $window.height();
                 var height = this.$el.height();
@@ -813,7 +719,6 @@
                     });
                 }
             },
-
             _applyPlacement: function(position) {
                 // If the 'placement' option set to 'top', move the position above the element.
                 if (this.placement.indexOf('top') !== -1) {
@@ -836,14 +741,10 @@
                 return position;
             }
         });
-
         $.fn.textcomplete.Dropdown = Dropdown;
         $.extend($.fn.textcomplete, commands);
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         // Memoize a search function.
         var memoize = function(func) {
             var memo = {};
@@ -865,7 +766,6 @@
                 this.search = memoize(this.search);
             }
         }
-
         Strategy.parse = function(strategiesArray, params) {
             return $.map(strategiesArray, function(strategy) {
                 var strategyObj = new Strategy(strategy);
@@ -874,16 +774,13 @@
                 return strategyObj;
             });
         };
-
         $.extend(Strategy.prototype, {
             // Public properties
             // -----------------
-
             // Required
             match: null,
             replace: null,
             search: null,
-
             // Optional
             cache: false,
             context: function() {
@@ -895,18 +792,12 @@
             },
             idProperty: null
         });
-
         $.fn.textcomplete.Strategy = Strategy;
-
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         var now = Date.now || function() {
             return new Date().getTime();
         };
-
         // Returns a function, that, as long as it continues to be invoked, will not
         // be triggered. The function will be called after it stops being called for
         // `wait` msec.
@@ -924,7 +815,6 @@
                     context = args = null;
                 }
             };
-
             return function() {
                 context = this;
                 args = arguments;
@@ -937,39 +827,31 @@
         };
 
         function Adapter() {}
-
         $.extend(Adapter.prototype, {
             // Public properties
             // -----------------
-
             id: null, // Identity.
             completer: null, // Completer object which creates it.
             el: null, // Textarea element.
             $el: null, // jQuery object of the textarea.
             option: null,
-
             // Public methods
             // --------------
-
             initialize: function(element, completer, option) {
                 this.el = element;
                 this.$el = $(element);
                 this.id = completer.id + this.constructor.name;
                 this.completer = completer;
                 this.option = option;
-
                 if (this.option.debounce) {
                     this._onKeyup = debounce(this._onKeyup, this.option.debounce);
                 }
-
                 this._bindEvents();
             },
-
             destroy: function() {
                 this.$el.off('.' + this.id); // Remove all event handlers.
                 this.$el = this.el = this.completer = null;
             },
-
             // Update the element with the given value and strategy.
             //
             // value    - The selected object. It is one of the item of the array
@@ -978,7 +860,6 @@
             select: function( /* value, strategy */ ) {
                 throw new Error('Not implemented');
             },
-
             // Returns the caret's relative coordinates from body's left top corner.
             //
             // FIXME: Calculate the left top corner of `this.option.appendTo` element.
@@ -989,26 +870,21 @@
                 position.left += offset.left;
                 return position;
             },
-
             // Focus on the element.
             focus: function() {
                 this.$el.focus();
             },
-
             // Private methods
             // ---------------
-
             _bindEvents: function() {
                 this.$el.on('keyup.' + this.id, $.proxy(this._onKeyup, this));
             },
-
             _onKeyup: function(e) {
                 if (this._skipSearch(e)) {
                     return;
                 }
                 this.completer.trigger(this.getTextFromHeadToCaret(), true);
             },
-
             // Suppress searching if it returns true.
             _skipSearch: function(clickEvent) {
                 switch (clickEvent.keyCode) {
@@ -1024,13 +900,9 @@
                 }
             }
         });
-
         $.fn.textcomplete.Adapter = Adapter;
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         // Textarea adapter
         // ================
         //
@@ -1038,26 +910,16 @@
         function Textarea(element, completer, option) {
             this.initialize(element, completer, option);
         }
-
         Textarea.DIV_PROPERTIES = {
             left: -9999,
             position: 'absolute',
             top: 0,
             whiteSpace: 'pre-wrap'
         }
-
-        Textarea.COPY_PROPERTIES = [
-            'border-width', 'font-family', 'font-size', 'font-style', 'font-variant',
-            'font-weight', 'height', 'letter-spacing', 'word-spacing', 'line-height',
-            'text-decoration', 'text-align', 'width', 'padding-top', 'padding-right',
-            'padding-bottom', 'padding-left', 'margin-top', 'margin-right',
-            'margin-bottom', 'margin-left', 'border-style', 'box-sizing', 'tab-size'
-        ];
-
+        Textarea.COPY_PROPERTIES = ['border-width', 'font-family', 'font-size', 'font-style', 'font-variant', 'font-weight', 'height', 'letter-spacing', 'word-spacing', 'line-height', 'text-decoration', 'text-align', 'width', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left', 'border-style', 'box-sizing', 'tab-size'];
         $.extend(Textarea.prototype, $.fn.textcomplete.Adapter.prototype, {
             // Public methods
             // --------------
-
             // Update the textarea with the given value and strategy.
             select: function(value, strategy, e) {
                 var pre = this.getTextFromHeadToCaret();
@@ -1073,10 +935,8 @@
                     this.el.selectionStart = this.el.selectionEnd = pre.length;
                 }
             },
-
             // Private methods
             // ---------------
-
             // Returns the caret's relative coordinates from textarea's left top corner.
             //
             // Browser native API does not provide the way to know the position of
@@ -1086,8 +946,7 @@
             // span element into the textarea.
             // Consequently, the span element's position is the thing what we want.
             _getCaretRelativePosition: function() {
-                var dummyDiv = $('<div></div>').css(this._copyCss())
-                    .text(this.getTextFromHeadToCaret());
+                var dummyDiv = $('<div></div>').css(this._copyCss()).text(this.getTextFromHeadToCaret());
                 var span = $('<span></span>').text('.').appendTo(dummyDiv);
                 this.$el.before(dummyDiv);
                 var position = span.position();
@@ -1096,14 +955,12 @@
                 dummyDiv.remove();
                 return position;
             },
-
             _copyCss: function() {
                 return $.extend({
                     // Set 'scroll' if a scrollbar is being shown; otherwise 'auto'.
                     overflow: this.el.scrollHeight > this.el.offsetHeight ? 'scroll' : 'auto'
                 }, Textarea.DIV_PROPERTIES, this._getStyles());
             },
-
             _getStyles: (function($) {
                 var color = $('<div></div>').css(['color']).color;
                 if (typeof color !== 'undefined') {
@@ -1121,18 +978,13 @@
                     };
                 }
             })($),
-
             getTextFromHeadToCaret: function() {
                 return this.el.value.substring(0, this.el.selectionEnd);
             }
         });
-
         $.fn.textcomplete.Textarea = Textarea;
-    }(jQuery);
-
-    + function($) {
+    }(jQuery); + function($) {
         'use strict';
-
         var sentinelChar = '吶';
 
         function IETextarea(element, completer, option) {
@@ -1143,11 +995,9 @@
                 left: -9999
             }).insertBefore(element);
         }
-
         $.extend(IETextarea.prototype, $.fn.textcomplete.Textarea.prototype, {
             // Public methods
             // --------------
-
             select: function(value, strategy, e) {
                 var pre = this.getTextFromHeadToCaret();
                 var post = this.el.value.substring(pre.length);
@@ -1167,7 +1017,6 @@
                     range.select();
                 }
             },
-
             getTextFromHeadToCaret: function() {
                 this.el.focus();
                 var range = document.selection.createRange();
@@ -1176,17 +1025,13 @@
                 return arr.length === 1 ? arr[0] : arr[1];
             }
         });
-
         $.fn.textcomplete.IETextarea = IETextarea;
     }(jQuery);
-
     // NOTE: TextComplete plugin has contenteditable support but it does not work
     //       fine especially on old IEs.
     //       Any pull requests are REALLY welcome.
-
     + function($) {
         'use strict';
-
         // ContentEditable adapter
         // =======================
         //
@@ -1194,11 +1039,9 @@
         function ContentEditable(element, completer, option) {
             this.initialize(element, completer, option);
         }
-
         $.extend(ContentEditable.prototype, $.fn.textcomplete.Adapter.prototype, {
             // Public methods
             // --------------
-
             // Update the content with the given value and strategy.
             // When an dropdown item is selected, it is executed.
             select: function(value, strategy, e) {
@@ -1226,10 +1069,8 @@
                     sel.addRange(range);
                 }
             },
-
             // Private methods
             // ---------------
-
             // Returns the caret's relative position from the contenteditable's
             // left top corner.
             //
@@ -1253,7 +1094,6 @@
                 $node.remove();
                 return position;
             },
-
             // Returns the string between the first character and the caret.
             // Completer will be triggered with the result for start autocompleting.
             //
@@ -1269,9 +1109,7 @@
                 return selection.toString().substring(0, range.startOffset);
             }
         });
-
         $.fn.textcomplete.ContentEditable = ContentEditable;
     }(jQuery);
-
     return jQuery;
 }));

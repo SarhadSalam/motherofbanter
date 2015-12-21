@@ -1,5 +1,4 @@
 // Navbar
-
 //Check whether it's a mobile or not
 function mobilecheck() {
     var check = false;
@@ -9,8 +8,6 @@ function mobilecheck() {
     return check;
 }
 var outClick = "1";
-
-
 //Check whether it's a mobile or not, and enables hover.
 if (mobilecheck() !== true) {
     $(function() {
@@ -27,7 +24,6 @@ if (mobilecheck() !== true) {
         }
     }
     // Experimental 
-
     $(function() {
         $('nav').hover(function() {
             if ($('.menuWrapper').hasClass('openAll')) {
@@ -42,7 +38,6 @@ if (mobilecheck() !== true) {
             }
         });
     });
-
     //Detect a click and open navbar
     $(function() {
         $('a.icon-menu').click(function(e) {
@@ -87,7 +82,6 @@ if (mobilecheck() !== true) {
         }
     }
 }
-
 //Exit functions.
 //Exit the navbar when esc is hit
 $(document).keyup(function(e) {
@@ -97,9 +91,7 @@ $(document).keyup(function(e) {
         }
     }
 });
-
 //This hides the menu on a click
-
 $(function() {
     $('.container').click(function() {
         if (outClick != "0") {
