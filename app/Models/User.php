@@ -92,7 +92,7 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany('MotherOfBanter\Models\Image', 'user_id');
     }
 
-      public function social()
+    public function social()
     {
         return $this->hasMany('MotherOfBanter\Models\Social');
     }
@@ -106,5 +106,10 @@ class User extends Model implements AuthenticatableContract
             $user->save();
         }
         return true;
+    }
+
+    public function password()
+    {
+        return $this->hasMany('MotherOfBanter\Models\Password');
     }
 }

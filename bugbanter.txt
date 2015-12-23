@@ -1,7 +1,7 @@
 #Bugs
 1. Update so that social users can update their username
 2. Update the filesystem, should be easy. use identifier
-3. think of how signed up users can resend email, I can't seem to figure that out. 
+3. think of how signed up users can resend email, I can't seem to figure that out.******* use jquery to hide link, until time passes!.
 4. All for today folks
 
 #Not Bugs

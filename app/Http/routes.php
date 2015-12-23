@@ -62,7 +62,27 @@ Route::get('/register/user/activate', [
            'as' => 'auth.verify',
            'middleware' => ['guest'],
            ]);
-
+/**
+* Password Reset starts here
+*/
+Route::get('/register/forgot_password', [
+           'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@getForgotPassword',
+           'as' => 'forgot.password',
+           'middleware' => ['guest'],
+           ]);
+Route::post('/register/forgot_password', [
+           'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@postForgotPassword',
+           'middleware' => ['guest'],
+           ]);
+Route::get('/register/forgot_password/proceed/{code}', [
+           'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@getResetPasswordCode',
+           'as' => 'reset.password',
+           'middleware' => ['guest'],
+           ]);
+Route::post('/register/forgot_password/proceed/{code}', [
+           'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@postResetPasswordCode',
+           'middleware' => ['guest'],
+           ]);
 /**
 * Social Auth Begins Here
 */
@@ -77,6 +97,7 @@ Route::get('/social/handle/{provider?}', [
            'middleware' => ['guest'],
            'as' => 'social.handle',
            ]);
+
 /**
 *Search
 */
