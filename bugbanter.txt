@@ -1,12 +1,10 @@
 #Bugs
 1. Update so that social users can update their username
-2. Update the filesystem, should be easy. use identifier
-3. think of how signed up users can resend email, I can't seem to figure that out.******* use jquery to hide link, until time passes!.
+2. Update the image controller, it's very very dirty
+3. Be awesome & sexy kid :P
 4. All for today folks
 
 #Not Bugs
-1. Implement a forget your password
 3. Think of logic for admin and normal users
 4. Create videos, blogs, blah blah blah
 5. Think about dropzone.js, looks like a nice option.
-6. Maybe social users update their profile each time they log in?

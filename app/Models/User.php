@@ -70,6 +70,10 @@ class User extends Model implements AuthenticatableContract
         return $this->username;
     }
 
+    public function getIdentifier() {
+        return $this->identifier;
+    }
+
     public function getFirstNameOrUsername()
     {
         return $this->first_name ?: $this->username;
@@ -100,6 +104,9 @@ class User extends Model implements AuthenticatableContract
     public function accountIsActive($code)
     {
         $user = User::where('activation_code', '=', $code)->first();
+        if(!$user || $user->activation_code='' || $user->activation_code= NULL){
+            return redirect()->route('auth.signin')->with('danger', 'Bugger off from whatever you are doing.');
+        }
         if($user->active == 0){
             $user->active = 1;
             $user->activation_code = '';

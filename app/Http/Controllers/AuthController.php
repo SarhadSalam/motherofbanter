@@ -15,6 +15,7 @@ use MotherOfBanter\Repositories\UserRepository;
 class AuthController extends Controller
 {
 	use CaptchaTrait;
+
 	public function getSignup()
 	{
 		return view('auth.signup');
@@ -49,7 +50,24 @@ class AuthController extends Controller
 		             ]);
 		$this->sendMail($mailData, $user);
 
-		return redirect()->route('auth.verify')->with('success', 'Your account has been created and you can now activate your account by visiting your email.');
+		return view('auth.verify')->with('success', 'Your account has been created and you can now activate your account by visiting your email.')->with('identifier', $identifier);
+	}
+
+	public function resendSignedUpUserMail($identifier)
+	{
+		$user = User::where('identifier', '=', $identifier)->first();
+		if(!$user || $user->active == 1){
+			return redirect()->route('auth.signin')->with('danger', 'Something went wrong.');
+		}
+		if($user->resent_email_count < 5){
+			$mailData = array(
+		                  'username' => $user->username,
+		                  'code' => $user->activation_code, 
+		                  );
+			$this->resendMail($mailData, $user);
+			return view('auth.verify')->with('danger', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $identifier);
+		}
+		return redirect()->route('auth.signin')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
 	}
 
 	public function getSignin()
@@ -92,21 +110,15 @@ class AuthController extends Controller
 
 	public function resendMail($mailData, $user)
 	{
-		Mail::queue('email.activateAccount', $mailData, function($message)use($user){
-							$message->subject('Activate Your Account');
-							$message->to($user->email);
-						});
+		$this->sendMail($mailData, $user);
 		$user->resent_email_count = $user->resent_email_count+1;
 		$user->save();
 	}
 
-	public function getActivation()
-	{
-		return view('auth.verify');
-	}
-
 	public function activateAccount($code, User $user)
 	{
+		//Edit here, find out $code abbrev 
+		// TODO
 		if($user->accountIsActive($code)){
 			return redirect()->route('auth.signin')->with('success', 'Your account has been activated. You can now log in.');
 		}

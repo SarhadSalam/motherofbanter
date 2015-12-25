@@ -21,11 +21,11 @@ class PasswordController extends Controller
    {
        $this->validate($request, [
                        'email' => 'required|email|max:255',
-                       // 'g-recaptcha-response' => 'required',
+                       'g-recaptcha-response' => 'required',
                        ]);
-       // if($this->captchaCheck() == false){
-       //      return redirect()->back()->with('danger', 'Wrong Captcha');
-       //  }
+       if($this->captchaCheck() == false){
+            return redirect()->back()->with('danger', 'Wrong Captcha');
+        }
         $user = User::where('email', '=', $request->input('email'))->first();
         if(!$user){
             return redirect()->back()->with('danger', 'Failed to find the provided email.');
@@ -48,15 +48,33 @@ class PasswordController extends Controller
 
    public function getResetPasswordCode($code)      
    {
-       $passwords = Password::where('reset_token', '=', $code)->first();
-       if(!$passwords){
+       $password = Password::where('reset_token', '=', $code)->first();
+       if(!$password){
         return redirect()->route('auth.signin')->with('danger', 'Invalid Token. Access Denied');
        }
-       return view('auth.reset_password');
+       return view('auth.reset_password')->with('reset_code', $password);
    }
 
-   public function postResetPasswordCode($code)
+   public function postResetPasswordCode($code, Request $request)
    {
-       
+       $this->validate($request, [
+                          'email' => 'required|email|max:255',
+                          'password' => 'required|min:6|confirmed',
+                          'password_confirmation' => 'required|min:6',
+                       ]);
+
+       $user = User::where('email', '=', $request->input('email'))->first();
+       if(!$user){
+        return redirect()->route('auth.signin')->with('danger', 'Something is wrong. Ooopsie.');
+       }
+       $reset_token = Password::where('user_id', '=', $user->id)->where('reset_token', '=', $code)->first();
+       if(!$reset_token){
+          return redirect()->route('auth.signin')->with('danger', 'Oops, Something went wrong. Try again.');
+       }
+       $user->update([
+                     'password' => bcrypt($request->input('password')),]);
+       $reset_token->delete();
+       Auth::login($user);
+       return redirect()->route('home')->with('success', 'Password Reset Sucessfull!');
    }
 }

@@ -56,11 +56,10 @@ Route::get('/register/activate/{code}', [
            'uses' => '\MotherOfBanter\Http\Controllers\AuthController@activateAccount',
            'middleware' => ['guest'],
            ]);
-
-Route::get('/register/user/activate', [
-           'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getActivation',
-           'as' => 'auth.verify',
-           'middleware' => ['guest'],
+Route::get('/register/activate/signedup/{identifier}', [
+              'uses' => '\MotherOfBanter\Http\Controllers\AuthController@resendSignedUpUserMail',
+              'as' => 'auth.activate',
+              'middleware' => ['guest'],
            ]);
 /**
 * Password Reset starts here

@@ -28,6 +28,7 @@ Sign In
         <div class="form-group">
             <button type="submit" class="btn btn-block btn-lg btn-primary">Sign in</button>
         </div>
+        <div class="form-group text-center forget-password"><a href="/register/forgot_password">Forgot your password?</a></div>
         <input type="hidden" name="_token" value="{{ Session::token() }}">
     </form>
     <div class="vertical-buttons">

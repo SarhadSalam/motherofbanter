@@ -20,6 +20,7 @@ elixir(function(mix) {
                'image.css',
                'icons.css',
                'Style.css',
+               'forms.css',
                'emojione.css',
                ], 'public/assets/css/MotherOfBanter.css');
      mix.styles([

@@ -13,13 +13,13 @@
             <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('email') }}</div>
             @endif
         </div>
-        {{-- <div class="form-group{{ $errors->has('g-recaptcha') ? ' has-error' : ''}}" style="margin-top:10px; margin-bottom:10px;" >
+        <div class="form-group{{ $errors->has('g-recaptcha') ? ' has-error' : ''}}" style="margin-top:10px; margin-bottom:10px;" >
             <div class="g-recaptcha" data-sitekey="{{ env('RE_CAPTCHA_SITEKEY') }}" data-parsley-required-message="The recaptcha is required" required=""></div>
             @if ($errors->has('g-recaptcha-response'))
             <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('g-recaptcha') }}Recaptcha Is Required</div>
             @endif
         </div>
- --}}        <div class="form-group">
+        <div class="form-group">
             <button type="submit" class="btn btn-block btn-lg btn-primary">Proceed</button>
         </div>
         <input type="hidden" name="_token" value="{{ Session::token() }}">

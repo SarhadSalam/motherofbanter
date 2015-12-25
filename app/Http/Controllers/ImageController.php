@@ -32,7 +32,7 @@ class ImageController extends Controller
 
 			$filename= $filenameWithoutExtension . '.' .$imageFile->getClientOriginalExtension();
 
-			$path = 'uploads/statusImages/' . Auth::user()->getUsername(). '/images' . '/';
+			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier(). '/images' . '/';
 
 			//We use this for our URL.
 			$urlPath = $uniqid;
@@ -104,7 +104,7 @@ class ImageController extends Controller
 			$uniqid = uniqid();
 			$filenameWithoutExtension = $imageFile->getClientOriginalName() . $uniqid ;
 			$filename= $filenameWithoutExtension . '.' .$imageFile->getClientOriginalExtension();
-			$path = 'uploads/statusImages/' . Auth::user()->getUsername(). '/';
+			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier(). '/';
 			//The file is saved
 			$imageFile -> move($path, $filename);
 

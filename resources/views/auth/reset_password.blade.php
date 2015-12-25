@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <div class="container">
-    <form class="form-signin" role="form" method="POST" action="{{ route ('reset.password')}}" data-parsley-validate>
+    <form class="form-signin" role="form" method="POST" action="{{ route ('reset.password', ['code' => $reset_code->reset_token])}}" data-parsley-validate>
         <h2 class="form-signin-heading">Reset Password:</h2>
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email" class="sr-only">Email</label>

@@ -7,6 +7,7 @@ Verify
     <div class="alert alert-danger">
         <strong>Activate Your Account</strong>, it's not possible to log in without verifying your account. Please check your email for a verification email.
     </div>
+    <a href="{{ route('auth.activate', ['identifier'=>$identifier]) }}"><h4>If you haven't received one within 1 minute, CLICK ME!</h4></a>
     <div class="vertical-buttons">
         <h4>You can still use:</h4>
         <a href="{{ route('social.redirect', ['provider' => 'facebook']) }}" class="btn btn-lg btn-block facebook">Login With Facebook</a>
