@@ -13,6 +13,7 @@ class Social extends Model
     'user_id',
     'provider',
     'social_id',
+    'username_change',
     ];
 
 	 public function user()

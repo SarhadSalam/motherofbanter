@@ -65,7 +65,7 @@ class AuthController extends Controller
 		                  'code' => $user->activation_code, 
 		                  );
 			$this->resendMail($mailData, $user);
-			return view('auth.verify')->with('danger', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $identifier);
+			return view('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $identifier);
 		}
 		return redirect()->route('auth.signin')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
 	}
@@ -91,7 +91,7 @@ class AuthController extends Controller
 		                  'code' => $user->activation_code, 
 		                  );
 				$this->resendMail($mailData, $user);
-				return redirect()->route('auth.verify')->with('danger', 'Please activate your account. Please check your account for an email. We have resent the email.');
+				return redirect()->route('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.');
 			}
 			return redirect()->route('auth.verify')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
 		} 
@@ -117,8 +117,6 @@ class AuthController extends Controller
 
 	public function activateAccount($code, User $user)
 	{
-		//Edit here, find out $code abbrev 
-		// TODO
 		if($user->accountIsActive($code)){
 			return redirect()->route('auth.signin')->with('success', 'Your account has been activated. You can now log in.');
 		}

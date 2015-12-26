@@ -31,7 +31,7 @@ class User extends Model implements AuthenticatableContract
     'first_name',
     'last_name',
     'location',
-    'profileImage',
+    'profile_image',
     'activation_code',
     'active',
     'identifier',
@@ -81,9 +81,9 @@ class User extends Model implements AuthenticatableContract
 
     public function getAvatarUrl()
     { 
-        if($this -> profileImage)
+        if($this -> profile_image)
         {
-           return asset($this->profileImage);
+           return asset($this->profile_image);
         }
         else
         {

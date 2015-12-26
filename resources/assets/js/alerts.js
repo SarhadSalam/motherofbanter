@@ -3,7 +3,7 @@ $(".alert-info").alert();
 window.setTimeout(function() {
     $(".alert-info").alert('close');
 }, 7000);
-$(".alert-success").alert();
+$(".tempsuccess").alert();
 window.setTimeout(function() {
     $(".alert-success").alert('close');
 }, 4000);

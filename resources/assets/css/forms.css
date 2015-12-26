@@ -121,3 +121,7 @@
 .form-vertical h3, .userblock .control-label {
     color: #FFFFFF;
 }
+
+.formsignupdisabled{
+    color: #6C6C6C;
+}

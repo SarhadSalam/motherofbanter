@@ -20,48 +20,32 @@ class ImageController extends Controller
 	        	'status' => 'required|max:2000',
 	        	'images' => 'required|max:3000|image',
 		                ]);	
-
 		//Deals with the image posted by the user
 		if(Input::hasFile('images')){
 			//The variable containing the image
 			$imageFile = Input::file('images');
-
 			//The Filename and path is created
 			$uniqid = uniqid();
 			$filenameWithoutExtension = $imageFile->getClientOriginalName(). $uniqid ;
-
 			$filename= $filenameWithoutExtension . '.' .$imageFile->getClientOriginalExtension();
-
 			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier(). '/images' . '/';
 
 			//We use this for our URL.
-			$urlPath = $uniqid;
+			$urlString = strtolower($request->input('status'));
+			$urlString = preg_replace("/[^a-z0-9_\s-]/", "", $urlString);//make alphanumeric
+			$urlString = preg_replace("/[\s-]+/", " ", $urlString);//remove multiple dashes and whitespaces
+			$urlString = preg_replace("/[\s_]/", "-", $urlString);//convert the above to dashes
+			$urlPath = $uniqid.$urlString;
 
 			//Dealing with large images.
 			$userImage = Images::make($imageFile);
 			$height = $userImage->height();
-			//Checks If Height is greater than 999px
 			if($height > '999'){
 				$largeThumbnailPath = public_path($path);
-				//Makes the directory
-				if(!file_exists($largeThumbnailPath)){
-				mkdir($largeThumbnailPath, 0777, true);
-				}
-				//Deals with all the problems and fixes them with Intervention Image
-				$largeThumbnailName =  'LARGEOOO'.$filename;
-				$name = $largeThumbnailPath.$largeThumbnailName;
-				$largeImageFit = $userImage -> fit(800, 600)-> text('For Full Image CLICK ME!', 50, 100, function($font){
-					$font->file(public_path('assets/fonts/raleway.ttf'));
-					$font->size(58);
-					$font->color('#66FDFF');
-					$font->align('left');
-					$font->valign('center');
-				});
-				$largeImageFit -> save($name);
+				$largeThumbnailName =  'LARGEImage'.$filename;
+				$this->largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName);
 			};
-
 			$imageFile -> move($path, $filename);
-
 			// Enters the image in the database
 			if($height >'999'){//if deals with large images
 				Auth::user()->image()->create([
@@ -70,7 +54,7 @@ class ImageController extends Controller
                 	'largeImage_path' => $request->input($path, $path.$filename),
                 	'url' => $request->input($path, $urlPath)
                 ]);
-			} else {//else eals with small images
+			} else {
 				Auth::user()->image()->create([
                 	'body' => $request->input('status'),
                 	'image_path' => $request->input($path , $path.$filename),
@@ -78,8 +62,25 @@ class ImageController extends Controller
                 ]);
 			}
 		}
-
 		return redirect()->route('home')->with('success', 'Image Posted');
+	}
+
+	public function largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName)
+	{
+		//Makes the directory
+		if(!file_exists($largeThumbnailPath)){
+			mkdir($largeThumbnailPath, 0777, true);
+		}
+		//Deals with all the problems and fixes them with Intervention Image
+		$name = $largeThumbnailPath.$largeThumbnailName;
+		$largeImageFit = $userImage -> fit(800, 600)-> text('For Full Image CLICK ME!', 50, 100, function($font){
+			$font->file(public_path('assets/fonts/raleway.ttf'));
+			$font->size(58);
+			$font->color('#66FDFF');
+			$font->align('left');
+			$font->valign('center');
+		});
+		$largeImageFit -> save($name);
 	}
 
 	//This method deals with what happens after the user replies to an Image
@@ -124,20 +125,16 @@ class ImageController extends Controller
 
 			return redirect()->back()->with('success', 'Comment Posted');
 		} else {
-
 		//The database is associated and saved.
 			$image = Image::notReply()-> find($imageId);
-
 			if(!$image) {
 				return redirect()->back()->with('danger', "Oops Something Went Wrong.");
 			}
-
 			$reply = Image::create([
 			                        'body' => $request -> input("reply-{$imageId}")
 			                        ])->user()->associate(Auth::user());
 
 			$image->replies()->save($reply);
-
 			return redirect()->back()->with('success', 'Comment Posted');
 		}
 	}

@@ -19,6 +19,15 @@ Edit Profile
         </div>
         {{-- First Name and Last Name container --}}
         <div class="form-signup">
+        @if(Auth::user()->social()->first()->username_change == 0)
+            <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
+                <label for="username" class="sr-only">Choose an username</label>
+                <input type="text" name="username" class="form-control" value="{{ Request::old('username')  ?: Auth::user()->username }}" placeholder="Please Choose an Username" id="username" value="{{ Request::old('username') ?: '' }}" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed.">
+                @if ($errors->has('username'))
+                <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('username') }}</div>
+                @endif
+            </div>
+        @endif
             <div class="form-group{{ $errors->has('first_name') ? ' has-error': ''}}">
                 <label for="first_name" class="sr-only">First Display name</label>
                 <input type="text" name="first_name" class="form-control" id="first_name" value="{{ Request::old('first_name')  ?: Auth::user()->first_name }}" placeholder="Enter Your First Display Name" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Display name can only containt Letters, Numbers and Underscores">
@@ -61,5 +70,18 @@ Edit Profile
             <input type="hidden" name="_token" value="{{ Session::token() }}">
         </div>
     </form>
+      <div class="form-signup formsignupdisabled text-center" style="margin-top:25px;">
+          <h4><u>Uneditable Details:</u></h4>
+          @if(Auth::user()->social()->first()->username_change == 1)
+            <div class="form-group">
+                <label class="disabled-text">Username</label>
+                <input class="form-control text-center" value="{{ Auth::user()->username }}" disabled>
+            </div>
+            @endif
+            <div class="form-group">
+                <label class="disabled">Email</label>
+                <input class="form-control text-center" value="{{ Auth::user()->email }}" id="username" disabled>
+            </div>
+        </div>
 </div>
 @stop

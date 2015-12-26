@@ -49,12 +49,12 @@ class UserRepository
 				$newSocialUser->active = true;
 				//Getting the avatar
 				if($provider == 'facebook'){
-					$newSocialUser->profileImage = $user->avatar_original;
+					$newSocialUser->profile_image = $user->avatar_original;
 					$newSocialUser->identifier = $identifier."FB";
 				}
 				if($provider == 'google'){
 					$googleAvatarBig = substr_replace($user->avatar, '500', -2);
-					$newSocialUser->profileImage = $googleAvatarBig;
+					$newSocialUser->profile_image = $googleAvatarBig;
 					$newSocialUser->identifier = $identifier."GOOG";
 				}
 				$newSocialUser->save();
