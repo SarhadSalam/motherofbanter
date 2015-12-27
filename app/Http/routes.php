@@ -61,9 +61,7 @@ Route::get('/register/activate/signedup/{identifier}', [
               'as' => 'auth.activate',
               'middleware' => ['guest'],
            ]);
-/**
-* Password Reset starts here
-*/
+
 Route::get('/register/forgot_password', [
            'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@getForgotPassword',
            'as' => 'forgot.password',
@@ -82,9 +80,6 @@ Route::post('/register/forgot_password/proceed/{code}', [
            'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@postResetPasswordCode',
            'middleware' => ['guest'],
            ]);
-/**
-* Social Auth Begins Here
-*/
 
 Route::get('/social/redirect/{provider?}', [
            'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSocialRedirect',
@@ -144,7 +139,13 @@ Route::post('/image/{imageId}/reply', [
             'middleware' => ['auth'],
            ]);
 
-Route::get('/{url}', [
+Route::get('/image/{url}', [
             'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getPost',
             'as' => 'get.post',
+           ]);
+
+Route::get('/image/{imageId}/like', [
+           'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getLike',
+           'as' => 'image.like',
+           'middleware' => ['auth'],
            ]);

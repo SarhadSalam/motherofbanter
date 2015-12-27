@@ -35,4 +35,9 @@ class Image extends Model
 		return $this->replies()->orderBy('created_at', 'desc')->paginate(5);
 	}
 
+	public function likes()
+	{
+		return $this->morphMany('MotherOfBanter\Models\ImageLikeable', 'likeable');
+	}
+
 }

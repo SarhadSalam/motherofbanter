@@ -17,7 +17,8 @@ class ProfileController extends Controller
 		if(!$user){
 			abort(404); 
 		}
-		return view('profile.index')->with('user', $user);
+		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(1);
+		return view('profile.index')->with('user', $user)->with('user', $user)->with('image', $image);
 	}
 	
 	public function getEdit()

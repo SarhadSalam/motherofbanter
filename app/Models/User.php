@@ -7,6 +7,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use MotherOfBanter\Models\Social;
+use MotherOfBanter\Models\Image;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -91,6 +92,11 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
+    public function password()
+    {
+        return $this->hasMany('MotherOfBanter\Models\Password');
+    }
+
     public function image()
     {
         return $this->hasMany('MotherOfBanter\Models\Image', 'user_id');
@@ -99,6 +105,11 @@ class User extends Model implements AuthenticatableContract
     public function social()
     {
         return $this->hasMany('MotherOfBanter\Models\Social');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('MotherOfBanter\Models\ImageLikeable', 'user_id');
     }
 
     public function accountIsActive($code)
@@ -115,8 +126,8 @@ class User extends Model implements AuthenticatableContract
         return true;
     }
 
-    public function password()
+    public function hasLikedImage(Image $image)
     {
-        return $this->hasMany('MotherOfBanter\Models\Password');
+        return (bool) $image->likes->where('user_id', $this->id)->count();
     }
 }

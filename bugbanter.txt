@@ -1,8 +1,10 @@
 #Bugs:
-1. NONE :DDDDDDDDDDDDDDDDDDDDDD.
+1. http://motherofbanter.dev:8000/image fix this.
+2. Fix the pagination statuses
+3. Think of a way to dislike
+4. Put a kitty and edit errors
 
 #Tomorrow's work:
-1. Create likes & dislikes table and anything related.
 2. Users can delete posted images.
 3. Users can delete comments.
 4. Users can go kill themselves.

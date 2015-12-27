@@ -50,7 +50,7 @@ class ImageController extends Controller
 			if($height >'999'){//if deals with large images
 				Auth::user()->image()->create([
                 	'body' => $request->input('status'),
-                	'image_path' => $request->input($path , $path.$largeThumbnailName),
+                	'image_path' => $request->input($path , public_path($path.$largeThumbnailName)),
                 	'largeImage_path' => $request->input($path, $path.$filename),
                 	'url' => $request->input($path, $urlPath)
                 ]);
@@ -63,24 +63,6 @@ class ImageController extends Controller
 			}
 		}
 		return redirect()->route('home')->with('success', 'Image Posted');
-	}
-
-	public function largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName)
-	{
-		//Makes the directory
-		if(!file_exists($largeThumbnailPath)){
-			mkdir($largeThumbnailPath, 0777, true);
-		}
-		//Deals with all the problems and fixes them with Intervention Image
-		$name = $largeThumbnailPath.$largeThumbnailName;
-		$largeImageFit = $userImage -> fit(800, 600)-> text('For Full Image CLICK ME!', 50, 100, function($font){
-			$font->file(public_path('assets/fonts/raleway.ttf'));
-			$font->size(58);
-			$font->color('#66FDFF');
-			$font->align('left');
-			$font->valign('center');
-		});
-		$largeImageFit -> save($name);
 	}
 
 	//This method deals with what happens after the user replies to an Image
@@ -143,6 +125,42 @@ class ImageController extends Controller
 	public function getPost($url)
 	{
 		$post = Image::where('url', $url)->first();
-		return \View::make('timeline.statusImage')->with('image', $post);
+		return \View::make('timeline.status_image')->with('image', $post);
+	}
+
+	public function largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName)
+	{
+		//Makes the directory
+		if(!file_exists($largeThumbnailPath)){
+			mkdir($largeThumbnailPath, 0777, true);
+		}
+		//Deals with all the problems and fixes them with Intervention Image
+		$name = $largeThumbnailPath.$largeThumbnailName;
+		$largeImageFit = $userImage -> fit(800, 600)-> text('For Full Image CLICK ME!', 50, 100, function($font){
+			$font->file(public_path('assets/fonts/raleway.ttf'));
+			$font->size(58);
+			$font->color('#66FDFF');
+			$font->align('left');
+			$font->valign('center');
+		});
+		$largeImageFit -> save($name);
+	}
+
+	public function getLike($imageId)
+	{
+		$image = Image::find($imageId);
+
+		if(!$image) {
+			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
+		}
+
+		if(Auth::user()->hasLikedImage($image)){
+			return redirect()->back()->with('success', 'You already liked it, mate.');
+		}
+
+		$like = $image->likes()->create([]);
+		Auth::user()->likes()->save($like);
+
+		return redirect()->back()->with('success', 'Liked it.');
 	}
 }

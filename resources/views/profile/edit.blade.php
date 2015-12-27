@@ -22,7 +22,7 @@ Edit Profile
         @if(Auth::user()->social()->first()->username_change == 0)
             <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
                 <label for="username" class="sr-only">Choose an username</label>
-                <input type="text" name="username" class="form-control" value="{{ Request::old('username')  ?: Auth::user()->username }}" placeholder="Please Choose an Username" id="username" value="{{ Request::old('username') ?: '' }}" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed.">
+                <input type="text" name="username" class="form-control" value="{{ Request::old('username')}}" placeholder="Please Choose an Username" id="username" data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout" data-parsley-minlength="3" data-parsley-maxlength="32" data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed.">
                 @if ($errors->has('username'))
                 <div class="alert alert-danger" role="alert" style="text-align:center;">{{ $errors->first('username') }}</div>
                 @endif
@@ -72,12 +72,10 @@ Edit Profile
     </form>
       <div class="form-signup formsignupdisabled text-center" style="margin-top:25px;">
           <h4><u>Uneditable Details:</u></h4>
-          @if(Auth::user()->social()->first()->username_change == 1)
             <div class="form-group">
                 <label class="disabled-text">Username</label>
                 <input class="form-control text-center" value="{{ Auth::user()->username }}" disabled>
             </div>
-            @endif
             <div class="form-group">
                 <label class="disabled">Email</label>
                 <input class="form-control text-center" value="{{ Auth::user()->email }}" id="username" disabled>

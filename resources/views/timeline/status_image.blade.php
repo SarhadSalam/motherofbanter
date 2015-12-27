@@ -12,7 +12,7 @@
                 </div>
                 @if ($image->largeImage_path === null)
                 <div class="hovereffect">
-                    <img src="{{$image->image_path}}" class="img-responsive center-block">
+                    <img src="{{URL::asset($image->image_path)}}" class="img-responsive center-block">
                     <div class="overlay">
                         <p class="set1">
                         <a href="#">
@@ -35,14 +35,14 @@
                     </div>
                 </div>
                 @else
-                <img class="img-responsive center-block" src="{{$image->largeImage_path}}">
+                <img class="img-responsive center-block" src="{{URL::asset($image->largeImage_path)}}">
                 @endif
                 <ul class="list-inline big-icon">
-                    <li><a href="#"><i class="icon icon-thumbs-o-up"></i></a></li>
+                    <li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i class="icon icon-thumbs-o-up"></i></a></li>
                     <li><a href="#"><i class="icon icon-thumbs-o-down"></i></a></li>
                     <li><a href="#commentArea"><i class="icon icon-bubble2"></i></a></li>
                     <li class="pull-right">{{ $image->created_at->diffForHumans()}}</li>
-                    <li class="pull-right">10 likes</li>
+                    <li class="pull-right">{{$image->likes->count()}}  {{str_plural('like', $image->likes->count())}}</li>
                 </ul>
             </div>
         </div>
@@ -112,12 +112,12 @@
                         <h5 class="media-heading"><a href="{{ route('profile.index', ['username' => $reply -> user->username]) }}">{{$reply->user->getNameOrUsername()}}</a></h5>
                         <p class="convert-emoji">{{$reply->body}}</p>
                         @if($reply->image_path)
-                        <img class="img-responsive commentImages" alt="" src="{{$reply->image_path}}" style="padding-bottom:10px;">
+                        <img class="img-responsive commentImages" alt="" src="{{URL::asset($reply->image_path)}}" style="padding-bottom:10px;">
                         @endif
                         <ul class="list-inline comments">
-                            <li><a href="#"><i class="icon icon-thumbs-o-up"></i></a></li>
+                            <li><a href="{{ route('image.like', ['imageId' => $reply->id]) }}"><i class="icon icon-thumbs-o-up"></i></a></li>
                             <li><a href="#"><i class="icon icon-thumbs-o-down"></i></a></li>
-                            <li class="pull-right">4 likes</li>
+                            <li class="pull-right">{{$reply->likes->count()}}  {{str_plural('like', $reply->likes->count())}}</li>
                             <li class="pull-right">{{ $reply->created_at->diffForHumans() }}</li>
                         </ul>
                     </div>
