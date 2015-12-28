@@ -149,18 +149,31 @@ class ImageController extends Controller
 	public function getLike($imageId)
 	{
 		$image = Image::find($imageId);
-
 		if(!$image) {
 			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
 		}
-
+		Auth::user()->eitherLikeOrDislike($image, $provider='like');
 		if(Auth::user()->hasLikedImage($image)){
-			return redirect()->back()->with('success', 'You already liked it, mate.');
+			return redirect()->back()->with('success', 'Unliked it.');
 		}
-
 		$like = $image->likes()->create([]);
 		Auth::user()->likes()->save($like);
-
 		return redirect()->back()->with('success', 'Liked it.');
+	}
+
+	public function getDislike($imageId)
+	{
+		$image = Image::find($imageId);
+		if(!$image) {
+			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
+		}
+		Auth::user()->eitherLikeOrDislike($image, $provider='dislike');
+		//Deal with what if the user likes the image then dislikes it?
+		if(Auth::user()->hasDislikedImage($image)){
+			return redirect()->back()->with('success', 'You dis"disliked" it.');
+		}
+		$dislike = $image->dislikes()->create([]);
+		Auth::user()->dislikes()->save($dislike);
+		return redirect()->back()->with('success', 'Disliked it.');
 	}
 }

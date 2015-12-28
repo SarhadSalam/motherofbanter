@@ -40,4 +40,9 @@ class Image extends Model
 		return $this->morphMany('MotherOfBanter\Models\ImageLikeable', 'likeable');
 	}
 
+	public function dislikes()
+	{
+		return $this->morphMany('MotherOfBanter\Models\ImageDislikeable', 'dislikeable');
+	}
+
 }

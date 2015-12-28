@@ -1,4 +1,12 @@
 /*Icon Sizes start Here*/
+.unused-icon {
+    color:#606060 !important;
+}
+
+.big-icon .icon-o-thumbs-up {
+	color: green;
+}
+
 .big-icon .icon {
     font-size: 2em;
     color: #2966b3;

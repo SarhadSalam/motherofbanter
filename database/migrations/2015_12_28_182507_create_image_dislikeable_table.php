@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageLikeableTable extends Migration
+class CreateImageDislikeableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateImageLikeableTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_likeable', function(Blueprint $table){
+        Schema::create('image_dislikeable', function(Blueprint $table){
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('likeable_id');
-            $table->string('likeable_type');
+            $table->integer('dislikeable_id');
+            $table->string('dislikeable_type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateImageLikeableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('image_likeable');
+        Schema::drop('image_dislikeable');
     }
 }

@@ -1,8 +1,11 @@
 #Bugs:
 1. http://motherofbanter.dev:8000/image fix this.
-2. Fix the pagination statuses
-3. Think of a way to dislike
 4. Put a kitty and edit errors
+5. Make a better loading icon
+6. Implement reporting and deleting
+7. FIx if the user doesn't enter a proper image code fyi
+8. Use ajax.
+9. check like 14 of images to be sure of what you think
 
 #Tomorrow's work:
 2. Users can delete posted images.

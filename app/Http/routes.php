@@ -149,3 +149,9 @@ Route::get('/image/{imageId}/like', [
            'as' => 'image.like',
            'middleware' => ['auth'],
            ]);
+
+Route::get('/image/{imageId}/dislike', [
+           'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getDislike',
+           'as' => 'image.dislike',
+           'middleware' => ['auth'],
+           ]);

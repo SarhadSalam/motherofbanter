@@ -67,10 +67,6 @@ class User extends Model implements AuthenticatableContract
         return $this->getName() ?: $this->username;
     }
 
-    public function getUsername() {
-        return $this->username;
-    }
-
     public function getIdentifier() {
         return $this->identifier;
     }
@@ -112,6 +108,13 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany('MotherOfBanter\Models\ImageLikeable', 'user_id');
     }
 
+    public function dislikes()
+    {
+        return $this->hasMany('MotherOfBanter\Models\ImageDislikeable', 'user_id');
+    }
+
+    
+
     public function accountIsActive($code)
     {
         $user = User::where('activation_code', '=', $code)->first();
@@ -128,6 +131,38 @@ class User extends Model implements AuthenticatableContract
 
     public function hasLikedImage(Image $image)
     {
-        return (bool) $image->likes->where('user_id', $this->id)->count();
+        if($image->likes->where('user_id', $this->id)->count()){
+            $image->likes->where('user_id', $this->id)->first()->delete();
+            return true;
+         }
+         return false;
+    }
+
+    public function hasDislikedImage(Image $image)
+    {
+         if($image->dislikes->where('user_id', $this->id)->count()){
+            $image->dislikes->where('user_id', $this->id)->first()->delete();
+            return true;
+         }
+         return false;
+    }
+
+    public function eitherLikeOrDislike($image, $provider)
+    {
+        if($provider == 'dislike'){
+            $like = $image->likes->where('user_id', $this->id)->first();
+            if($like){
+                $like->delete();
+            }
+            return true;
+        }
+        if($provider == 'like'){
+            $dislike = $image->dislikes->where('user_id', $this->id)->first();
+            if($dislike){
+                $dislike->delete();
+            }
+            return true;
+        }
+        return false;
     }
 }

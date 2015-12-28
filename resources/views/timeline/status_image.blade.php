@@ -2,7 +2,8 @@
 @section('title')
 {{$image->body}}
 @stop
-@section('content') {{-- User Posted Images --}}
+@section('content') 
+{{-- User Posted Images --}}
 <div class="container">
     <div class="col-lg-8">
         <div class="media">
@@ -37,13 +38,33 @@
                 @else
                 <img class="img-responsive center-block" src="{{URL::asset($image->largeImage_path)}}">
                 @endif
+                @if(Auth::check())
                 <ul class="list-inline big-icon">
-                    <li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i class="icon icon-thumbs-o-up"></i></a></li>
-                    <li><a href="#"><i class="icon icon-thumbs-o-down"></i></a></li>
+                    @if(Auth::user()->likes->count() == 0)
+                        <li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i class="unused-icon icon icon-thumbs-o-up"></i></a></li>
+                    @else
+                        <li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i class="icon icon-thumbs-o-up"></i></a></li>
+                    @endif
+                     @if(Auth::user()->dislikes->count() == 0)
+                        <li><a href="{{ route('image.dislike', ['imageId' => $image->id]) }}"><i class="unused-icon icon icon-thumbs-o-down"></i></a></li>
+                     @else
+                        <li><a href="{{ route('image.dislike', ['imageId' => $image->id]) }}"><i class="icon icon-thumbs-o-down"></i></a></li>
+                    @endif
                     <li><a href="#commentArea"><i class="icon icon-bubble2"></i></a></li>
                     <li class="pull-right">{{ $image->created_at->diffForHumans()}}</li>
-                    <li class="pull-right">{{$image->likes->count()}}  {{str_plural('like', $image->likes->count())}}</li>
+                    <li class="pull-right">{{$image->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</li>
+                    <li class="pull-right">{{$image->likes->count()}}  {{str_plural('Like', $image->likes->count())}}</li>
                 </ul>
+                @else
+                    <ul class="list-inline big-icon">
+                        <li><a href="{{ route('auth.signin')}}"><i class="unused-icon icon icon-thumbs-o-up"></i></a></li>
+                        <li><a href="{{ route('auth.signin')}}"><i class="unused-icon icon icon-thumbs-o-down"></i></a></li>
+                        <li><a href="{{ route('auth.signin')}}"><i class="icon icon-bubble2"></i></a></li>
+                        <li class="pull-right"><a href="{{ route('auth.signin')}}">{{ $image->created_at->diffForHumans()}}</a></li>
+                        <li class="pull-right"><a href="{{ route('auth.signin')}}">{{$images->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</a></li>
+                        <li class="pull-right"><a href="{{ route('auth.signin')}}">{{$image->likes->count()}}  {{str_plural('Like', $image->likes->count())}}</a></li>
+                    </ul>
+                @endif
             </div>
         </div>
     </div>

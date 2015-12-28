@@ -4,11 +4,11 @@ namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ImageLikeable extends Model 
+class ImageDislikeable extends Model 
 {
-	protected $table = 'image_likeable';
+	protected $table = 'image_dislikeable';
 
-	public function likeable()
+	public function dislikeable()
 	{
 		return $this->morphTo();
 	}

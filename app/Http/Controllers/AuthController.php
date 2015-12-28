@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MotherOfBanter\Http\Controllers;
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
 		$activationCode = sha1(mt_rand(60, 90)."MOB".str_random(30));
 		$mailData = array(
 		                  'username' => $request->input('username'),
-		                  'code' => $activationCode 
+		                  'code' => $activationCode
 		                  );
 		$user = User::create([
 		             	'email' => $request->input('email'),
@@ -62,7 +62,7 @@ class AuthController extends Controller
 		if($user->resent_email_count < 5){
 			$mailData = array(
 		                  'username' => $user->username,
-		                  'code' => $user->activation_code, 
+		                  'code' => $user->activation_code,
 		                  );
 			$this->resendMail($mailData, $user);
 			return view('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $identifier);
@@ -88,13 +88,13 @@ class AuthController extends Controller
 			if($user->resent_email_count < 5){
 				$mailData = array(
 		                  'username' => $request->input('username'),
-		                  'code' => $user->activation_code, 
+		                  'code' => $user->activation_code,
 		                  );
 				$this->resendMail($mailData, $user);
 				return redirect()->route('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.');
 			}
 			return redirect()->route('auth.verify')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
-		} 
+		}
 		elseif($user->active == 1){
 			return redirect()->route('home')->with('success', 'You have logged in successfully.');
 		}
@@ -123,7 +123,7 @@ class AuthController extends Controller
 		return redirect()->route('auth.signup')->with('danger', 'Sorry, couldn\'t activate your account. Please try again. I believe it\'s already activated');
 	}
 
-	//This gets the redirect of the user	
+	//This gets the redirect of the user
 	public function getSocialRedirect($provider)
 	{
 		$providerKey = \Config::get('services.' . $provider);
