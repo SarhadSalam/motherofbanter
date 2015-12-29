@@ -1,14 +1,12 @@
 <?php
-
 namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
-{
+class Image extends Model {
 	protected $table = 'images';
 
-	protected $fillable = [ 
+	protected $fillable = [
 		'body',
 		'image_path',
 		'url',
@@ -31,7 +29,8 @@ class Image extends Model
 		return $this->hasMany('MotherOfBanter\Models\Image', 'parent_id');
 	}
 
-	public function paginatingReplies(){
+	public function paginatingReplies()
+	{
 		return $this->replies()->orderBy('created_at', 'desc')->paginate(5);
 	}
 

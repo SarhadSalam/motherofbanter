@@ -1,6 +1,6 @@
 /*Copyrights are as follows-
-1. Bootstrap-
-	!
+ 1. Bootstrap-
+ !
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -9,7 +9,7 @@
  * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=af58b70039a5ad40f868)
  * Config saved to config.json and https://gist.github.com/af58b70039a5ad40f868
  2. File Upload-
- 	!
+ !
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
  * @version 4.2.8
  *
@@ -46,17 +46,17 @@
  /*! jQuery v2.1.4 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license 
 
 
-5. Emojione- Emoji provided free by http://emojione.com
+ 5. Emojione- Emoji provided free by http://emojione.com
 
-6. Copyrigths belongs to MotherOfBanter 
-7. Navbar was inspired from the google page and created with the help of codrops.com
-8. Autocomplete by https://github.com/yuku-t/jquery-textcomplete
-9.Parsley
-/*!
-* Parsley.js
-* Version 2.2.0-rc4 - built Thu, Oct 29th 2015, 4:25 pm
-* http://parsleyjs.org
-* Guillaume Potier - <guillaume@wisembly.com>
-* Marc-Andre Lafortune - <petroselinum@marc-andre.ca>
-* MIT Licensed
-*/
+ 6. Copyrigths belongs to MotherOfBanter
+ 7. Navbar was inspired from the google page and created with the help of codrops.com
+ 8. Autocomplete by https://github.com/yuku-t/jquery-textcomplete
+ 9.Parsley
+ /*!
+ * Parsley.js
+ * Version 2.2.0-rc4 - built Thu, Oct 29th 2015, 4:25 pm
+ * http://parsleyjs.org
+ * Guillaume Potier - <guillaume@wisembly.com>
+ * Marc-Andre Lafortune - <petroselinum@marc-andre.ca>
+ * MIT Licensed
+ */

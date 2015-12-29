@@ -2,7 +2,7 @@
 /* jslint unused: true */
 /* jshint shadow: true */
 /* jshint -W075 */
-(function(ns) {
+(function (ns) {
     // this list must be ordered from largest length of the value array, index 0, to the shortest
     ns.emojioneList = {
         ':kiss_ww:': ["1f469-200d-2764-fe0f-200d-1f48b-200d-1f469", "1f469-2764-1f48b-1f469"],
@@ -3002,7 +3002,7 @@
     ns.unicodeAlt = true; // use the unicode char as the alt attribute (makes copy and pasting the resulting text better)
     ns.ascii = false; // change to true to convert ascii smileys
     ns.cacheBustParam = '?v=1.2.4'; // you can [optionally] modify this to force browsers to refresh their cache. it will be appended to the send of the filenames
-    ns.toImage = function(str) {
+    ns.toImage = function (str) {
         str = ns.unicodeToImage(str);
         str = ns.shortnameToImage(str);
         return str;
@@ -3010,20 +3010,20 @@
     // Uses toShort to transform all unicode into a standard shortname
     // then transforms the shortname into unicode
     // This is done for standardization when converting several unicode types
-    ns.unifyUnicode = function(str) {
+    ns.unifyUnicode = function (str) {
         str = ns.toShort(str);
         str = ns.shortnameToUnicode(str);
         return str;
     };
     // Replace shortnames (:wink:) with Ascii equivalents ( ;^) )
     // Useful for systems that dont support unicode nor images
-    ns.shortnameToAscii = function(str) {
+    ns.shortnameToAscii = function (str) {
         var unicode,
-            // something to keep in mind here is that array flip will destroy
-            // half of the ascii text "emojis" because the unicode numbers are duplicated
-            // this is ok for what it's being used for
+        // something to keep in mind here is that array flip will destroy
+        // half of the ascii text "emojis" because the unicode numbers are duplicated
+        // this is ok for what it's being used for
             unicodeToAscii = ns.objectFlip(ns.asciiList);
-        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function(shortname) {
+        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function (shortname) {
             if ((typeof shortname === 'undefined') || (shortname === '') || (!(shortname in ns.emojioneList))) {
                 // if the shortname doesnt exist just return the entire match
                 return shortname;
@@ -3040,10 +3040,10 @@
     };
     // will output unicode from shortname
     // useful for sending emojis back to mobile devices
-    ns.shortnameToUnicode = function(str) {
+    ns.shortnameToUnicode = function (str) {
         // replace regular shortnames first
         var unicode;
-        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function(shortname) {
+        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function (shortname) {
             if ((typeof shortname === 'undefined') || (shortname === '') || (!(shortname in ns.emojioneList))) {
                 // if the shortname doesnt exist just return the entire match
                 return shortname;
@@ -3053,7 +3053,7 @@
         });
         // if ascii smileys are turned on, then we'll replace them!
         if (ns.ascii) {
-            str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function(entire, m1, m2, m3) {
+            str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function (entire, m1, m2, m3) {
                 if ((typeof m3 === 'undefined') || (m3 === '') || (!(ns.unescapeHTML(m3) in ns.asciiList))) {
                     // if the shortname doesnt exist just return the entire match
                     return entire;
@@ -3065,10 +3065,10 @@
         }
         return str;
     };
-    ns.shortnameToImage = function(str) {
+    ns.shortnameToImage = function (str) {
         // replace regular shortnames first
         var replaceWith, unicode, alt;
-        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function(shortname) {
+        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.shortnames + ")", "gi"), function (shortname) {
             if ((typeof shortname === 'undefined') || (shortname === '') || (!(shortname in ns.emojioneList))) {
                 // if the shortname doesnt exist just return the entire match
                 return shortname;
@@ -3095,7 +3095,7 @@
         });
         // if ascii smileys are turned on, then we'll replace them!
         if (ns.ascii) {
-            str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function(entire, m1, m2, m3) {
+            str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|((\\s|^)" + ns.asciiRegexp + "(?=\\s|$|[!,.?]))", "g"), function (entire, m1, m2, m3) {
                 if ((typeof m3 === 'undefined') || (m3 === '') || (!(ns.unescapeHTML(m3) in ns.asciiList))) {
                     // if the shortname doesnt exist just return the entire match
                     return entire;
@@ -3123,13 +3123,13 @@
         }
         return str;
     };
-    ns.unicodeToImage = function(str) {
+    ns.unicodeToImage = function (str) {
         var replaceWith, unicode, alt;
         if ((!ns.unicodeAlt) || (ns.sprites)) {
             // if we are using the shortname as the alt tag then we need a reversed array to map unicode code point to shortnames
             var mappedUnicode = ns.mapShortToUnicode();
         }
-        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.unicodeRegexp + ")", "gi"), function(unicodeChar) {
+        str = str.replace(new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + ns.unicodeRegexp + ")", "gi"), function (unicodeChar) {
             if ((typeof unicodeChar === 'undefined') || (unicodeChar === '') || (!(unicodeChar in ns.jsecapeMap))) {
                 // if the unicodeChar doesnt exist just return the entire match
                 return unicodeChar;
@@ -3159,7 +3159,7 @@
     };
     // super simple loop to replace all unicode emoji to shortnames
     // needs to be improved into one big replacement instead, for performance reasons
-    ns.toShort = function(str) { // this is really just unicodeToShortname() but I opted for the shorthand name to match toImage()
+    ns.toShort = function (str) { // this is really just unicodeToShortname() but I opted for the shorthand name to match toImage()
         for (var shortcode in ns.emojioneList) {
             if (!ns.emojioneList.hasOwnProperty(shortcode)) {
                 continue;
@@ -3172,7 +3172,7 @@
         return str;
     };
     // for converting unicode code points and code pairs to their respective characters
-    ns.convert = function(unicode) {
+    ns.convert = function (unicode) {
         if (unicode.indexOf("-") > -1) {
             var parts = [];
             var s = unicode.split('-');
@@ -3199,7 +3199,7 @@
             }
         }
     };
-    ns.escapeHTML = function(string) {
+    ns.escapeHTML = function (string) {
         var escaped = {
             '&': '&amp;',
             '<': '&lt;',
@@ -3207,11 +3207,11 @@
             '"': '&quot;',
             '\'': '&#039;'
         };
-        return string.replace(/[&<>"']/g, function(match) {
+        return string.replace(/[&<>"']/g, function (match) {
             return escaped[match];
         });
     };
-    ns.unescapeHTML = function(string) {
+    ns.unescapeHTML = function (string) {
         var unescaped = {
             '&amp;': '&',
             '&#38;': '&',
@@ -3229,11 +3229,11 @@
             '&#39;': '\'',
             '&#x27;': '\''
         };
-        return string.replace(/&(?:amp|#38|#x26|lt|#60|#x3C|gt|#62|#x3E|apos|#39|#x27|quot|#34|#x22);/ig, function(match) {
+        return string.replace(/&(?:amp|#38|#x26|lt|#60|#x3C|gt|#62|#x3E|apos|#39|#x27|quot|#34|#x22);/ig, function (match) {
             return unescaped[match];
         });
     };
-    ns.mapShortToUnicode = function() {
+    ns.mapShortToUnicode = function () {
         var new_obj = {};
         for (var shortname in ns.emojioneList) {
             if (!ns.emojioneList.hasOwnProperty(shortname)) {
@@ -3246,7 +3246,7 @@
         return new_obj;
     };
     //reverse an object
-    ns.objectFlip = function(obj) {
+    ns.objectFlip = function (obj) {
         var key, tmp_obj = {};
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -3255,13 +3255,13 @@
         }
         return tmp_obj;
     };
-    ns.escapeRegExp = function(string) {
+    ns.escapeRegExp = function (string) {
         return string.replace(/[-[\]{}()*+?.,;:&\\^$|#\s]/g, "\\$&");
     };
-    ns.replaceAll = function(string, find, replaceWith) {
+    ns.replaceAll = function (string, find, replaceWith) {
         var search = new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + find + ")", "gi");
         // callback prevents replacing anything inside of these common html tags as well as between an <object></object> tag
-        var replace = function(entire, m1) {
+        var replace = function (entire, m1) {
             return ((typeof m1 === 'undefined') || (m1 === '')) ? entire : replaceWith;
         };
         return string.replace(search, replace);

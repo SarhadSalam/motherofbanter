@@ -1,11 +1,9 @@
 <?php
-
 namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ImageLikeable extends Model 
-{
+class ImageLikeable extends Model {
 	protected $table = 'image_likeable';
 
 	public function likeable()
@@ -15,6 +13,6 @@ class ImageLikeable extends Model
 
 	public function user()
 	{
-		return $this-belongsTo('MotherOfBanter\Models\User', 'user_id');
+		return $this - belongsTo('MotherOfBanter\Models\User', 'user_id');
 	}
 }

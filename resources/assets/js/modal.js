@@ -1,5 +1,5 @@
 // Modals File
-(function($) {
+(function ($) {
     "use strict";
 
     function centerModal() {
@@ -11,8 +11,9 @@
         if (offset < bottomMargin) offset = bottomMargin;
         $dialog.css("margin-top", offset);
     }
+
     $(document).on('show.bs.modal', '.modal', centerModal);
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
         $('.modal:visible').each(centerModal);
     });
 }(jQuery));
