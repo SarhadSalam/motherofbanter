@@ -117,7 +117,10 @@ class ImageController extends Controller {
 	public function getPost($url)
 	{
 		$post = Image::where('url', $url)->first();
-
+		if(!$post)
+		{
+			return redirect()->route('home')->with('danger', 'Image Not Found');
+		}
 		return \View::make('timeline.status_image')->with('image', $post);
 	}
 

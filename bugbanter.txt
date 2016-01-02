@@ -1,11 +1,8 @@
 #Bugs:
-1. http://motherofbanter.dev:8000/image fix this.
 4. Put a kitty and edit errors
-5. Make a better loading icon
 6. Implement reporting and deleting
-7. FIx if the user doesn't enter a proper image code fyi
 8. Use ajax.
-9. check like 14 of images to be sure of what you think
+9. Status images comments like, check that mate!
 
 #Tomorrow's work:
 2. Users can delete posted images.
@@ -17,5 +14,4 @@
 2. Create videos, blogs, blah blah blah.
 3. Think about dropzone.js, looks like a nice option.
 4. Create some kind of special alerts maybe?
-5. Maybe Emma Watson knows you?
 6. ElasticSearch

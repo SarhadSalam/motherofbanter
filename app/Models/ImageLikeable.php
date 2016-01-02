@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 class ImageLikeable extends Model {
 	protected $table = 'image_likeable';
 
+	protected $fillable = [
+		'id',
+	];
+
 	public function likeable()
 	{
 		return $this->morphTo();

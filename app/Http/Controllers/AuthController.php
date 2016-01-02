@@ -66,7 +66,7 @@ class AuthController extends Controller {
 			return view('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $identifier);
 		}
 
-		return redirect()->route('auth.signin')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
+		return view('auth.signin')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
 	}
 
 	public function getSignin()
@@ -90,10 +90,10 @@ class AuthController extends Controller {
 				);
 				$this->resendMail($mailData, $user);
 
-				return redirect()->route('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.');
+				return view('auth.verify')->with('warning', 'Please activate your account. Please check your account for an email. We have resent the email.')->with('identifier', $user->identifier);
 			}
 
-			return redirect()->route('auth.verify')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
+			return view('auth.verify')->with('danger', 'Sorry, We couldn\'t send you an email as you crossed our limit.');
 		} elseif ($user->active == 1) {
 			return redirect()->route('home')->with('success', 'You have logged in successfully.');
 		}

@@ -31,7 +31,7 @@ class Image extends Model {
 
 	public function paginatingReplies()
 	{
-		return $this->replies()->orderBy('created_at', 'desc')->paginate(5);
+		return $this->replies()->orderBy('created_at', 'desc')->paginate(15);
 	}
 
 	public function likes()

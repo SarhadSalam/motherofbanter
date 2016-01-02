@@ -17,14 +17,14 @@
 				@if(Auth::check())
 					<ul class="list-inline big-icon">
 						{{-- BIG DOUBT HERE --}}
-						@if($images->likes->count() == 0)
+						@if(Auth::user()->hasLikedAlready($images->id))
 							<li><a href="{{ route('image.like', ['imageId' => $images->id]) }}"><i
 											class="unused-icon icon icon-thumbs-o-up"></i></a></li>
 						@else
 							<li><a href="{{ route('image.like', ['imageId' => $images->id]) }}"><i
 											class="icon icon-thumbs-o-up"></i></a></li>
 						@endif
-						@if(Auth::user()->dislikes->count() == 0)
+						@if(Auth::user()->hasDislikedAlready($images->id))
 							<li><a href="{{ route('image.dislike', ['imageId' => $images->id]) }}"><i
 											class="unused-icon icon icon-thumbs-o-down"></i></a></li>
 						@else

@@ -24,6 +24,7 @@
 			</div>
 			{{-- First Name and Last Name container --}}
 			<div class="form-signup">
+			@if(Auth::user()->social()->exists())
 				@if(Auth::user()->social()->first()->username_change == 0)
 					<div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
 						<label for="username" class="sr-only">Choose an username</label>
@@ -37,6 +38,7 @@
 								 style="text-align:center;">{{ $errors->first('username') }}</div>
 						@endif
 					</div>
+				@endif
 				@endif
 				<div class="form-group{{ $errors->has('first_name') ? ' has-error': ''}}">
 					<label for="first_name" class="sr-only">First Display name</label>

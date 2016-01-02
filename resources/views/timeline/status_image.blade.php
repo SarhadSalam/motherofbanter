@@ -45,14 +45,14 @@
 					@endif
 					@if(Auth::check())
 						<ul class="list-inline big-icon">
-							@if(Auth::user()->likes->count() == 0)
+							@if(Auth::user()->hasLikedAlready($image->id))
 								<li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i
 												class="unused-icon icon icon-thumbs-o-up"></i></a></li>
 							@else
 								<li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i
 												class="icon icon-thumbs-o-up"></i></a></li>
 							@endif
-							@if(Auth::user()->dislikes->count() == 0)
+							@if(Auth::user()->hasDislikedAlready($image->id))
 								<li><a href="{{ route('image.dislike', ['imageId' => $image->id]) }}"><i
 												class="unused-icon icon icon-thumbs-o-down"></i></a></li>
 							@else
@@ -215,7 +215,7 @@
 				autoTrigger: true,
 				nextSelector: '.pagination li.active + li a',
 				contentSelector: 'div.infinite-loading-comments',
-				loadingHtml: '<div class="col-lg-8"><img class="loadingImage" src="{{ URL::asset('assets/img/ajax-loader.gif')}}" alt="Loading"/></div>',
+				loadingHtml: '<div class="col-lg-8"><img class="loadingImage" src="{{ URL::asset('assets/img/ajax-loader.svg')}}" alt="Loading"/></div>',
 				callback: function () {
 					$('ul.pagination:visible:first').hide();
 				}

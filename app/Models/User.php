@@ -83,6 +83,26 @@ class User extends Model implements AuthenticatableContract {
 		}
 	}
 
+	public function hasLikedAlready($id)
+	{
+		$like = ImageLikeable::where('likeable_id', '=', $id)->where('user_id', $this->id)->first();
+		if($like)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public function hasDislikedAlready($id)
+	{
+		$dislike = ImageDislikeable::where('dislikeable_id', $id)->where('user_id', $this->id)->first();
+		if($dislike)
+		{
+			return false;
+		}
+		return true;
+	}
+
 	public function password()
 	{
 		return $this->hasMany('MotherOfBanter\Models\Password');
