@@ -1,17 +1,11 @@
 #Bugs:
-4. Put a kitty and edit errors
-6. Implement reporting and deleting
-8. Use ajax.
-9. Status images comments like, check that mate!
-
-#Tomorrow's work:
-2. Users can delete posted images.
-3. Users can delete comments.
-4. Users can go kill themselves.
+1. Put a kitty and edit errors
+2. Implement reporting and deleting
+3. Status images comments like and dislike, update!
+4. Update status_image to use ajax
 
 #Just Random Thoughts:
 1. Think of logic for admin and normal users.
 2. Create videos, blogs, blah blah blah.
 3. Think about dropzone.js, looks like a nice option.
-4. Create some kind of special alerts maybe?
 6. ElasticSearch

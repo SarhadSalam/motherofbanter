@@ -30,3 +30,11 @@
 }
 
 /*Icon Sizes end Here*/
+.form-vote button[type=submit] {
+	border: none;
+	background: none;
+}
+
+.form-vote {
+	display: inline-block;
+}

@@ -16,26 +16,45 @@
 				<br>
 				@if(Auth::check())
 					<ul class="list-inline big-icon">
-						{{-- BIG DOUBT HERE --}}
-						@if(Auth::user()->hasLikedAlready($images->id))
-							<li><a href="{{ route('image.like', ['imageId' => $images->id]) }}"><i
-											class="unused-icon icon icon-thumbs-o-up"></i></a></li>
-						@else
-							<li><a href="{{ route('image.like', ['imageId' => $images->id]) }}"><i
-											class="icon icon-thumbs-o-up"></i></a></li>
-						@endif
-						@if(Auth::user()->hasDislikedAlready($images->id))
-							<li><a href="{{ route('image.dislike', ['imageId' => $images->id]) }}"><i
-											class="unused-icon icon icon-thumbs-o-down"></i></a></li>
-						@else
-							<li><a href="{{ route('image.dislike', ['imageId' => $images->id]) }}"><i
-											class="icon icon-thumbs-o-down"></i></a></li>
-						@endif
+						<form class="form-vote form{{$images->id}}"
+							  action="{{ route('image.like', ['imageId' => $images->id]) }}" method="get" role="form">
+							@if(Auth::user()->hasLikedAlready($images->id))
+								<li>
+									<button type="submit" class="like_btn"><i
+												class="unused-icon icon icon-thumbs-o-up"></i></button>
+								</li>
+							@else
+								<li>
+									<button type="submit" class="like_btn" href=""><i
+												class="icon icon-thumbs-o-up"></i></button>
+								</li>
+							@endif
+							<input type="hidden" name="_token" value="{{ Session::token() }}">
+						</form>
+						<form class="form-vote form_dislike{{$images->id}}"
+							  action="{{ route('image.dislike', ['imageId' => $images->id]) }}" method="get" role="form">
+							@if(Auth::user()->hasDislikedAlready($images->id))
+								<li>
+									<button type="submit" class="dislike_btn"><i
+												class="unused-icon icon icon-thumbs-o-down"></i></button>
+								</li>
+							@else
+								<li>
+									<button type="submit" class="dislike_btn"><i
+												class="icon icon-thumbs-o-down"></i></button>
+								</li>
+							@endif
+								<input type="hidden" name="_token" value="{{ Session::token() }}">
+						</form>
 						<li><a href="{{ route('get.post', ['url' => $images-> url]) }}#commentArea"><i
 										class="icon icon-bubble2"></i></a></li>
 						<li class="pull-right">{{ $images->created_at->diffForHumans()}}</li>
-						<li class="pull-right">{{$images->dislikes->count()}}  {{str_plural('Dislike', $images->dislikes->count())}}</li>
-						<li class="pull-right">{{$images->likes->count()}}  {{str_plural('Like', $images->likes->count())}}</li>
+						<li class="pull-right"><span
+									class="dislike_count{{$images->id}}">{{$images->dislikes->count()}}</span>  {{str_plural('Dislike', $images->dislikes->count())}}
+						</li>
+						<li class="pull-right"><span
+									class="like_count{{$images->id}}"> {{$images->likes->count()}}</span> {{str_plural('Like', $images->likes->count())}}
+						</li>
 					</ul>
 				@else
 					<ul class="list-inline big-icon">
@@ -50,13 +69,14 @@
 									href="{{route('auth.signin')}}">{{$images->dislikes->count()}}  {{str_plural('dislike', $images->dislikes->count())}}</a>
 						</li>
 						<li class="pull-right"><a
-									href="{{route('auth.signin')}}">{{$images->likes->count()}}  {{str_plural('like', $images->likes->count())}}</a>
+									href="{{route('auth.signin')}}">{{$images->likes->count()}} {{str_plural('like', $images->likes->count())}}</a>
 						</li>
 					</ul>
 				@endif
 				<hr>
 			</div>
 		</div>
+		@include('templates.partials.ajax_requests')
 	@endforeach
 	<div class="hidden-paginator">
 		{!! $image->render() !!}

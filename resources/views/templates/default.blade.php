@@ -48,13 +48,13 @@
 			errorsWrapper: '<div></div>',
 			errorTemplate: '<div class="alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
 		};</script>
+	<script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
 </head>
 <body>
 @include('templates.partials.navigation')
 @include('templates.partials.alerts')
 @yield('content')
 <footer>
-	<script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
 	<script>
 		$(document).on('ready', function () {
 			$("#input-4").fileinput({
