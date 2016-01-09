@@ -24,7 +24,8 @@
 					   data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout"
 					   data-parsley-required-message="An Username is required." data-parsley-minlength="3"
 					   data-parsley-maxlength="32"
-					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed.">
+					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed."
+					   data-parsley-remote="{{URL::to('/signup/unique/username')}}/">
 				@if ($errors->has('username'))
 					<div class="alert alert-danger" role="alert"
 						 style="text-align:center;">{{ $errors->first('username') }}</div>
@@ -78,5 +79,9 @@
 			<a href="{{route('auth.signin')}}" class="btn btn-lg btn-block btn-primary">Sign In</a>
 		</div>
 	</div>
+
+@stop
+
+@section('partialScripts')
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 @stop

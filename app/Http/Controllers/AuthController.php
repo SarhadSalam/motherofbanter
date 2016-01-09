@@ -2,7 +2,7 @@
 namespace MotherOfBanter\Http\Controllers;
 
 use Auth;
-use Illuminate\http\Request;
+use Request;
 use MotherOfBanter\Models\User;
 use MotherOfBanter\Models\Social;
 use Illuminate\Contracts\Auth\Guard;
@@ -153,5 +153,18 @@ class AuthController extends Controller {
 		Auth::logout();
 
 		return redirect()->back()->with('info', 'Sad to see you go! Hope you visit back.');
+	}
+
+	public function usernameExists($username)
+	{
+		$username = strstr($username, '=');
+		$username = substr($username, 1);
+		dd($username);
+		if (User::where('username', '=', $username)->exists()) {
+			dd('son');
+			return true;
+		}
+		dd('gun');
+		return false;
 	}
 }

@@ -23,23 +23,24 @@ elixir(function (mix) {
         'forms.css',
         'emojione.css',
     ], 'public/assets/css/MotherOfBanter.css');
-    //mix.styles([
-    //    'ie7.css',
-    //], 'public/assets/css/ie7.css');
-    //
-    //mix.scripts([
-    //    'copyrights.js',
-    //    'jquery.js',
-    //    'fileinput.min.js',
-    //    'bootstrap.js',
-    //    'navbar.js',
-    //    'modal.js',
-    //    'alerts.js',
-    //    'custom.js',
-    //    'infiniteScrolling.js',
-    //    'textcomplete.js',
-    //    'emojione.js',
-    //    'autoCompleteEmoji.js',
-    //    'parsley.js',
-    //], 'public/assets/js/MotherOfBanter.js');
+    mix.styles([
+        'ie7.css',
+    ], 'public/assets/css/ie7.css');
+
+    mix.scripts([
+        'copyrights.js',
+        'jquery.js',
+        'fileinput.min.js',
+        'bootstrap.js',
+        'navbar.js',
+        'modal.js',
+        'alerts.js',
+        'custom.js',
+        'infiniteScrolling.js',
+        'textcomplete.js',
+        'emojione.js',
+        'autoCompleteEmoji.js',
+        'parsley.js',
+        'parsley.remote.js'
+    ], 'public/assets/js/MotherOfBanter.js');
 });

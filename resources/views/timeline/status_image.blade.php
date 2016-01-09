@@ -192,23 +192,53 @@
 							@endif
 							@if(Auth::check())
 								<ul class="list-inline comments">
-									<li>
-										<form class="form-vote form_like_comments{{$reply->id}}"
-											  action="{{ route('image.like', ['imageId' => $reply->id]) }}" method="get"
-											  role="form">
-											<button type="submit" class="like_btn"><i
-														class="unused-icon icon icon-thumbs-o-up"></i></button>
-										</form>
-									</li>
-									<li>
-										<form class="form-vote form_dislike_comments{{$reply->id}}"
-											  action="{{ route('image.like', ['imageId' => $reply->id]) }}" method="get"
-											  role="form">
-											<button type="submit" class="dislike_btn"><i
-														class="unused-icon icon icon-thumbs-o-down"></i></button>
-									</li>
-									<li class="pull-right">{{$reply->likes->count()}}  {{str_plural('like', $reply->likes->count())}}</li>
+									@if(Auth::user()->hasLikedAlready($reply->id))
+										<li>
+											<form class="form-vote form_like_comments{{$reply->id}}"
+												  action="{{ route('image.like', ['imageId' => $reply->id]) }}"
+												  method="get"
+												  role="form">
+												<button type="submit" class="like_btn"><i
+															class="unused-icon icon icon-thumbs-o-up"></i></button>
+											</form>
+										</li>
+									@else
+										<li>
+											<form class="form-vote form_like_comments{{$reply->id}}"
+												  action="{{ route('image.like', ['imageId' => $reply->id]) }}"
+												  method="get"
+												  role="form">
+												<button type="submit" class="like_btn"><i
+															class="icon icon-thumbs-o-up"></i></button>
+											</form>
+										</li>
+									@endif
+									@if(Auth::user()->hasDislikedAlready($reply->id))
+										<li>
+											<form class="form-vote form_dislike_comments{{$reply->id}}"
+												  action="{{ route('image.dislike', ['imageId' => $reply->id]) }}"
+												  method="get"
+												  role="form">
+												<button type="submit" class="dislike_btn"><i
+															class="unused-icon icon icon-thumbs-o-down"></i></button>
+										</li>
+									@else
+										<li>
+											<form class="form-vote form_dislike_comments{{$reply->id}}"
+												  action="{{ route('image.dislike', ['imageId' => $reply->id]) }}"
+												  method="get"
+												  role="form">
+												<button type="submit" class="dislike_btn"><i
+															class="icon icon-thumbs-o-down"></i></button>
+											</form>
+										</li>
+									@endif
 									<li class="pull-right">{{ $reply->created_at->diffForHumans() }}</li>
+									<li class="pull-right"><span
+												class="dislike_comment_count{{$reply->id}}">{{$reply->dislikes->count()}}</span> {{str_plural('dislike', $reply->dislikes->count())}}
+									<li class="pull-right"><span
+												class="like_comment_count{{$reply->id}}">{{$reply->likes->count()}}</span> {{str_plural('like', $reply->likes->count())}}
+									</li>
 								</ul>
 							@else
 								<ul class="list-inline comments">
@@ -382,21 +412,49 @@
 
 				$.ajax({
 					type: "get",
+					url: '{{ route('image.like', ['imageId' => $reply->id]) }}',
+					success: function () {
+						if ($('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').removeClass('unused-icon');
+							var like_counter = $(".like_comment_count{{$reply->id}}").html() * 1 + 1;
+							$('.like_comment_count{{$reply->id}}').text(like_counter);
+						} else {
+							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
+							var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
+							$('.like_comment_count{{$reply->id}}').text(unlike_counter);
+						}
+						if (!$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
+							var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
+							$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
+						}
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$('.form_dislike_comments{{$reply->id}}').on('submit', function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: "get",
 					url: '{{ route('image.dislike', ['imageId' => $reply->id]) }}',
 					success: function () {
-						if ($('.form_dislike{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
-							$('.form_dislike{{$reply->id}} .icon-thumbs-o-down').removeClass('unused-icon');
-							var dislike_counter = $(".dislike_count{{$reply->id}}").html() * 1 + 1;
-							$('.dislike_count{{$reply->id}}').text(dislike_counter);
+						if ($('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').removeClass('unused-icon');
+							var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 + 1;
+							$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
 						} else {
-							$('.form_dislike{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
-							var undislike_counter = $(".dislike_count{{$reply->id}}").html() * 1 - 1;
-							$('.dislike_count{{$reply->id}}').text(undislike_counter);
+							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
+							var undislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
+							$('.dislike_comment_count{{$reply->id}}').text(undislike_counter);
 						}
-						if (!$('.form{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
-							$('.form{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
-							var unlike_counter = $(".like_count{{$reply->id}}").html() * 1 - 1;
-							$('.like_count{{$reply->id}}').text(unlike_counter);
+						if (!$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
+							var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
+							$('.like_comment_count{{$reply->id}}').text(unlike_counter);
 						}
 					}
 				});

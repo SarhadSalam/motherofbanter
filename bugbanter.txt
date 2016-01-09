@@ -1,8 +1,7 @@
 #Bugs:
 1. Put a kitty and edit errors
 2. Implement reporting and deleting
-3. Status images comments like and dislike, update!
-4. Update status_image to use ajax
+3. au controller is screwed up!
 
 #Just Random Thoughts:
 1. Think of logic for admin and normal users.
