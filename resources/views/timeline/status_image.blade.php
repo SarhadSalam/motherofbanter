@@ -3,8 +3,8 @@
 	{{$image->body}}
 @stop
 @section('content')
-	{{-- User Posted Images --}}
 	<div class="container">
+		{{-- User Posted Images --}}
 		<div class="col-lg-8">
 			<div class="media">
 				<div class="media-body">
@@ -45,24 +45,45 @@
 					@endif
 					@if(Auth::check())
 						<ul class="list-inline big-icon">
-							@if(Auth::user()->hasLikedAlready($image->id))
-								<li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i
-												class="unused-icon icon icon-thumbs-o-up"></i></a></li>
-							@else
-								<li><a href="{{ route('image.like', ['imageId' => $image->id]) }}"><i
-												class="icon icon-thumbs-o-up"></i></a></li>
-							@endif
-							@if(Auth::user()->hasDislikedAlready($image->id))
-								<li><a href="{{ route('image.dislike', ['imageId' => $image->id]) }}"><i
-												class="unused-icon icon icon-thumbs-o-down"></i></a></li>
-							@else
-								<li><a href="{{ route('image.dislike', ['imageId' => $image->id]) }}"><i
-												class="icon icon-thumbs-o-down"></i></a></li>
-							@endif
+							<form class="form-vote form{{$image->id}}"
+								  action="{{ route('image.like', ['imageId' => $image->id]) }}" method="get"
+								  role="form">
+								@if(Auth::user()->hasLikedAlready($image->id))
+									<li>
+										<button type="submit" class="like_btn"><i
+													class="unused-icon icon icon-thumbs-o-up"></i></button>
+									</li>
+								@else
+									<li>
+										<button type="submit" class="like_btn"><i
+													class="icon icon-thumbs-o-up"></i></button>
+									</li>
+								@endif
+							</form>
+							<form class="form-vote form_dislike{{$image->id}}"
+								  action="{{ route('image.dislike', ['imageId' => $image->id]) }}" method="get"
+								  role="form">
+								@if(Auth::user()->hasDislikedAlready($image->id))
+									<li>
+										<button type="submit" class="dislike_btn"><i
+													class="unused-icon icon icon-thumbs-o-down"></i></button>
+									</li>
+								@else
+									<li>
+										<button type="submit" class="dislike_btn"><i
+													class="icon icon-thumbs-o-down"></i></button>
+									</li>
+								@endif
+								<input type="hidden" name="_token" value="{{ Session::token() }}">
+							</form>
 							<li><a href="#commentArea"><i class="icon icon-bubble2"></i></a></li>
 							<li class="pull-right">{{ $image->created_at->diffForHumans()}}</li>
-							<li class="pull-right">{{$image->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</li>
-							<li class="pull-right">{{$image->likes->count()}}  {{str_plural('Like', $image->likes->count())}}</li>
+							<li class="pull-right"><span
+										class="dislike_count{{$image->id}}">{{$image->dislikes->count()}}</span> {{str_plural('Dislike', $image->dislikes->count())}}
+							</li>
+							<li class="pull-right"><span
+										class="like_count{{$image->id}}">{{$image->likes->count()}}</span> {{str_plural('Like', $image->likes->count())}}
+							</li>
 						</ul>
 					@else
 						<ul class="list-inline big-icon">
@@ -75,7 +96,7 @@
 										href="{{ route('auth.signin')}}">{{ $image->created_at->diffForHumans()}}</a>
 							</li>
 							<li class="pull-right"><a
-										href="{{ route('auth.signin')}}">{{$images->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</a>
+										href="{{ route('auth.signin')}}">{{$image->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</a>
 							</li>
 							<li class="pull-right"><a
 										href="{{ route('auth.signin')}}">{{$image->likes->count()}}  {{str_plural('Like', $image->likes->count())}}</a>
@@ -169,13 +190,42 @@
 								<img class="img-responsive commentImages" alt=""
 									 src="{{URL::asset($reply->image_path)}}" style="padding-bottom:10px;">
 							@endif
-							<ul class="list-inline comments">
-								<li><a href="{{ route('image.like', ['imageId' => $reply->id]) }}"><i
-												class="icon icon-thumbs-o-up"></i></a></li>
-								<li><a href="#"><i class="icon icon-thumbs-o-down"></i></a></li>
-								<li class="pull-right">{{$reply->likes->count()}}  {{str_plural('like', $reply->likes->count())}}</li>
-								<li class="pull-right">{{ $reply->created_at->diffForHumans() }}</li>
-							</ul>
+							@if(Auth::check())
+								<ul class="list-inline comments">
+									<li>
+										<form class="form-vote form_like_comments{{$reply->id}}"
+											  action="{{ route('image.like', ['imageId' => $reply->id]) }}" method="get"
+											  role="form">
+											<button type="submit" class="like_btn"><i
+														class="unused-icon icon icon-thumbs-o-up"></i></button>
+										</form>
+									</li>
+									<li>
+										<form class="form-vote form_dislike_comments{{$reply->id}}"
+											  action="{{ route('image.like', ['imageId' => $reply->id]) }}" method="get"
+											  role="form">
+											<button type="submit" class="dislike_btn"><i
+														class="unused-icon icon icon-thumbs-o-down"></i></button>
+									</li>
+									<li class="pull-right">{{$reply->likes->count()}}  {{str_plural('like', $reply->likes->count())}}</li>
+									<li class="pull-right">{{ $reply->created_at->diffForHumans() }}</li>
+								</ul>
+							@else
+								<ul class="list-inline comments">
+									<li>
+										<a href="{{route('auth.signin')}}"><i
+													class="icon icon-thumbs-o-up"></i></a>
+									</li>
+									<li><a href="{{route('auth.signin')}}"><i class="icon icon-thumbs-o-down"></i></a>
+									</li>
+									<li class="pull-right"><a
+												href="{{route('auth.signin')}}">{{$reply->likes->count()}}  {{str_plural('like', $reply->likes->count())}}</a>
+									</li>
+									<li class="pull-right"><a
+												href="{{route('auth.signin')}}">{{ $reply->created_at->diffForHumans() }}</a>
+									</li>
+								</ul>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -263,6 +313,93 @@
 				maxCount: 10
 			}], {
 				footer: '<a href="http://www.emoji.codes" target="_blank">Browse All<span class="arrow">»</span></a>'
+			});
+		});
+	</script>
+	{{--Ajax Request for the like button--}}
+	<script>
+		$(document).ready(function () {
+			$('.form{{$image->id}}').on('submit', function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: "get",
+					url: '{{ route('image.like', ['imageId' => $image->id]) }}',
+					success: function () {
+						if ($('.form{{$image->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+							$('.form{{$image->id}} .icon-thumbs-o-up').removeClass('unused-icon');
+							var like_counter = $(".like_count{{$image->id}}").html() * 1 + 1;
+							$('.like_count{{$image->id}}').text(like_counter);
+						} else {
+							$('.form{{$image->id}} .icon-thumbs-o-up').addClass('unused-icon');
+							var unlike_counter = $(".like_count{{$image->id}}").html() * 1 - 1;
+							$('.like_count{{$image->id}}').text(unlike_counter);
+						}
+						if (!$('.form_dislike{{$image->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').addClass('unused-icon');
+							var dislike_counter = $(".dislike_count{{$image->id}}").html() * 1 - 1;
+							$('.dislike_count{{$image->id}}').text(dislike_counter);
+						}
+					}
+				});
+			});
+		});
+	</script>
+	{{--Ajax Request for the dislike button--}}
+	<script>
+		$(document).ready(function () {
+			$('.form_dislike{{$image->id}}').on('submit', function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: "get",
+					url: '{{ route('image.dislike', ['imageId' => $image->id]) }}',
+					success: function () {
+						if ($('.form_dislike{{$image->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').removeClass('unused-icon');
+							var dislike_counter = $(".dislike_count{{$image->id}}").html() * 1 + 1;
+							$('.dislike_count{{$image->id}}').text(dislike_counter);
+						} else {
+							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').addClass('unused-icon');
+							var undislike_counter = $(".dislike_count{{$image->id}}").html() * 1 - 1;
+							$('.dislike_count{{$image->id}}').text(undislike_counter);
+						}
+						if (!$('.form{{$image->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+							$('.form{{$image->id}} .icon-thumbs-o-up').addClass('unused-icon');
+							var unlike_counter = $(".like_count{{$image->id}}").html() * 1 - 1;
+							$('.like_count{{$image->id}}').text(unlike_counter);
+						}
+					}
+				});
+			});
+		});
+	</script>
+	{{--Ajax request for the comments like button--}}
+	<script>
+		$(document).ready(function () {
+			$('.form_like_comments{{$reply->id}}').on('submit', function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: "get",
+					url: '{{ route('image.dislike', ['imageId' => $reply->id]) }}',
+					success: function () {
+						if ($('.form_dislike{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+							$('.form_dislike{{$reply->id}} .icon-thumbs-o-down').removeClass('unused-icon');
+							var dislike_counter = $(".dislike_count{{$reply->id}}").html() * 1 + 1;
+							$('.dislike_count{{$reply->id}}').text(dislike_counter);
+						} else {
+							$('.form_dislike{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
+							var undislike_counter = $(".dislike_count{{$reply->id}}").html() * 1 - 1;
+							$('.dislike_count{{$reply->id}}').text(undislike_counter);
+						}
+						if (!$('.form{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+							$('.form{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
+							var unlike_counter = $(".like_count{{$reply->id}}").html() * 1 - 1;
+							$('.like_count{{$reply->id}}').text(unlike_counter);
+						}
+					}
+				});
 			});
 		});
 	</script>

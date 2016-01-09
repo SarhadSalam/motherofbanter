@@ -32,7 +32,8 @@
 							<input type="hidden" name="_token" value="{{ Session::token() }}">
 						</form>
 						<form class="form-vote form_dislike{{$images->id}}"
-							  action="{{ route('image.dislike', ['imageId' => $images->id]) }}" method="get" role="form">
+							  action="{{ route('image.dislike', ['imageId' => $images->id]) }}" method="get"
+							  role="form">
 							@if(Auth::user()->hasDislikedAlready($images->id))
 								<li>
 									<button type="submit" class="dislike_btn"><i
@@ -44,13 +45,13 @@
 												class="icon icon-thumbs-o-down"></i></button>
 								</li>
 							@endif
-								<input type="hidden" name="_token" value="{{ Session::token() }}">
+							<input type="hidden" name="_token" value="{{ Session::token() }}">
 						</form>
 						<li><a href="{{ route('get.post', ['url' => $images-> url]) }}#commentArea"><i
 										class="icon icon-bubble2"></i></a></li>
 						<li class="pull-right">{{ $images->created_at->diffForHumans()}}</li>
 						<li class="pull-right"><span
-									class="dislike_count{{$images->id}}">{{$images->dislikes->count()}}</span>  {{str_plural('Dislike', $images->dislikes->count())}}
+									class="dislike_count{{$images->id}}">{{$images->dislikes->count()}}</span> {{str_plural('Dislike', $images->dislikes->count())}}
 						</li>
 						<li class="pull-right"><span
 									class="like_count{{$images->id}}"> {{$images->likes->count()}}</span> {{str_plural('Like', $images->likes->count())}}
