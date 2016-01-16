@@ -47,8 +47,8 @@
 			{{-- <a href="{{ route('social.redirect', ['provider' => 'twitter']) }}" class="btn btn-lg btn-block twitter">Login With Twitter</a> --}}
 			<a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg btn-block google">Login
 				With Google</a>
-			<h4>Or if you want the traditional way</h4>
-			<a href="{{route('auth.signup')}}" class="btn btn-lg btn-block btn-primary">Sign Up</a>
+			<h4 >Or if you want the traditional way</h4>
+			<a href="{{route('auth.signup')}}" class="btn btn-lg btn-block btn-primary page-bottom">Sign Up</a>
 		</div>
 	</div>
 @stop

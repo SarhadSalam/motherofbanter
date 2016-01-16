@@ -25,7 +25,7 @@ class ImageController extends Controller {
 			//The Filename and path is created
 			$uniqid = uniqid();
 			$filenameWithoutExtension = $imageFile->getClientOriginalName() . $uniqid;
-			$filename = $filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension();
+			$filename = str_slug($filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension());
 			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/images' . '/';
 			//We use this for our URL.
 			$urlString = strtolower($request->input('status'));
@@ -38,7 +38,7 @@ class ImageController extends Controller {
 			$height = $userImage->height();
 			if ($height > '999') {
 				$largeThumbnailPath = public_path($path);
-				$largeThumbnailName = 'LARGEImage' . $filename;
+				$largeThumbnailName = 'LARGE_Image' . $filename;
 				$this->largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName);
 			};
 			$imageFile->move($path, $filename);
@@ -81,7 +81,7 @@ class ImageController extends Controller {
 			//The Filename is created and Path
 			$uniqid = uniqid();
 			$filenameWithoutExtension = $imageFile->getClientOriginalName() . $uniqid;
-			$filename = $filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension();
+			$filename = str_slug($filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension());
 			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/';
 			//The file is saved
 			$imageFile->move($path, $filename);
@@ -124,7 +124,7 @@ class ImageController extends Controller {
 		return \View::make('timeline.status_image')->with('image', $post);
 	}
 
-	public function largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName)
+	public function largeImageHandler($userImage, $largeThumbnailPath, $largeThumbnailName)
 	{
 		//Makes the directory
 		if (!file_exists($largeThumbnailPath)) {

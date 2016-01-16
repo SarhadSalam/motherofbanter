@@ -221,6 +221,7 @@
 												  role="form">
 												<button type="submit" class="dislike_btn"><i
 															class="unused-icon icon icon-thumbs-o-down"></i></button>
+												</form>
 										</li>
 									@else
 										<li>
@@ -260,6 +261,63 @@
 					</div>
 				</div>
 				<hr class="specialHr">
+				{{--Ajax request for the comments like button--}}
+				<script>
+					$(document).ready(function () {
+						$('.form_like_comments{{$reply->id}}').on('submit', function (event) {
+							event.preventDefault();
+
+							$.ajax({
+								type: "get",
+								url: '{{ route('image.like', ['imageId' => $reply->id]) }}',
+								success: function () {
+									if ($('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+										$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').removeClass('unused-icon');
+										var like_counter = $(".like_comment_count{{$reply->id}}").html() * 1 + 1;
+										$('.like_comment_count{{$reply->id}}').text(like_counter);
+									} else {
+										$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
+										var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
+										$('.like_comment_count{{$reply->id}}').text(unlike_counter);
+									}
+									if (!$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+										$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
+										var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
+										$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
+									}
+								}
+							});
+						});
+					});
+				</script>
+				<script>
+					$(document).ready(function () {
+						$('.form_dislike_comments{{$reply->id}}').on('submit', function (event) {
+							event.preventDefault();
+
+							$.ajax({
+								type: "get",
+								url: '{{ route('image.dislike', ['imageId' => $reply->id]) }}',
+								success: function () {
+									if ($('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
+										$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').removeClass('unused-icon');
+										var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 + 1;
+										$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
+									} else {
+										$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
+										var undislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
+										$('.dislike_comment_count{{$reply->id}}').text(undislike_counter);
+									}
+									if (!$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
+										$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
+										var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
+										$('.like_comment_count{{$reply->id}}').text(unlike_counter);
+									}
+								}
+							});
+						});
+					});
+				</script>
 			@endforeach
 			<div class="hidden-paginator">
 				{!! $image->paginatingReplies()->render() !!}
@@ -404,62 +462,6 @@
 			});
 		});
 	</script>
-	{{--Ajax request for the comments like button--}}
-	<script>
-		$(document).ready(function () {
-			$('.form_like_comments{{$reply->id}}').on('submit', function (event) {
-				event.preventDefault();
 
-				$.ajax({
-					type: "get",
-					url: '{{ route('image.like', ['imageId' => $reply->id]) }}',
-					success: function () {
-						if ($('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
-							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').removeClass('unused-icon');
-							var like_counter = $(".like_comment_count{{$reply->id}}").html() * 1 + 1;
-							$('.like_comment_count{{$reply->id}}').text(like_counter);
-						} else {
-							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
-							var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
-							$('.like_comment_count{{$reply->id}}').text(unlike_counter);
-						}
-						if (!$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
-							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
-							var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
-							$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
-						}
-					}
-				});
-			});
-		});
-	</script>
-	<script>
-		$(document).ready(function () {
-			$('.form_dislike_comments{{$reply->id}}').on('submit', function (event) {
-				event.preventDefault();
-
-				$.ajax({
-					type: "get",
-					url: '{{ route('image.dislike', ['imageId' => $reply->id]) }}',
-					success: function () {
-						if ($('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
-							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').removeClass('unused-icon');
-							var dislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 + 1;
-							$('.dislike_comment_count{{$reply->id}}').text(dislike_counter);
-						} else {
-							$('.form_dislike_comments{{$reply->id}} .icon-thumbs-o-down').addClass('unused-icon');
-							var undislike_counter = $(".dislike_comment_count{{$reply->id}}").html() * 1 - 1;
-							$('.dislike_comment_count{{$reply->id}}').text(undislike_counter);
-						}
-						if (!$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
-							$('.form_like_comments{{$reply->id}} .icon-thumbs-o-up').addClass('unused-icon');
-							var unlike_counter = $(".like_comment_count{{$reply->id}}").html() * 1 - 1;
-							$('.like_comment_count{{$reply->id}}').text(unlike_counter);
-						}
-					}
-				});
-			});
-		});
-	</script>
 @stop
 {{-- Update the messages passed on to views --}}

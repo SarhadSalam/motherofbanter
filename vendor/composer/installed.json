@@ -3711,53 +3711,6 @@
         ]
     },
     {
-        "name": "anhskohbo/no-captcha",
-        "version": "2.0.7",
-        "version_normalized": "2.0.7.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/anhskohbo/no-captcha.git",
-            "reference": "e372cffec1f355c666c0c001796b892dc8401c21"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/anhskohbo/no-captcha/zipball/e372cffec1f355c666c0c001796b892dc8401c21",
-            "reference": "e372cffec1f355c666c0c001796b892dc8401c21",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "5.0.*|5.1.*",
-            "php": ">=5.4.0"
-        },
-        "time": "2015-09-07 06:33:36",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Anhskohbo\\NoCaptcha\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "anhskohbo",
-                "email": "anhskohbo@gmail.com"
-            }
-        ],
-        "description": "No CAPTCHA reCAPTCHA For Laravel.",
-        "keywords": [
-            "captcha",
-            "laravel",
-            "laravel4",
-            "laravel5",
-            "no-captcha",
-            "recaptcha"
-        ]
-    },
-    {
         "name": "google/recaptcha",
         "version": "1.1.2",
         "version_normalized": "1.1.2.0",
@@ -3803,5 +3756,59 @@
             "recaptcha",
             "spam"
         ]
+    },
+    {
+        "name": "symfony/class-loader",
+        "version": "v2.8.2",
+        "version_normalized": "2.8.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/class-loader.git",
+            "reference": "98e9089a428ed0e39423b67352c57ef5910a3269"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/class-loader/zipball/98e9089a428ed0e39423b67352c57ef5910a3269",
+            "reference": "98e9089a428ed0e39423b67352c57ef5910a3269",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "require-dev": {
+            "symfony/finder": "~2.0,>=2.0.5|~3.0.0"
+        },
+        "time": "2016-01-03 15:33:41",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\ClassLoader\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony ClassLoader Component",
+        "homepage": "https://symfony.com"
     }
 ]

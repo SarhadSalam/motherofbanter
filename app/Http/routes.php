@@ -79,9 +79,10 @@ Route::get('/social/handle/{provider?}', [
 	'middleware' => ['guest'],
 	'as'         => 'social.handle',
 ]);
-Route::get('/signup/unique/username/{username}', [
+Route::get('/signup/unique/username/', [
 	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@usernameExists',
 	'middleware' => ['guest'],
+	'as'         => 'unique.username',
 ]);
 /**
  *Search

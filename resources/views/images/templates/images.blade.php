@@ -3,6 +3,15 @@
 		<div class="media">
 			<div class="media-body">
 				<div class="page-header">
+					<div class="btn-group">
+						<button class="dropdown-caret" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menus">
+							<li><a href="#">Action</a></li>
+						</ul>
+					</div>
 					<h4 class="convert-emoji"><a
 								href="{{ route('get.post', ['url' => $images-> url]) }}"> {{$images->body}} </a>
 						<small class='pull-right'>By, <a

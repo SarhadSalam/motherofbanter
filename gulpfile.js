@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-elixir.config.sourcemaps = false;
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,20 +11,21 @@ elixir.config.sourcemaps = false;
  */
 
 elixir(function (mix) {
+    mix.sass(['main.scss'], 'resources/assets/css/temp/MotherOfBanterSCSS.css');
+
     mix.styles([
-        'copyrights.css',
         'bootstrap.css',
-        'navbar.css',
         'fileUpload.css',
-        'image.css',
-        'icons.css',
-        'Style.css',
-        'forms.css',
-        'emojione.css',
-    ], 'public/assets/css/MotherOfBanter.css');
+    ], 'resources/assets/css/temp/MotherOfBanterCSS.css');
+
     mix.styles([
-        'ie7.css',
-    ], 'public/assets/css/ie7.css');
+        'temp/MotherOfBanterCSS.css',
+        'temp/MotherOfBanterSCSS.css',
+    ], 'public/assets/css/MotherOfBanter.css');
+
+    //mix.styles([
+    //    'ie7.css',
+    //], 'public/assets/css/ie7.css');
 
     mix.scripts([
         'copyrights.js',

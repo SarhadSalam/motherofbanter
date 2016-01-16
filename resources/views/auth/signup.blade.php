@@ -10,7 +10,7 @@
 				<label for="email" class="sr-only">Your e-mail address</label>
 				<input type="text" name="email" class="form-control" placeholder="Please enter your Email address."
 					   id="email" value="{{ Request::old('email') ?: '' }}" autofocus required=""
-					   data-parsley-required-message="Email or Username is required"
+					   data-parsley-required-message="Email is required"
 					   data-parsley-trigger="change focusout" data-parsley-type="email" data-parsley-maxlength="255">
 				@if ($errors->has('email'))
 					<div class="alert alert-danger" role="alert"
@@ -24,8 +24,7 @@
 					   data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout"
 					   data-parsley-required-message="An Username is required." data-parsley-minlength="3"
 					   data-parsley-maxlength="32"
-					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed."
-					   data-parsley-remote="{{URL::to('/signup/unique/username')}}/">
+					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed." data-parsley-username='username'>
 				@if ($errors->has('username'))
 					<div class="alert alert-danger" role="alert"
 						 style="text-align:center;">{{ $errors->first('username') }}</div>
@@ -64,7 +63,7 @@
 				@endif
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-block btn-lg btn-primary">Sign up</button>
+				<button type="submit" class="btn btn-block btn-lg btn-primary addMe">Sign up</button>
 			</div>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
@@ -76,7 +75,7 @@
 			<a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg btn-block google">Login
 				With Google</a>
 			<h4>Already Signed Up? Then Login...</h4>
-			<a href="{{route('auth.signin')}}" class="btn btn-lg btn-block btn-primary">Sign In</a>
+			<a href="{{route('auth.signin')}}" class="btn btn-lg btn-block btn-primary page-bottom">Sign In</a>
 		</div>
 	</div>
 
@@ -84,4 +83,29 @@
 
 @section('partialScripts')
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			window.ParsleyValidator
+					.addValidator('username', function (value, requirement) {
+						var response = false;
+
+						$.ajax({
+							url: '{{route('unique.username')}}',
+							data: {username: value},
+							dataType: 'json',
+							type: 'get',
+							async: false,
+							success: function(data) {
+								response = true;
+							},
+							error: function() {
+								response = false;
+							}
+						});
+
+						return response;
+					}, 32)
+					.addMessage('en', 'username', 'Username is already in use. Please use another!.');
+		});
+	</script>
 @stop

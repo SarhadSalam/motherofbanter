@@ -1,68 +1,71 @@
+@import "master";
+
+
 /*This is necessary for error messages to position correctly*/
 
 body {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 /*Advertisement Banner*/
 
 .adBanner {
-	background-color: red;
-	width: 100%;
-	height: 8em;
-	border-radius: 2px;
+  background-color: $error-color;
+  width: 100%;
+  height: 8em;
+  border-radius: 2px;
 }
 
 /*This is for the overtyping text*/
 
 .overlimit {
-	color: red;
+  color: $error-color;
 }
 
 .overlimitText {
-	color: red;
+  color: $error-color;
 }
 
 .overlimitText:focus {
-	border-color: #FF0000;
+  border-color: $error-color;
 }
 
 /*This is for the comments divider*/
 
 .specialHr {
-	width: 75%;
+  width: 75%;
 }
 
 /*This fixes the comment and status box buttons*/
 
 .imageButton {
-	margin-left: 15px;
+  margin-left: 15px;
 }
 
 .socialButton {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 
 /*Size for the comment images*/
 
 .commentImages {
-	width: 75%;
-	height: 300px;
+  width: 75%;
+  height: 300px;
 }
 
 /*Paginator style rules*/
 
 .hidden-paginator {
-	display: none;
+  display: none;
 }
 
 /*Buttons*/
 
 .page-bottom {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .dropdown-caret {
-	background-color: purple;
-	border-color: purple;
+  background-color: purple;
+  border-color: purple;
 }

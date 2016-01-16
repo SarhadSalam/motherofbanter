@@ -1,0 +1,42 @@
+@import "master";
+
+/*Icon Sizes start Here*/
+.unused-icon {
+  color: $disabled-color !important;
+}
+
+.big-icon .icon-o-thumbs-up {
+  color: $green-color;
+}
+
+.big-icon .icon {
+  font-size: 2em;
+  color: $primary-color;
+}
+
+.big-icon .icon:hover {
+  color: darken($primary-color, 45%);
+}
+
+.comments .icon {
+  font-size: 1.3em;
+  color: $primary-color;
+}
+
+.alert .icon-exclamation-circle {
+  font-size: 1.4em;
+}
+
+.comments .icon:hover {
+  color: darken($primary-color, 45%);
+}
+
+/*Icon Sizes end Here*/
+.form-vote button[type=submit] {
+  border: none;
+  background: none;
+}
+
+.form-vote {
+  display: inline-block;
+}

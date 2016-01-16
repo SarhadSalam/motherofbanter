@@ -253,7 +253,7 @@ if (typeof jQuery === 'undefined') {
             return $this.trigger('click')
         }
         var desc = ' li:not(.disabled):visible a'
-        var $items = $parent.find('.dropdown-menu' + desc)
+        var $items = $parent.find('.dropdown-menus' + desc)
         if (!$items.length) return
         var index = $items.index(e.target)
         if (e.which == 38 && index > 0) index-- // up
@@ -285,7 +285,7 @@ if (typeof jQuery === 'undefined') {
     // ===================================
     $(document).on('click.bs.dropdown.data-api', clearMenus).on('click.bs.dropdown.data-api', '.dropdown form', function (e) {
         e.stopPropagation()
-    }).on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle).on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown).on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+    }).on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle).on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown).on('keydown.bs.dropdown.data-api', '.dropdown-menus', Dropdown.prototype.keydown)
 }(jQuery);
 /* ========================================================================
  * Bootstrap: modal.js v3.3.6
@@ -1030,7 +1030,7 @@ if (typeof jQuery === 'undefined') {
     Tab.TRANSITION_DURATION = 150
     Tab.prototype.show = function () {
         var $this = this.element
-        var $ul = $this.closest('ul:not(.dropdown-menu)')
+        var $ul = $this.closest('ul:not(.dropdown-menus)')
         var selector = $this.data('target')
         if (!selector) {
             selector = $this.attr('href')
@@ -1065,7 +1065,7 @@ if (typeof jQuery === 'undefined') {
         var transition = callback && $.support.transition && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
 
         function next() {
-            $active.removeClass('active').find('> .dropdown-menu > .active').removeClass('active').end().find('[data-toggle="tab"]').attr('aria-expanded', false)
+            $active.removeClass('active').find('> .dropdown-menus > .active').removeClass('active').end().find('[data-toggle="tab"]').attr('aria-expanded', false)
             element.addClass('active').find('[data-toggle="tab"]').attr('aria-expanded', true)
             if (transition) {
                 element[0].offsetWidth // reflow for transition
@@ -1073,7 +1073,7 @@ if (typeof jQuery === 'undefined') {
             } else {
                 element.removeClass('fade')
             }
-            if (element.parent('.dropdown-menu').length) {
+            if (element.parent('.dropdown-menus').length) {
                 element.closest('li.dropdown').addClass('active').end().find('[data-toggle="tab"]').attr('aria-expanded', true)
             }
             callback && callback()

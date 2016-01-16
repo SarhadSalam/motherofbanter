@@ -44,7 +44,7 @@ body {
 }
 
 .menuMain a {
-	display: block;;
+	display: block;
 	height: 100%;
 	color: #5f6f81;
 	text-decoration: none;
@@ -484,5 +484,4 @@ input.search:focus {
 .signIn a:hover {
 	color: #2f75ce;
 }
-
 /*Navigation Bar Ends here*/

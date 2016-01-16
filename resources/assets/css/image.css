@@ -236,7 +236,6 @@
 }
 
 /*Images Fix For Mozilla*/
-
 @-moz-document url-prefix() {
 	.img-responsive {
 		width: 100%;

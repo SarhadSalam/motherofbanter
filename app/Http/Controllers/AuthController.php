@@ -2,9 +2,8 @@
 namespace MotherOfBanter\Http\Controllers;
 
 use Auth;
-use Request;
+use Illuminate\http\Request;
 use MotherOfBanter\Models\User;
-use MotherOfBanter\Models\Social;
 use Illuminate\Contracts\Auth\Guard;
 use Socialite;
 use Mail;
@@ -101,7 +100,7 @@ class AuthController extends Controller {
 
 	public function sendMail($mailData, $user)
 	{
-		Mail::queue('email.activateAccount', $mailData, function($message) use ($user) {
+		Mail::queue('email.activate_account', $mailData, function($message) use ($user) {
 			$message->subject('Activate Your Account');
 			$message->to($user->email);
 		});
@@ -155,16 +154,19 @@ class AuthController extends Controller {
 		return redirect()->back()->with('info', 'Sad to see you go! Hope you visit back.');
 	}
 
-	public function usernameExists($username)
+	public function usernameExists(Request $request)
 	{
-		$username = strstr($username, '=');
-		$username = substr($username, 1);
-		dd($username);
-		if (User::where('username', '=', $username)->exists()) {
-			dd('son');
-			return true;
+		if(!$request->ajax())
+		{
+			return redirect()->route('home')->with('success', 'Something was wrong.');
 		}
-		dd('gun');
-		return false;
+		$username = $request->query('username');
+		$user = User::where('username', '=', $username)->first();
+		if ($user) {
+			echo FALSE;
+		}
+		else {
+			echo TRUE;
+		}
 	}
 }
