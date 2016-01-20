@@ -3,33 +3,32 @@
 /*Icon Sizes start Here*/
 .unused-icon {
 	color: $disabled-color !important;
-	&:hover{
+	&:hover {
 		color: darken($primary-color, 15%) !important;
 	}
 }
 
-.big-icon .icon-o-thumbs-up {
-	color: $green-color;
-}
-
-.big-icon .icon {
-	font-size: 2em;
-	color: $primary-color;
-}
-
-.big-icon .icon:hover {
-	color: darken($primary-color, 15%);
+.big-icon {
+	.icon-o-thumbs-up {
+		color: $green-color;
+	}
+	.icon {
+		font-size: 2em;
+		color: $primary-color;
+		&:hover {
+			color: darken($primary-color, 15%);
+		}
+	}
 }
 
 .comments .icon {
 	font-size: 1.3em;
 	color: $primary-color;
+	&:hover {
+		color: darken($primary-color, 15%);
+	}
 }
 
 .alert .icon-exclamation-circle {
 	font-size: 1.4em;
-}
-
-.comments .icon:hover {
-	color: darken($primary-color, 15%);
 }

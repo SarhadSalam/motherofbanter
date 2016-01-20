@@ -1,13 +1,11 @@
 @import "master";
 
 /*This is necessary for error messages to position correctly*/
-
 body {
 	margin-top: 15px;
 }
 
 /*Advertisement Banner*/
-
 .adBanner {
 	background-color: $error-color;
 	width: 100%;
@@ -16,27 +14,23 @@ body {
 }
 
 /*This is for the overtyping text*/
-
 .overlimit {
 	color: $error-color;
 }
 
 .overlimitText {
 	color: $error-color;
-}
-
-.overlimitText:focus {
-	border-color: $error-color;
+	&:focus {
+		border-color: $error-color;
+	}
 }
 
 /*This is for the comments divider*/
-
 .specialHr {
 	width: 75%;
 }
 
 /*This fixes the comment and status box buttons*/
-
 .imageButton {
 	margin-left: 15px;
 }
@@ -45,21 +39,12 @@ body {
 	margin-right: 15px;
 }
 
-/*Size for the comment images*/
-
-.commentImages {
-	width: 75%;
-	height: 300px;
-}
-
 /*Paginator style rules*/
-
 .hidden-paginator {
 	display: none;
 }
 
 /*Buttons*/
-
 .page-bottom {
 	margin-bottom: 15px;
 }

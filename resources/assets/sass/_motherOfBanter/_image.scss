@@ -1,175 +1,182 @@
 @import "master";
+
 /*
 *Copyrights belongs to Mike Young, http://miketricking.github.io/dist/
 */
 /*Image Hover Effects Starts Here*/
 
 .hovereffect {
-  width: 100%;
-  height: 100%;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  cursor: default;
-  .overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-  }
-  img {
-    display: block;
-    position: relative;
-  }
-  h2 {
-    text-transform: uppercase;
-    color: $white-color;
-    text-align: center;
-    font-size: 17px;
-    padding: 10px;
-  }
-  &:hover h2 {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1)');
-  }
-  a.info {
-    display: inline-block;
-    text-decoration: none;
-    padding: 7px 14px;
-    text-transform: uppercase;
-    color: $white-color;
-    border: 1px solid $white-color;
-    margin: 50px 0 0 0;
-    background-color: transparent;
-    &:hover {
-      box-shadow: 0 0 5px $white-color;
-    }
-  }
-  hr {
-    width: 40%;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    border: 1px solid $white-color;
-    &:nth-child(2) {
-      @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 90deg) scale3d(0, 0, 1)');
-    }
-    &:nth-child(3) {
-      @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 180deg) scale3d(0, 0, 1)');
-    }
-  }
+	width: 100%;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	cursor: default;
+	.overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		overflow: hidden;
+		top: 0;
+		left: 0;
+	}
+	img {
+		display: block;
+		position: relative;
+	}
+	h2 {
+		text-transform: uppercase;
+		color: $white-color;
+		text-align: center;
+		font-size: 17px;
+		padding: 10px;
+	}
+	&:hover h2 {
+		opacity: 0;
+		filter: alpha(opacity=0);
+		@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1)');
+	}
+	a.info {
+		display: inline-block;
+		text-decoration: none;
+		padding: 7px 14px;
+		text-transform: uppercase;
+		color: $white-color;
+		border: 1px solid $white-color;
+		margin: 50px 0 0 0;
+		background-color: transparent;
+		&:hover {
+			box-shadow: 0 0 5px $white-color;
+		}
+	}
+	hr {
+		width: 40%;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		border: 1px solid $white-color;
+		&:nth-child(2) {
+			@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 90deg) scale3d(0, 0, 1)');
+		}
+		&:nth-child(3) {
+			@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 180deg) scale3d(0, 0, 1)');
+		}
+	}
 }
 
 .hovereffect h2,
 .hovereffect hr {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  @include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
-  @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0)');
-  @include vendor-prefix('transform-origin', '50%');
-  background-color: transparent;
-  margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
+	@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0)');
+	@include vendor-prefix('transform-origin', '50%');
+	background-color: transparent;
+	margin: 0;
 }
 
 .set1,
 .set2 {
-  left: 50%;
-  position: absolute;
-  @include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
-  @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0)');
-  @include vendor-prefix('transform-origin', '50%');
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
+	left: 50%;
+	position: absolute;
+	@include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
+	@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0)');
+	@include vendor-prefix('transform-origin', '50%');
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
 }
 
 .set1 {
-  top: 40%;
+	top: 40%;
 }
 
 .set2 {
-  top: 60%;
+	top: 60%;
 }
 
 .hovereffect p {
-  width: 30%;
-  text-transform: none;
-  font-size: 15px;
-  line-height: 2;
-  a {
-    color: $white-color;
-    &:hover,
-    &:focus {
-      opacity: 0.6;
-      filter: alpha(opacity=60);
-    }
-    i {
-      opacity: 0;
-      filter: alpha(opacity=0);
-      @include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
-      padding: 10px;
-      font-size: 20px;
-    }
-  }
+	width: 30%;
+	text-transform: none;
+	font-size: 15px;
+	line-height: 2;
+	a {
+		color: $white-color;
+		&:hover,
+		&:focus {
+			opacity: 0.6;
+			filter: alpha(opacity=60);
+		}
+		i {
+			opacity: 0;
+			filter: alpha(opacity=0);
+			@include vendor-prefix('transition', 'opacity 0.35s, transform 0.35s');
+			padding: 10px;
+			font-size: 20px;
+		}
+	}
 }
 
 .set1 a:first-child i {
-  @include vendor-prefix('transform', 'translate3d(-60px, -60px, 0)');
+	@include vendor-prefix('transform', 'translate3d(-60px, -60px, 0)');
 }
 
 .set1 a:nth-child(2) i {
-  @include vendor-prefix('transform', 'translate3d(60px, -60px, 0)');
+	@include vendor-prefix('transform', 'translate3d(60px, -60px, 0)');
 }
 
 .set2 a:first-child i {
-  @include vendor-prefix('transform', 'translate3d(-60px, 60px, 0)');
+	@include vendor-prefix('transform', 'translate3d(-60px, 60px, 0)');
 }
 
 .set2 a:nth-child(2) i {
-  @include vendor-prefix('transform', 'translate3d(60px, 60px, 0)');
+	@include vendor-prefix('transform', 'translate3d(60px, 60px, 0)');
 }
 
 .hovereffect:hover hr:nth-child(2) {
-  opacity: 1;
-  filter: alpha(opacity=100);
-  @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -90deg) scale3d(1, 1, 1)');
+	opacity: 1;
+	filter: alpha(opacity=100);
+	@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -90deg) scale3d(1, 1, 1)');
 }
 
 .hovereffect:hover hr:nth-child(3) {
-  opacity: 1;
-  filter: alpha(opacity=100);
-  @include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -180deg) scale3d(1, 1, 1)');
+	opacity: 1;
+	filter: alpha(opacity=100);
+	@include vendor-prefix('transform', 'translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -180deg) scale3d(1, 1, 1)');
 }
 
 .hovereffect:hover .set1 i:empty,
 .hovereffect:hover .set2 i:empty {
-  @include vendor-prefix('transform', 'translate3d(0, 0, 0)');
-  opacity: 1;
-  filter: alpha(opacity=100);
+	@include vendor-prefix('transform', 'translate3d(0, 0, 0)');
+	opacity: 1;
+	filter: alpha(opacity=100);
 }
 
 .hovereffect:hover .icon {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 /*Images Fix For Mozilla*/
 @-moz-document url-prefix() {
-  .img-responsive {
-    width: 100%;
-  }
+	.img-responsive {
+		width: 100%;
+	}
 }
 
 /*Loading Image*/
 
 .loadingImage {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
+	display: block;
+	max-width: 100%;
+	height: auto;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*Size for the comment images*/
+.commentImages {
+	width: 75%;
+	height: 300px;
 }

@@ -95,8 +95,8 @@
 
 .userblock {
 	max-width: 100%;
-	background: rgb(47, 116, 204);
-	background: rgba(47, 116, 204, 0.75);
+	background: $userblock-color-fallback;
+	background: $userblock-color;
 	padding-top: 10px;
 	padding-bottom: 5px;
 	color: $white-color;
@@ -117,11 +117,10 @@
 }
 
 /*Icon Sizes end Here*/
-.form-vote button[type=submit] {
-	border: none;
-	background: none;
-}
-
 .form-vote {
 	display: inline-block;
+	button[type=submit] {
+		border: none;
+		background: none;
+	}
 }
