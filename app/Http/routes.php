@@ -135,3 +135,8 @@ Route::get('/image/{imageId}/dislike', [
 	'as'         => 'image.dislike',
 	'middleware' => ['auth'],
 ]);
+Route::post('/image/delete/{imageURL}', [
+	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteImage',
+	'as'         => 'delete.image',
+	'middleware' => ['auth'],
+]);

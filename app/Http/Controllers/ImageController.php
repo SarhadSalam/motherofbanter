@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use \Input as Input;
 use Images;
 use Auth;
+use Storage;
 use Session;
 
 class ImageController extends Controller {
@@ -39,14 +40,14 @@ class ImageController extends Controller {
 			if ($height > '999') {
 				$largeThumbnailPath = public_path($path);
 				$largeThumbnailName = 'LARGE_Image' . $filename;
-				$this->largeImageHandler($path, $filename, $userImage, $largeThumbnailPath, $largeThumbnailName);
+				$this->largeImageHandler($userImage, $largeThumbnailPath, $largeThumbnailName);
 			};
 			$imageFile->move($path, $filename);
 			// Enters the image in the database
 			if ($height > '999') {//if deals with large images
 				Auth::user()->image()->create([
 												  'body'            => $request->input('status'),
-												  'image_path'      => $request->input($path, public_path($path . $largeThumbnailName)),
+												  'image_path'      => $request->input($path, $path . $largeThumbnailName),
 												  'largeImage_path' => $request->input($path, $path . $filename),
 												  'url'             => $request->input($path, $urlPath)
 											  ]);
@@ -117,11 +118,11 @@ class ImageController extends Controller {
 	public function getPost($url)
 	{
 		$post = Image::where('url', $url)->first();
-		if(!$post)
-		{
+		if (!$post) {
 			return redirect()->route('home')->with('danger', 'Image Not Found');
 		}
-		return \View::make('timeline.status_image')->with('image', $post);
+
+		return \View::make('timeline.status_image')->with('images', $post);
 	}
 
 	public function largeImageHandler($userImage, $largeThumbnailPath, $largeThumbnailName)
@@ -142,8 +143,11 @@ class ImageController extends Controller {
 		$largeImageFit->save($name);
 	}
 
-	public function getLike($imageId)
+	public function getLike($imageId, Request $request)
 	{
+		if (!$request->ajax()) {
+			return redirect()->route('home')->with('success', 'You have been a very very naughty boy.');
+		}
 		$image = Image::find($imageId);
 		if (!$image) {
 			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
@@ -158,8 +162,11 @@ class ImageController extends Controller {
 		return redirect()->back()->with('success', 'Liked it.');
 	}
 
-	public function getDislike($imageId)
+	public function getDislike($imageId, Request $request)
 	{
+		if (!$request->ajax()) {
+			return redirect()->route('home')->with('success', 'You have been a very very naughty boy.');
+		}
 		$image = Image::find($imageId);
 		if (!$image) {
 			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
@@ -173,5 +180,20 @@ class ImageController extends Controller {
 		Auth::user()->dislikes()->save($dislike);
 
 		return redirect()->back()->with('success', 'Disliked it.');
+	}
+
+	public function deleteImage($imageURL)
+	{
+		$image = Image::where('url', $imageURL)->where('user_id', Auth::user()->id)->first();
+		if (!$image) {
+			return redirect()->route('home')->with('success', 'Something went wrong!');
+		}
+		if ($image->largeImage_path) {
+			Storage::delete($image->largeImage_path);
+		}
+		Storage::delete($image->image_path);
+		$image->delete();
+
+		return redirect()->route('home')->with('info', 'Deleted');
 	}
 }

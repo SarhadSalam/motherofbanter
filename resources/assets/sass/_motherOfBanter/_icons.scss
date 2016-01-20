@@ -2,41 +2,34 @@
 
 /*Icon Sizes start Here*/
 .unused-icon {
-  color: $disabled-color !important;
+	color: $disabled-color !important;
+	&:hover{
+		color: darken($primary-color, 15%) !important;
+	}
 }
 
 .big-icon .icon-o-thumbs-up {
-  color: $green-color;
+	color: $green-color;
 }
 
 .big-icon .icon {
-  font-size: 2em;
-  color: $primary-color;
+	font-size: 2em;
+	color: $primary-color;
 }
 
 .big-icon .icon:hover {
-  color: darken($primary-color, 45%);
+	color: darken($primary-color, 15%);
 }
 
 .comments .icon {
-  font-size: 1.3em;
-  color: $primary-color;
+	font-size: 1.3em;
+	color: $primary-color;
 }
 
 .alert .icon-exclamation-circle {
-  font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 .comments .icon:hover {
-  color: darken($primary-color, 45%);
-}
-
-/*Icon Sizes end Here*/
-.form-vote button[type=submit] {
-  border: none;
-  background: none;
-}
-
-.form-vote {
-  display: inline-block;
+	color: darken($primary-color, 15%);
 }

@@ -13,6 +13,7 @@
 	<meta meta="copyright" content="Copyright © 2015 Mother of Banter. All Rights Reserved.">
 	<meta meta="author" content="Mother of Banter">
 	<meta meta="language" content="English">
+	<meta name="theme-color" content="#2f75ce">
 	<!-- Hilarious, Funny, Immature -->
 	{{-- Title --}}
 	<title>@yield('title')- Mother of Banter</title>
@@ -42,7 +43,6 @@
 	<meta name="msapplication-TileColor" content="#2b5797">
 	<meta name="msapplication-TileImage" content="{{ URL::asset('assets/img/mstile-144x144.png') }}">
 	<meta name="msapplication-config" content="{{ URL::asset('assets/img/browserconfig.xml') }}">
-	<meta name="theme-color" content="#2f75ce">
 	{{-- Script --}}
 	<script type="text/javascript">window.ParsleyConfig = {
 			errorsWrapper: '<div></div>',

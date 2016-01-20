@@ -1,6 +1,6 @@
 @extends('templates.default')
 @section('title')
-	{{$image->body}}
+	{{$images->body}}
 @stop
 @section('content')
 	<div class="container">
@@ -10,15 +10,15 @@
 				<div class="media-body">
 					<div class="page-header">
 						<h4 class="convert-emoji"><a
-									href="{{ route('get.post', ['url' => $image-> url]) }}"> {{$image->body}} </a>
+									href="{{ route('get.post', ['url' => $images-> url]) }}"> {{$images->body}} </a>
 							<small class='pull-right'>By, <a
-										href="{{ route('profile.index', ['username' => $image -> user->username]) }}">{{$image->user->getNameOrUsername()}}</a>
+										href="{{ route('profile.index', ['username' => $images -> user->username]) }}">{{$images->user->getNameOrUsername()}}</a>
 							</small>
 						</h4>
 					</div>
-					@if ($image->largeImage_path === null)
+					@if ($images->largeImage_path === null)
 						<div class="hovereffect">
-							<img src="{{URL::asset($image->image_path)}}" class="img-responsive center-block">
+							<img src="{{URL::asset($images->image_path)}}" class="img-responsive center-block">
 							<div class="overlay">
 								<p class="set1">
 									<a href="#">
@@ -41,68 +41,9 @@
 							</div>
 						</div>
 					@else
-						<img class="img-responsive center-block" src="{{URL::asset($image->largeImage_path)}}">
+						<img class="img-responsive center-block" src="{{URL::asset($images->largeImage_path)}}">
 					@endif
-					@if(Auth::check())
-						<ul class="list-inline big-icon">
-							<form class="form-vote form{{$image->id}}"
-								  action="{{ route('image.like', ['imageId' => $image->id]) }}" method="get"
-								  role="form">
-								@if(Auth::user()->hasLikedAlready($image->id))
-									<li>
-										<button type="submit" class="like_btn"><i
-													class="unused-icon icon icon-thumbs-o-up"></i></button>
-									</li>
-								@else
-									<li>
-										<button type="submit" class="like_btn"><i
-													class="icon icon-thumbs-o-up"></i></button>
-									</li>
-								@endif
-							</form>
-							<form class="form-vote form_dislike{{$image->id}}"
-								  action="{{ route('image.dislike', ['imageId' => $image->id]) }}" method="get"
-								  role="form">
-								@if(Auth::user()->hasDislikedAlready($image->id))
-									<li>
-										<button type="submit" class="dislike_btn"><i
-													class="unused-icon icon icon-thumbs-o-down"></i></button>
-									</li>
-								@else
-									<li>
-										<button type="submit" class="dislike_btn"><i
-													class="icon icon-thumbs-o-down"></i></button>
-									</li>
-								@endif
-								<input type="hidden" name="_token" value="{{ Session::token() }}">
-							</form>
-							<li><a href="#commentArea"><i class="icon icon-bubble2"></i></a></li>
-							<li class="pull-right">{{ $image->created_at->diffForHumans()}}</li>
-							<li class="pull-right"><span
-										class="dislike_count{{$image->id}}">{{$image->dislikes->count()}}</span> {{str_plural('Dislike', $image->dislikes->count())}}
-							</li>
-							<li class="pull-right"><span
-										class="like_count{{$image->id}}">{{$image->likes->count()}}</span> {{str_plural('Like', $image->likes->count())}}
-							</li>
-						</ul>
-					@else
-						<ul class="list-inline big-icon">
-							<li><a href="{{ route('auth.signin')}}"><i
-											class="unused-icon icon icon-thumbs-o-up"></i></a></li>
-							<li><a href="{{ route('auth.signin')}}"><i class="unused-icon icon icon-thumbs-o-down"></i></a>
-							</li>
-							<li><a href="{{ route('auth.signin')}}"><i class="icon icon-bubble2"></i></a></li>
-							<li class="pull-right"><a
-										href="{{ route('auth.signin')}}">{{ $image->created_at->diffForHumans()}}</a>
-							</li>
-							<li class="pull-right"><a
-										href="{{ route('auth.signin')}}">{{$image->dislikes->count()}}  {{str_plural('Dislike', $image->dislikes->count())}}</a>
-							</li>
-							<li class="pull-right"><a
-										href="{{ route('auth.signin')}}">{{$image->likes->count()}}  {{str_plural('Like', $image->likes->count())}}</a>
-							</li>
-						</ul>
-					@endif
+					@include('images.templates.forms')
 				</div>
 			</div>
 		</div>
@@ -115,20 +56,20 @@
 		{{-- Comment Box --}}
 		@if (Auth::check())
 			<div class="col-lg-8" id="commentBox">
-				<form role="form" action="{{ route('image.reply', ['imageId' =>$image->id] )}}" method="post"
+				<form role="form" action="{{ route('image.reply', ['imageId' =>$images->id] )}}" method="post"
 					  method="post" enctype="multipart/form-data" data-parsley-validate>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<label class="comment" id="comment">Say something funny: </label>
 						</div>
-						<div class="panel-body{{ $errors->has(" reply-{$image->id}") ? ' has-error': '' }}">
+						<div class="panel-body{{ $errors->has(" reply-{$images->id}") ? ' has-error': '' }}">
 							<textarea id="commentArea"
 									  placeholder="Say something funny, {{ Auth::user()->getFirstNameOrUsername() }}!!To use emojis from a Desktop just hit ':'"
-									  name="reply-{{ $image->id }}" class="form-control comment-emoji-area" rows="3"
+									  name="reply-{{ $images->id }}" class="form-control comment-emoji-area" rows="3"
 									  required="" data-parsley-required-message="You must add a comment!"
 									  data-parsley-trigger="change focusout" data-parsley-maxlength="1000"></textarea>
-							@if ($errors->has("reply-{$image->id}"))
-								<span class="help-block">{{ $errors->first("reply-{$image->id}") }}</span>
+							@if ($errors->has("reply-{$images->id}"))
+								<span class="help-block">{{ $errors->first("reply-{$images->id}") }}</span>
 							@endif
 						</div>
 						<div class="panel-footer">
@@ -174,7 +115,7 @@
 	{{-- User Comments --}}
 	<div class="infinite-loading-comments">
 		<div class="col-lg-8">
-			@foreach($image->paginatingReplies() as $reply)
+			@foreach($images->paginatingReplies() as $reply)
 				<div class="media">
 					<a class="pull-left" href="{{ route('profile.index', ['username' => $reply -> user->username]) }}">
 						<img class="media-object" src="{{ $reply->user->getAvatarUrl() }}" width="40px" height="40px"
@@ -320,7 +261,7 @@
 				</script>
 			@endforeach
 			<div class="hidden-paginator">
-				{!! $image->paginatingReplies()->render() !!}
+				{!! $images->paginatingReplies()->render() !!}
 			</div>
 		</div>
 	</div>
@@ -405,63 +346,7 @@
 		});
 	</script>
 	{{--Ajax Request for the like button--}}
-	<script>
-		$(document).ready(function () {
-			$('.form{{$image->id}}').on('submit', function (event) {
-				event.preventDefault();
-
-				$.ajax({
-					type: "get",
-					url: '{{ route('image.like', ['imageId' => $image->id]) }}',
-					success: function () {
-						if ($('.form{{$image->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
-							$('.form{{$image->id}} .icon-thumbs-o-up').removeClass('unused-icon');
-							var like_counter = $(".like_count{{$image->id}}").html() * 1 + 1;
-							$('.like_count{{$image->id}}').text(like_counter);
-						} else {
-							$('.form{{$image->id}} .icon-thumbs-o-up').addClass('unused-icon');
-							var unlike_counter = $(".like_count{{$image->id}}").html() * 1 - 1;
-							$('.like_count{{$image->id}}').text(unlike_counter);
-						}
-						if (!$('.form_dislike{{$image->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
-							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').addClass('unused-icon');
-							var dislike_counter = $(".dislike_count{{$image->id}}").html() * 1 - 1;
-							$('.dislike_count{{$image->id}}').text(dislike_counter);
-						}
-					}
-				});
-			});
-		});
-	</script>
-	{{--Ajax Request for the dislike button--}}
-	<script>
-		$(document).ready(function () {
-			$('.form_dislike{{$image->id}}').on('submit', function (event) {
-				event.preventDefault();
-
-				$.ajax({
-					type: "get",
-					url: '{{ route('image.dislike', ['imageId' => $image->id]) }}',
-					success: function () {
-						if ($('.form_dislike{{$image->id}} .icon-thumbs-o-down').hasClass('unused-icon')) {
-							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').removeClass('unused-icon');
-							var dislike_counter = $(".dislike_count{{$image->id}}").html() * 1 + 1;
-							$('.dislike_count{{$image->id}}').text(dislike_counter);
-						} else {
-							$('.form_dislike{{$image->id}} .icon-thumbs-o-down').addClass('unused-icon');
-							var undislike_counter = $(".dislike_count{{$image->id}}").html() * 1 - 1;
-							$('.dislike_count{{$image->id}}').text(undislike_counter);
-						}
-						if (!$('.form{{$image->id}} .icon-thumbs-o-up').hasClass('unused-icon')) {
-							$('.form{{$image->id}} .icon-thumbs-o-up').addClass('unused-icon');
-							var unlike_counter = $(".like_count{{$image->id}}").html() * 1 - 1;
-							$('.like_count{{$image->id}}').text(unlike_counter);
-						}
-					}
-				});
-			});
-		});
-	</script>
+	@include('templates.partials.ajax_requests')
 
 @stop
 {{-- Update the messages passed on to views --}}

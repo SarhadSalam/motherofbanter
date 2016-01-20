@@ -11,17 +11,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function (mix) {
-    mix.sass(['main.scss'], 'resources/assets/css/temp/MotherOfBanterSCSS.css');
-
-    mix.styles([
-        'bootstrap.css',
-        'fileUpload.css',
-    ], 'resources/assets/css/temp/MotherOfBanterCSS.css');
-
-    mix.styles([
-        'temp/MotherOfBanterCSS.css',
-        'temp/MotherOfBanterSCSS.css',
-    ], 'public/assets/css/MotherOfBanter.css');
+    mix.sass(['main.scss'], 'public/assets/css/MotherOfBanter.css');
 
     //mix.styles([
     //    'ie7.css',
