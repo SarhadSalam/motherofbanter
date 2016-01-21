@@ -1,4 +1,7 @@
 <?php
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;

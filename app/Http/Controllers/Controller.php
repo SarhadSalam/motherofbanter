@@ -1,4 +1,8 @@
 <?php
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
+
 namespace MotherOfBanter\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;

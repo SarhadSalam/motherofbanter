@@ -1,3 +1,17 @@
 <component name="CopyrightManager">
-  <settings default="" />
+  <settings default="Sarhad">
+    <module2copyright>
+      <element module="All" copyright="Sarhad" />
+    </module2copyright>
+    <LanguageOptions name="CSS">
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+      <option name="lenBefore" value="100" />
+      <option name="lenAfter" value="100" />
+    </LanguageOptions>
+    <LanguageOptions name="__TEMPLATE__">
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+    </LanguageOptions>
+  </settings>
 </component>

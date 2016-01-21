@@ -1,19 +1,6 @@
-/*!
- * jScroll - jQuery Plugin for Infinite Scrolling / Auto-Paging
- * http://jscroll.com/
- *
- * Copyright 2011-2013, Philip Klauzinski
- * http://klauzinski.com/
- * Dual licensed under the MIT and GPL Version 2 licenses.
- * http://jscroll.com/#license
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl-2.0.html
- *
- * @author Philip Klauzinski
- * @version 2.3.4
- * @requires jQuery v1.4.3+
- * @preserve
- */
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
 (function ($) {
     'use strict';
     // Define the jscroll namespace and default settings

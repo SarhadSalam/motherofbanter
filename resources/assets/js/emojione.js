@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
+
 /* jshint maxerr: 10000 */
 /* jslint unused: true */
 /* jshint shadow: true */

@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
+
 // emoji strategy for .textcomplete() (latest version available in our repo: emoji_strategy.json)
 var emojiStrategy = {
     "grinning": {

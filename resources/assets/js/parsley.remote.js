@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
+
 // `window.ParsleyExtend`, like `ParsleyAbstract`, is inherited by `ParsleyField` and `ParsleyForm`
 // That way, we could add new methods or redefine some for these both classes. In particular case
 // We are adding async validation methods that returns promises, bind them properly to triggered

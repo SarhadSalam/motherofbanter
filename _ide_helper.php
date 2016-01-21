@@ -1,4 +1,8 @@
 <?php
+/*******************************************************************************
+ * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
+ ******************************************************************************/
+
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
  * Generated for Laravel 5.1.1 (LTS) on 2015-06-11.
