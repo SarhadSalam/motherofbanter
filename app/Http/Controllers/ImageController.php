@@ -87,7 +87,7 @@ class ImageController extends Controller {
 			$uniqid = uniqid();
 			$filenameWithoutExtension = $imageFile->getClientOriginalName() . $uniqid;
 			$filename = str_slug($filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension());
-			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/';
+			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/comments/';
 			//The file is saved
 			$imageFile->move($path, $filename);
 			//When the user messes with the website and tries to mess with other status by changing the inspect element condition.
@@ -192,6 +192,11 @@ class ImageController extends Controller {
 		if (!$image) {
 			return redirect()->route('home')->with('success', 'Something went wrong!');
 		}
+		$replies = Image::where('parent_id', $image->id)->where('user_id', Auth::user()->id)->first();
+		if($replies)
+		{
+			$replies->delete();
+		}
 		if ($image->largeImage_path) {
 			Storage::delete($image->largeImage_path);
 		}
@@ -199,5 +204,25 @@ class ImageController extends Controller {
 		$image->delete();
 
 		return redirect()->route('home')->with('info', 'Deleted');
+	}
+
+	public function deleteComment($imageURL, $commentId)
+	{
+		$image = Image::where('url', $imageURL)->first();
+		$reply = Image::whereNotNull('parent_id')->where('id', $commentId)->where('user_id', Auth::user()->id)->first();
+
+		if(!$reply || !$image)
+		{
+			return redirect()->back()->with('danger', 'Something went wrong!');
+		}
+
+		if($reply->image_path != NULL)
+		{
+			Storage::delete($reply->image_path);
+		}
+
+		$reply->delete();
+
+		return redirect()->back()->with('info', 'Deleted');
 	}
 }

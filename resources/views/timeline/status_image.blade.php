@@ -162,19 +162,36 @@
 												  role="form">
 												<button type="submit" class="dislike_btn"><i
 															class="unused-icon icon icon-thumbs-o-down"></i></button>
-												</form>
+											</form>
 										</li>
 									@else
 										<li>
 											<form class="form-vote form_dislike_comments{{$reply->id}}"
 												  action="{{ route('image.dislike', ['imageId' => $reply->id]) }}"
-												  method="get"
-												  role="form">
+												  method="get" role="form">
 												<button type="submit" class="dislike_btn"><i
 															class="icon icon-thumbs-o-down"></i></button>
 											</form>
 										</li>
 									@endif
+										<div class="btn-group dropup pull-right">
+											<button class="dropdown-caret" data-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="false">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menus">
+												@if(Auth::user()->id == $reply->user_id)
+													<li>
+														<form action="{{route('delete.image.comment', ['$commentId' => $reply->id, 'imageURL' => $images-> url])}}" method="post" role="form">
+															<button class="btn-link" type="submit">Delete</button>
+															<input type="hidden" name="_token"
+																   value="{{ Session::token() }}">
+														</form>
+													</li>
+												@endif
+												<li><a href="#">Report</a></li>
+											</ul>
+										</div>
 									<li class="pull-right">{{ $reply->created_at->diffForHumans() }}</li>
 									<li class="pull-right"><span
 												class="dislike_comment_count{{$reply->id}}">{{$reply->dislikes->count()}}</span> {{str_plural('dislike', $reply->dislikes->count())}}

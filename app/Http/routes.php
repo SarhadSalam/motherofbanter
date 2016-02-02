@@ -2,7 +2,6 @@
 /*******************************************************************************
  * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
  ******************************************************************************/
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -142,5 +141,10 @@ Route::get('/image/{imageId}/dislike', [
 Route::post('/image/delete/{imageURL}', [
 	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteImage',
 	'as'         => 'delete.image',
+	'middleware' => ['auth'],
+]);
+Route::post('/image/{imageURL}/comment/delete/{commentId}', [
+	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteComment',
+	'as'         => 'delete.image.comment',
 	'middleware' => ['auth'],
 ]);

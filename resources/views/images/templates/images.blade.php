@@ -3,7 +3,7 @@
 		<div class="media">
 			<div class="media-body">
 				<div class="page-header">
-					<h4 cplass="convert-emoji"><a
+					<h4 class="convert-emoji"><a
 								href="{{ route('get.post', ['url' => $images-> url]) }}"> {{$images->body}} </a>
 						<small class='pull-right'>By, <a
 									href="{{ route('profile.index', ['username' => $images -> user->username]) }}">{{$images->user->getNameOrUsername()}}</a>
