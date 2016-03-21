@@ -1,11 +1,11 @@
 #Bugs:
-1. When a comment/post is deleted, the likes should be deleted alongwith it!
-2. Reporting, where should it go? A messaging system for motherofbanter, or motherofbanters mail?
+2. Reporting, where should it go? A messaging system for motherofbanter, or motherofbanters mail? [[The only viable way is adding an admin logic]]
 3. Notifications
 4. Show on user wall their activity, such as where they commented, and where they liked/disliked etc.
-5. Do friggin awesome in school m8ey
+
 #Just Random Thoughts:
-1. Think of logic for admin and normal users.
+1. Think of logic for admin and
+ normal users.
 2. Create videos, blogs, blah blah blah.
 3. Think about dropzone.js, looks like a nice option.
 6. ElasticSearch

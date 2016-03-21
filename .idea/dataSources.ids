@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - homestead@127.0.0.1" uuid="c3ac509b-773c-4fd9-aa16-654e8f1e8183">
-    <database-info product="MySQL" version="5.7.10" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+  <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04">
+    <database-info product="MySQL" version="5.7.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="homestead"/>
       <table id="2" parent="1" name="image_dislikeable"/>
       <table id="3" parent="1" name="image_likeable"/>
@@ -19,6 +19,7 @@
       <column id="10" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="11" parent="2" name="user_id">
         <mandatory>1</mandatory>
@@ -49,6 +50,7 @@
       <column id="17" parent="3" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="18" parent="3" name="user_id">
         <mandatory>1</mandatory>
@@ -79,6 +81,7 @@
       <column id="24" parent="4" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="25" parent="4" name="user_id">
         <mandatory>1</mandatory>
@@ -127,6 +130,7 @@
       <column id="36" parent="6" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="37" parent="6" name="user_id">
         <mandatory>1</mandatory>
@@ -163,6 +167,7 @@
       <column id="44" parent="7" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="45" parent="7" name="user_id">
         <mandatory>1</mandatory>
@@ -208,6 +213,7 @@
       <column id="54" parent="8" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="55" parent="8" name="email">
         <mandatory>1</mandatory>
@@ -276,6 +282,7 @@
       <column id="72" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="73" parent="9" name="user_id">
         <mandatory>1</mandatory>

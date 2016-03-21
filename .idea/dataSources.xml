@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1225983714">
-    <data-source source="LOCAL" name="MySQL - homestead@127.0.0.1" uuid="c3ac509b-773c-4fd9-aa16-654e8f1e8183">
+  <component name="DataSourceManagerImpl" format="xml" hash="4150363205">
+    <data-source source="LOCAL" name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:33060/homestead</jdbc-url>
       <driver-properties>
+        <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />

@@ -5,6 +5,8 @@
 
 namespace MotherOfBanter\Http\Controllers;
 
+use MotherOfBanter\Models\ImageDislikeable;
+use MotherOfBanter\Models\ImageLikeable;
 use MotherOfBanter\Models\User;
 use MotherOfBanter\Models\Image;
 use Illuminate\Http\Request;
@@ -186,6 +188,20 @@ class ImageController extends Controller {
 		return redirect()->back()->with('success', 'Disliked it.');
 	}
 
+	public function checkLikesOrDislikeOnPost($image, $replies)
+	{
+		$likes = ImageLikeable::where('likeable_id', $image->id)->first();
+		$dislikes = ImageDislikeable::where('dislikeable_id', $image->id)->first();
+		if($likes)
+		{
+			$likes->delete();
+		};
+		if($dislikes)
+		{
+			$dislikes->delete();
+		};
+	}
+
 	public function deleteImage($imageURL)
 	{
 		$image = Image::where('url', $imageURL)->where('user_id', Auth::user()->id)->first();
@@ -195,25 +211,31 @@ class ImageController extends Controller {
 		$replies = Image::where('parent_id', $image->id)->where('user_id', Auth::user()->id)->first();
 		if($replies)
 		{
-			$replies->delete();
+			$this->deleteReplies($replies);
 		}
 		if ($image->largeImage_path) {
 			Storage::delete($image->largeImage_path);
 		}
+		$this->checkLikesOrDislikeOnPost($image, $replies);
+
 		Storage::delete($image->image_path);
 		$image->delete();
 
 		return redirect()->route('home')->with('info', 'Deleted');
 	}
 
-	public function deleteComment($imageURL, $commentId)
+	public function deleteReplies($reply)
 	{
-		$image = Image::where('url', $imageURL)->first();
-		$reply = Image::whereNotNull('parent_id')->where('id', $commentId)->where('user_id', Auth::user()->id)->first();
-
-		if(!$reply || !$image)
+		$like = ImageLikeable::where('likeable_id', $reply->id)->first();
+		if($like)
 		{
-			return redirect()->back()->with('danger', 'Something went wrong!');
+			$like->delete();
+		}
+		$dislike = ImageDislikeable::where('dislikeable_id', $reply->id)->first();
+		
+		if($dislike)
+		{
+			$dislike->delete();
 		}
 
 		if($reply->image_path != NULL)
@@ -222,7 +244,18 @@ class ImageController extends Controller {
 		}
 
 		$reply->delete();
+	}
 
+
+	public function deleteComment($imageURL, $commentId)
+	{
+		$image = Image::where('url', $imageURL)->first();
+		$reply = Image::whereNotNull('parent_id')->where('id', $commentId)->where('user_id', Auth::user()->id)->first();
+		if(!$reply || !$image)
+		{
+			return redirect()->back()->with('danger', 'Something went wrong!');
+		}
+		$this->deleteReplies($reply);
 		return redirect()->back()->with('info', 'Deleted');
 	}
 }

@@ -209,8 +209,7 @@ namespace {
         /**
          * Get or check the current application environment.
          *
-         * @param mixed
-         * @return string 
+/bin/bash: :q: command not found
          * @static 
          */
         public static function environment(){
@@ -220,7 +219,7 @@ namespace {
         /**
          * Determine if application is in local environment.
          *
-         * @return bool 
+/bin/bash: q: command not found
          * @static 
          */
         public static function isLocal(){
