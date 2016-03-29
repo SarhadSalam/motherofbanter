@@ -21,6 +21,6 @@ class ImageLikeable extends Model {
 
 	public function user()
 	{
-		return $this - belongsTo('MotherOfBanter\Models\User', 'user_id');
+		return $this -> belongsTo('MotherOfBanter\Models\User', 'user_id');
 	}
 }

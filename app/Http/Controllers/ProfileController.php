@@ -10,6 +10,9 @@ use MotherOfBanter\Models\User;
 use Illuminate\Http\Request;
 use \Input as Input;
 use MotherOfBanter\Models\Social;
+use MotherOfBanter\Models\ImageLikeable;
+use MotherOfBanter\Models\ImageDislikeable;
+use MotherOfBanter\Models\Image;
 
 class ProfileController extends Controller {
 	public function getProfile($username)
@@ -18,9 +21,18 @@ class ProfileController extends Controller {
 		if (!$user) {
 			abort(404);
 		}
-		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(1);
+		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(10);
+		$id = $user->id;
+		$likes = ImageLikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$dislikes = ImageDislikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$comments = Image::where('parent_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$activity = [
+			"likes" => $likes,
+			"dislikes" => $dislikes,
+			"comments" => $comments
+		];
 
-		return view('profile.index')->with('user', $user)->with('user', $user)->with('image', $image);
+		return view('profile.index')->with('user', $user)->with('image', $image)->with("activity", $activity);
 	}
 	
 	public function getEdit()
