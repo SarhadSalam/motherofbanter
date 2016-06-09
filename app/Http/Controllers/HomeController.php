@@ -5,10 +5,7 @@
 
 namespace MotherOfBanter\Http\Controllers;
 
-use Auth;
 use MotherOfBanter\Models\Image;
-use Illuminate\http\Request;
-use DB;
 
 class HomeController extends Controller {
 	public function index()

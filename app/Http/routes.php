@@ -119,11 +119,6 @@ Route::post('/image', [
 	'as'         => 'image.post',
 	'middleware' => ['auth'],
 ]);
-Route::post('/image/{imageId}/reply', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@postReply',
-	'as'         => 'image.reply',
-	'middleware' => ['auth'],
-]);
 Route::get('/image/{url}', [
 	'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getPost',
 	'as'   => 'get.post',
@@ -143,8 +138,19 @@ Route::post('/image/delete/{imageURL}', [
 	'as'         => 'delete.image',
 	'middleware' => ['auth'],
 ]);
+
+/**
+ * Comments
+ */
+
+Route::post('/reply/image/{imageId}/', [
+	'uses'       => '\MotherOfBanter\Http\Controllers\CommentController@postReply',
+	'as'         => 'image.reply',
+	'middleware' => ['auth'],
+]);
+
 Route::post('/image/{imageURL}/comment/delete/{commentId}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteComment',
+	'uses'       => '\MotherOfBanter\Http\Controllers\CommentController@deleteComment',
 	'as'         => 'delete.image.comment',
 	'middleware' => ['auth'],
 ]);

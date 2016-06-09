@@ -4,8 +4,8 @@
     <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04">
       <secret-storage>master_key</secret-storage>
       <user-name>homestead</user-name>
-      <schema-pattern>homestead.*</schema-pattern>
-      <default-schemas>homestead.*</default-schemas>
+      <introspection-scope>homestead:*</introspection-scope>
+      <resolve-scope>homestead:*</resolve-scope>
     </data-source>
   </component>
 </project>

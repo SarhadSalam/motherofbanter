@@ -6,8 +6,10 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
-      <schema id="1" name="homestead"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="homestead">
+        <visible>1</visible>
+      </schema>
       <table id="2" parent="1" name="image_dislikeable"/>
       <table id="3" parent="1" name="image_likeable"/>
       <table id="4" parent="1" name="images"/>
@@ -18,29 +20,29 @@
       <table id="9" parent="1" name="videos"/>
       <column id="10" parent="2" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="11" parent="2" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
       </column>
       <column id="12" parent="2" name="dislikeable_id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="13" parent="2" name="dislikeable_type">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="14" parent="2" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="15" parent="2" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <key id="16" parent="2" name="PRIMARY">
@@ -49,29 +51,29 @@
       </key>
       <column id="17" parent="3" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="18" parent="3" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
       </column>
       <column id="19" parent="3" name="likeable_id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="20" parent="3" name="likeable_type">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="21" parent="3" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="22" parent="3" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <key id="23" parent="3" name="PRIMARY">
@@ -80,39 +82,39 @@
       </key>
       <column id="24" parent="4" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="25" parent="4" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="26" parent="4" name="parent_id">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="27" parent="4" name="body">
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="28" parent="4" name="url">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="29" parent="4" name="image_path">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="30" parent="4" name="largeImage_path">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="31" parent="4" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="32" parent="4" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <key id="33" parent="4" name="PRIMARY">
@@ -121,33 +123,33 @@
       </key>
       <column id="34" parent="5" name="migration">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="35" parent="5" name="batch">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="36" parent="6" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="37" parent="6" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
       </column>
       <column id="38" parent="6" name="reset_token">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="39" parent="6" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="40" parent="6" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <index id="41" parent="6" name="password_resets_user_id_index">
@@ -166,34 +168,34 @@
       </foreign-key>
       <column id="44" parent="7" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="45" parent="7" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
       </column>
       <column id="46" parent="7" name="provider">
         <mandatory>1</mandatory>
-        <data-type>varchar(32)</data-type>
+        <data-type>varchar(32)|0</data-type>
       </column>
       <column id="47" parent="7" name="social_id">
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="48" parent="7" name="username_change">
         <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="49" parent="7" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="50" parent="7" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <index id="51" parent="7" name="social_logins_user_id_index">
@@ -212,58 +214,58 @@
       </foreign-key>
       <column id="54" parent="8" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="55" parent="8" name="email">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="56" parent="8" name="username">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="57" parent="8" name="password">
-        <data-type>varchar(60)</data-type>
+        <data-type>varchar(60)|0</data-type>
       </column>
       <column id="58" parent="8" name="first_name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="59" parent="8" name="last_name">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="60" parent="8" name="profile_image">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="61" parent="8" name="identifier">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="62" parent="8" name="location">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="63" parent="8" name="active">
         <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
+        <data-type>tinyint(1)|0</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="64" parent="8" name="activation_code">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="65" parent="8" name="resent_email_count">
-        <data-type>tinyint(3) unsigned</data-type>
+        <data-type>tinyint(3) unsigned|0</data-type>
       </column>
       <column id="66" parent="8" name="remember_token">
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="67" parent="8" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="68" parent="8" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <index id="69" parent="8" name="users_identifier_unique">
@@ -281,36 +283,36 @@
       </key>
       <column id="72" parent="9" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
+        <data-type>int(10) unsigned|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="73" parent="9" name="user_id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="74" parent="9" name="parent_id">
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
       </column>
       <column id="75" parent="9" name="body">
         <mandatory>1</mandatory>
-        <data-type>text</data-type>
+        <data-type>text|0</data-type>
       </column>
       <column id="76" parent="9" name="url">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="77" parent="9" name="video_path">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(255)|0</data-type>
       </column>
       <column id="78" parent="9" name="created_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <column id="79" parent="9" name="updated_at">
         <mandatory>1</mandatory>
-        <data-type>timestamp</data-type>
+        <data-type>timestamp|0</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
       <key id="80" parent="9" name="PRIMARY">

@@ -14,6 +14,7 @@ use MotherOfBanter\Models\ImageLikeable;
 use MotherOfBanter\Models\ImageDislikeable;
 use MotherOfBanter\Models\Image;
 
+
 class ProfileController extends Controller {
 	public function getProfile($username)
 	{

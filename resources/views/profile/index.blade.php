@@ -37,7 +37,7 @@
 			</div>
 			@if ($activity["likes"]->count())
 				<div id="activity" class="tab-pane fade in active">
-					@foreach($activity["likes"] as $activity)
+					@foreach($activity["likes"] as $activities)
 						@include('user.partials.activity')
 					@endforeach
 				</div>

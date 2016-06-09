@@ -12,6 +12,7 @@ class ImageLikeable extends Model {
 
 	protected $fillable = [
 		'id',
+		'likeable_type'
 	];
 
 	public function likeable()
@@ -22,5 +23,10 @@ class ImageLikeable extends Model {
 	public function user()
 	{
 		return $this -> belongsTo('MotherOfBanter\Models\User', 'user_id');
+	}
+
+	public function image()
+	{
+		return $this->belongsTo('MotherOfBanter\Models\Image', 'likeable');
 	}
 }

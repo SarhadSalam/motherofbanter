@@ -19,11 +19,11 @@ class LikeSeeder extends Seeder {
 		for ($l = 1 ; $l < $userId ; $l++) {
 			$image = Image::where('id', $l)->first();
 			DB::table('image_likeable')->insert([
-													'user_id'       => $l,
+													'user_id' => $l,
 													'likeable_type' => 'MotherOfBanter\Models\Image',
-													'likeable_id'   => $l,
-													'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
-													'updated_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+													'likeable_id' => $l,
+													'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+													'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
 												]);
 		}
 	}
