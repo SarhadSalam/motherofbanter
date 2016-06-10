@@ -1,0 +1,2 @@
+sudo php5dismod xdebug
+sudo service php5-fpm restart
