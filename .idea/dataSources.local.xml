@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04" />
+    <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04">
+      <user-name>homestead</user-name>
+    </data-source>
   </component>
 </project>

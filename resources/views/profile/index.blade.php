@@ -14,15 +14,15 @@
 			@endif
 
 			@if ($activity["likes"]->count())
-				<li><a data-toggle="tab" href="#activity">{{$user->getFirstNameOrUsername()}}'s Likes</a></li>
+				<li><a data-toggle="tab" href="#likes">{{$user->getFirstNameOrUsername()}}'s Likes</a></li>
 			@endif
 
 			@if ($activity["dislikes"]->count())
-				<li><a data-toggle="tab" href="#activity">{{$user->getFirstNameOrUsername()}}'s Dislikes</a></li>
+				<li><a data-toggle="tab" href="#dislikes">{{$user->getFirstNameOrUsername()}}'s Dislikes</a></li>
 			@endif
 
 			@if ($activity["comments"]->count())
-				<li><a data-toggle="tab" href="#activity">{{$user->getFirstNameOrUsername()}}'s Comments</a></li>
+				<li><a data-toggle="tab" href="#comments">{{$user->getFirstNameOrUsername()}}'s Comments</a></li>
 			@endif
 		</ul>
 		<div class="tab-content">
@@ -36,8 +36,17 @@
 				</div>
 			</div>
 			@if ($activity["likes"]->count())
-				<div id="activity" class="tab-pane fade in active">
+				{{-- */$type="likeable";/* --}}
+				<div id="likes" class="tab-pane fade in active">
 					@foreach($activity["likes"] as $activities)
+						@include('user.partials.activity')
+					@endforeach
+				</div>
+			@endif
+			@if ($activity["dislikes"]->count())
+				{{-- */$type="dislikeable";/* --}}
+				<div id="dislikes" class="tab-pane fade in active">
+					@foreach($activity["dislikes"] as $activities)
 						@include('user.partials.activity')
 					@endforeach
 				</div>

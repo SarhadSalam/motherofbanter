@@ -4,8 +4,8 @@
  ******************************************************************************/
 namespace MotherOfBanter\Http\Controllers;
 
-use MotherOfBanter\Models\ImageDislikeable;
-use MotherOfBanter\Models\ImageLikeable;
+use MotherOfBanter\Models\Dislikeable;
+use MotherOfBanter\Models\Likeable;
 use MotherOfBanter\Models\User;
 use MotherOfBanter\Models\Image;
 use Illuminate\Http\Request;
@@ -93,57 +93,6 @@ class ImageController extends Controller {
 			$font->valign('center');
 		});
 		$largeImageFit->save($name);
-	}
-
-	public function getLike($imageId, Request $request)
-	{
-		if (!$request->ajax()) {
-			return redirect()->route('home')->with('success', 'You have been a very very naughty boy.');
-		}
-		$image = Image::find($imageId);
-		if (!$image) {
-			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
-		}
-		Auth::user()->eitherLikeOrDislike($image, $provider = 'like');
-		if (Auth::user()->hasLikedImage($image)) {
-			return redirect()->back()->with('success', 'Unliked it.');
-		}
-		$like = $image->likes()->create([
-			'likeable_type' => 'MotherOfBanter\Porn'
-										]);
-		Auth::user()->likes()->save($like);
-		return redirect()->back()->with('success', 'Liked it.');
-	}
-
-	public function getDislike($imageId, Request $request)
-	{
-		if (!$request->ajax()) {
-			return redirect()->route('home')->with('success', 'You have been a very very naughty boy.');
-		}
-		$image = Image::find($imageId);
-		if (!$image) {
-			return redirect()->route('home')->with('danger', 'I hope you rot in hell');
-		}
-		Auth::user()->eitherLikeOrDislike($image, $provider = 'dislike');
-		//Deal with what if the user likes the image then dislikes it?
-		if (Auth::user()->hasDislikedImage($image)) {
-			return redirect()->back()->with('success', 'You dis"disliked" it.');
-		}
-		$dislike = $image->dislikes()->create([]);
-		Auth::user()->dislikes()->save($dislike);
-		return redirect()->back()->with('success', 'Disliked it.');
-	}
-
-	public function checkLikesOrDislikeOnPost($image, $replies)
-	{
-		$likes = ImageLikeable::where('likeable_id', $image->id)->first();
-		$dislikes = ImageDislikeable::where('dislikeable_id', $image->id)->first();
-		if ($likes) {
-			$likes->delete();
-		};
-		if ($dislikes) {
-			$dislikes->delete();
-		};
 	}
 
 	public function deleteImage($imageURL)

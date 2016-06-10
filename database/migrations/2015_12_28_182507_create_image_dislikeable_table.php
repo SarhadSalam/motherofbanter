@@ -6,7 +6,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageDislikeableTable extends Migration
+class CreateDislikeableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateImageDislikeableTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_dislikeable', function(Blueprint $table){
+        Schema::create('dislikeable', function(Blueprint $table){
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('dislikeable_id');
@@ -31,6 +31,6 @@ class CreateImageDislikeableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('image_dislikeable');
+        Schema::drop('dislikeable');
     }
 }

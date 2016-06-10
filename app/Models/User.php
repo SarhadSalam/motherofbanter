@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use MotherOfBanter\Models\Social;
 use MotherOfBanter\Models\Image;
+use MotherOfBanter\Models\Likeable;
+use MotherOfBanter\Models\Dislikeable;
 
 class User extends Model implements AuthenticatableContract {
 	use Authenticatable;
@@ -89,7 +91,7 @@ class User extends Model implements AuthenticatableContract {
 
 	public function hasLikedAlready($id)
 	{
-		$like = ImageLikeable::where('likeable_id', '=', $id)->where('user_id', $this->id)->first();
+		$like = Likeable::where('likeable_id', '=', $id)->where('user_id', $this->id)->first();
 		if($like)
 		{
 			return false;
@@ -99,7 +101,7 @@ class User extends Model implements AuthenticatableContract {
 
 	public function hasDislikedAlready($id)
 	{
-		$dislike = ImageDislikeable::where('dislikeable_id', $id)->where('user_id', $this->id)->first();
+		$dislike = Dislikeable::where('dislikeable_id', $id)->where('user_id', $this->id)->first();
 		if($dislike)
 		{
 			return false;
@@ -124,12 +126,12 @@ class User extends Model implements AuthenticatableContract {
 
 	public function likes()
 	{
-		return $this->hasMany('MotherOfBanter\Models\ImageLikeable', 'user_id');
+		return $this->hasMany('MotherOfBanter\Models\Likeable', 'user_id');
 	}
 
 	public function dislikes()
 	{
-		return $this->hasMany('MotherOfBanter\Models\ImageDislikeable', 'user_id');
+		return $this->hasMany('MotherOfBanter\Models\Dislikeable', 'user_id');
 	}
 
 	public function accountIsActive($code)

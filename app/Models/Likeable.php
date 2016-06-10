@@ -7,7 +7,7 @@ namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ImageLikeable extends Model {
+class Likeable extends Model {
 	protected $table = 'image_likeable';
 
 	protected $fillable = [

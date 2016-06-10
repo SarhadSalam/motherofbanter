@@ -2,7 +2,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon as Carbon;
 use MotherOfBanter\Models\Image;
-use MotherOfBanter\Models\ImageLikeable;
+use MotherOfBanter\Models\Likeable;
 use MotherOfBanter\Models\User;
 
 class LikeSeeder extends Seeder {

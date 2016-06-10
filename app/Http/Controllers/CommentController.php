@@ -59,11 +59,11 @@ class CommentController extends Controller {
 
 	public function deleteRepliesRelations($reply)
 	{
-		$like = ImageLikeable::where('likeable_id', $reply->id)->first();
+		$like = Likeable::where('likeable_id', $reply->id)->first();
 		if ($like) {
 			$like->delete();
 		}
-		$dislike = ImageDislikeable::where('dislikeable_id', $reply->id)->first();
+		$dislike = Dislikeable::where('dislikeable_id', $reply->id)->first();
 		if ($dislike) {
 			$dislike->delete();
 		}

@@ -10,8 +10,8 @@ use MotherOfBanter\Models\User;
 use Illuminate\Http\Request;
 use \Input as Input;
 use MotherOfBanter\Models\Social;
-use MotherOfBanter\Models\ImageLikeable;
-use MotherOfBanter\Models\ImageDislikeable;
+use MotherOfBanter\Models\Likeable;
+use MotherOfBanter\Models\Dislikeable;
 use MotherOfBanter\Models\Image;
 
 
@@ -24,8 +24,8 @@ class ProfileController extends Controller {
 		}
 		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(10);
 		$id = $user->id;
-		$likes = ImageLikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
-		$dislikes = ImageDislikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$likes = Likeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$dislikes = Dislikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
 		$comments = Image::where('parent_id', $id)->orderBy('created_at', 'desc')->paginate(100);
 		$activity = [
 			"likes" => $likes,

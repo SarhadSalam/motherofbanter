@@ -6,7 +6,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageLikeableTable extends Migration
+class CreateLikeableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateImageLikeableTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_likeable', function(Blueprint $table){
+        Schema::create('likeable', function(Blueprint $table){
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('likeable_id');

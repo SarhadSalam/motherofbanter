@@ -40,12 +40,12 @@ class Image extends Model {
 
 	public function likes()
 	{
-		return $this->morphMany('MotherOfBanter\Models\ImageLikeable', 'likeable');
+		return $this->morphMany('MotherOfBanter\Models\Likeable', 'likeable');
 	}
 
 	public function dislikes()
 	{
-		return $this->morphMany('MotherOfBanter\Models\ImageDislikeable', 'dislikeable');
+		return $this->morphMany('MotherOfBanter\Models\Dislikeable', 'dislikeable');
 	}
 
 }

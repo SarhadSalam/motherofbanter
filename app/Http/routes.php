@@ -123,19 +123,22 @@ Route::get('/image/{url}', [
 	'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getPost',
 	'as'   => 'get.post',
 ]);
-Route::get('/image/{imageId}/like', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@getLike',
-	'as'         => 'image.like',
-	'middleware' => ['auth'],
-]);
-Route::get('/image/{imageId}/dislike', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@getDislike',
-	'as'         => 'image.dislike',
-	'middleware' => ['auth'],
-]);
 Route::post('/image/delete/{imageURL}', [
 	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteImage',
 	'as'         => 'delete.image',
+	'middleware' => ['auth'],
+]);
+/**
+ * Likes
+ */
+Route::get('/like/{imageId}/post', [
+	'uses'       => '\MotherOfBanter\Http\Controllers\LikeController@getLike',
+	'as'         => 'image.like',
+	'middleware' => ['auth'],
+]);
+Route::get('/dislike/{imageId}/post', [
+	'uses'       => '\MotherOfBanter\Http\Controllers\LikeController@getDislike',
+	'as'         => 'image.dislike',
 	'middleware' => ['auth'],
 ]);
 
