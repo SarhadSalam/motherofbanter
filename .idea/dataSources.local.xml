@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04">
-      <secret-storage>master_key</secret-storage>
-      <user-name>homestead</user-name>
-      <introspection-scope>homestead:*</introspection-scope>
-      <resolve-scope>homestead:*</resolve-scope>
-    </data-source>
+    <data-source name="Mother of Banter" uuid="54807a90-1db9-4fcf-8478-803d4ddaaf04" />
   </component>
 </project>
