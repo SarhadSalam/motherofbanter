@@ -20,21 +20,39 @@ elixir(function (mix) {
     //mix.styles([
     //    'ie7.css',
     //], 'public/assets/css/ie7.css');
+    var vendor = "vendor/";
 
     mix.scripts([
         'copyrights.js',
-        'jquery.js',
-        'fileinput.min.js',
-        'bootstrap.js',
+        vendor+'jquery.js',
+        vendor+'fileinput.min.js',
+        vendor+'bootstrap.js',
         'navbar.js',
         'modal.js',
         'alerts.js',
         'custom.js',
-        'infiniteScrolling.js',
-        'textcomplete.js',
-        'emojione.js',
-        'autoCompleteEmoji.js',
-        'parsley.js',
-        'parsley.remote.js'
+        vendor+'infiniteScrolling.js',
+        vendor+'textcomplete.js',
+        vendor+'emojione.js',
+        vendor+'autoCompleteEmoji.js',
+        vendor+'parsley.js',
+        vendor+'parsley.remote.js'
     ], 'public/assets/js/MotherOfBanter.js');
+
+    var npmDir = 'node_modules/';
+    var jsDir = 'resources/assets/js/';
+
+    mix.copy(npmDir + 'vue/dist/vue.min.js', jsDir + '/vendor');
+
+    mix.copy(jsDir + 'custom.js', 'public/assets/js/MotherOfBanterUserProfile.js');
+
+    mix.scripts([
+        vendor+'vue.min.js',
+        'userProfile.js'
+    ], 'public/assets/js/MotherOfBanterScope.js');
+
+    // mix.browserSync({
+    //     proxy: 'motherofbanter.dev:8000'
+    // })
+
 });

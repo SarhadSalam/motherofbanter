@@ -81,7 +81,7 @@
 
 @stop
 
-@section('partialScripts')
+@push('javascript')
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -108,4 +108,4 @@
 					.addMessage('en', 'username', 'Username is already in use. Please use another!.');
 		});
 	</script>
-@stop
+@endpush
