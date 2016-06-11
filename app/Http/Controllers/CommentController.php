@@ -2,6 +2,8 @@
 namespace MotherOfBanter\Http\Controllers;
 
 use Illuminate\Http\Request;
+use MotherOfBanter\Models\Likeable;
+use MotherOfBanter\Models\Dislikeable;
 use MotherOfBanter\Http\Requests;
 use Auth;
 use Input;

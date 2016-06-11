@@ -24,7 +24,8 @@
 					   data-parsley-pattern="^[a-zA-Z0-9_]*$" data-parsley-trigger="change focusout"
 					   data-parsley-required-message="An Username is required." data-parsley-minlength="3"
 					   data-parsley-maxlength="32"
-					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed." data-parsley-username='username'>
+					   data-parsley-pattern-message="Only Letters, Numbers and Underscores are allowed."
+					   data-parsley-username='username'>
 				@if ($errors->has('username'))
 					<div class="alert alert-danger" role="alert"
 						 style="text-align:center;">{{ $errors->first('username') }}</div>
@@ -82,30 +83,30 @@
 @stop
 
 @push('javascript')
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			window.ParsleyValidator
-					.addValidator('username', function (value, requirement) {
-						var response = false;
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		window.Parsley.addValidator('username', function (value, requirement) {
+			var response = false;
 
-						$.ajax({
-							url: '{{route('unique.username')}}',
-							data: {username: value},
-							dataType: 'json',
-							type: 'get',
-							async: false,
-							success: function(data) {
-								response = true;
-							},
-							error: function() {
-								response = false;
-							}
-						});
+			$.ajax({
+				url: '{{route('unique.username')}}',
+				data: {username: value},
+				dataType: 'json',
+				type: 'get',
+				async: false,
+				cache: false,
+				success: function (data) {
+					response = true;
+				},
+				error: function (data) {
+					response = false;
+				}
+			});
 
-						return response;
-					}, 32)
-					.addMessage('en', 'username', 'Username is already in use. Please use another!.');
-		});
-	</script>
+			return response;
+		}, 32)
+				.addMessage('en', 'username', 'Username is already in use. Please use another!.');
+	});
+</script>
 @endpush

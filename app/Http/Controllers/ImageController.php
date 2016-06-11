@@ -95,7 +95,7 @@ class ImageController extends Controller {
 		$largeImageFit->save($name);
 	}
 
-	public function deleteImage($imageURL)
+	public function deleteImage($imageURL, LikeController $likeController, CommentController $commentController)
 	{
 		$image = Image::where('url', $imageURL)->where('user_id', Auth::user()->id)->first();
 		if (!$image) {
@@ -103,12 +103,12 @@ class ImageController extends Controller {
 		}
 		$replies = Image::where('parent_id', $image->id)->where('user_id', Auth::user()->id)->first();
 		if ($replies) {
-			$this->deleteRepliesRelations($replies);
+			$commentController->deleteRepliesRelations($replies);
 		}
 		if ($image->largeImage_path) {
 			Storage::delete($image->largeImage_path);
 		}
-		$this->checkLikesOrDislikeOnPost($image, $replies);
+		$likeController->checkLikesOrDislikeOnPost($image, $replies);
 		Storage::delete($image->image_path);
 		$image->delete();
 		return redirect()->route('home')->with('info', 'Deleted');

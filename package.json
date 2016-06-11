@@ -4,7 +4,15 @@
     "gulp": "^3.9.0"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "bufferstreams": "^1.1.0",
+    "emojione": "^2.2.2",
     "gulp-install": "^0.6.0",
-    "laravel-elixir": "^4.0.0"
+    "jquery": "^1.12.4",
+    "jscroll": "^2.3.5",
+    "laravel-elixir": "^6.0.0-2",
+    "parsleyjs": "^2.3.13",
+    "vinyl-bufferstream": "^1.0.1",
+    "vue": "^1.0.24"
   }
 }
