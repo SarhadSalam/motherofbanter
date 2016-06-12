@@ -9,7 +9,10 @@
         "laravel/framework": "5.2.*",
         "intervention/image": "^2.3",
         "laravel/socialite": "^2.0",
-        "google/recaptcha": "^1.1"
+        "google/recaptcha": "^1.1",
+        "phpdocumentor/reflection-docblock": "^2.0",
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

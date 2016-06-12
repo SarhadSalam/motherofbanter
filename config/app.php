@@ -128,6 +128,11 @@ return [
 		MotherOfBanter\Providers\AuthServiceProvider::class,
 		MotherOfBanter\Providers\EventServiceProvider::class,
 		MotherOfBanter\Providers\RouteServiceProvider::class,
+
+		/*
+		 * IDE Helpers
+		 */
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
 	],
 	/*
 	|--------------------------------------------------------------------------
