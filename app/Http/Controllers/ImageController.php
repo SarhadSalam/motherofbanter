@@ -4,16 +4,12 @@
  ******************************************************************************/
 namespace MotherOfBanter\Http\Controllers;
 
-use MotherOfBanter\Models\Dislikeable;
-use MotherOfBanter\Models\Likeable;
-use MotherOfBanter\Models\User;
 use MotherOfBanter\Models\Image;
 use Illuminate\Http\Request;
 use \Input as Input;
 use Images;
 use Auth;
 use Storage;
-use Session;
 
 class ImageController extends Controller {
 	//This method controls the Image Posting Feature

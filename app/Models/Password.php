@@ -6,7 +6,6 @@
 namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use MotherOfBanter\Models\User;
 
 class Password extends Model {
 	protected $table = 'password_resets';

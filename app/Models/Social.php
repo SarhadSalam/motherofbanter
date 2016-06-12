@@ -6,7 +6,6 @@
 namespace MotherOfBanter\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use MotherOfBanter\Models\User;
 
 class Social extends Model {
 	protected $table = 'social_logins';

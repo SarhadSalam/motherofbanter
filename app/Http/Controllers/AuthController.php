@@ -8,7 +8,6 @@ namespace MotherOfBanter\Http\Controllers;
 use Auth;
 use Illuminate\http\Request;
 use MotherOfBanter\Models\User;
-use Illuminate\Contracts\Auth\Guard;
 use Socialite;
 use Mail;
 use MotherOfBanter\Traits\CaptchaTrait;
