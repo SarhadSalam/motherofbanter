@@ -1,7 +1,6 @@
 #Bugs:
 2. Reporting, where should it go? A messaging system for motherofbanter, or motherofbanters mail? [[The only viable way is adding an admin logic]]
-3. Notifications
-4. Show on user wall their activity, such as where they commented, and where they liked/disliked etc.
+3. Videos
 
 #Just Random Thoughts:
 1. Think of logic for admin and

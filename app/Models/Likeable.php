@@ -29,4 +29,5 @@ class Likeable extends Model {
 	{
 		return $this->belongsTo('MotherOfBanter\Models\Image', 'likeable');
 	}
+
 }

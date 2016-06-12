@@ -33,6 +33,11 @@ class Image extends Model {
 		return $this->hasMany('MotherOfBanter\Models\Image', 'parent_id');
 	}
 
+	public function reply()
+	{
+		return $this->belongsTo('MotherOfBanter\Models\Image', 'parent_id');
+	}
+
 	public function paginatingReplies()
 	{
 		return $this->replies()->orderBy('created_at', 'desc')->paginate(15);

@@ -66,7 +66,7 @@
 		});
 	</script>
 	@yield('partialScripts')
-	@stack('javascript')
 </footer>
+@stack('javascript')
 </body>
 </html>

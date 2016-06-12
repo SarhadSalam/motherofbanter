@@ -22,15 +22,13 @@ class ProfileController extends Controller {
 		if (!$user) {
 			abort(404);
 		}
-		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(10);
+		$image = $user->image()->notReply()->orderBy('created_at', 'desc')->paginate(25);
 		$id = $user->id;
-		$likes = Likeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
-		$dislikes = Dislikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(100);
-		$comments = Image::where('parent_id', $id)->orderBy('created_at', 'desc')->paginate(100);
+		$likes = Likeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(15);
+		$dislikes = Dislikeable::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(15);
 		$activity = [
 			"likes" => $likes,
 			"dislikes" => $dislikes,
-			"comments" => $comments
 		];
 
 		return view('profile.index')->with('user', $user)->with('image', $image)->with("activity", $activity);
