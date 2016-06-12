@@ -28,7 +28,7 @@
 					<p id="activityName">{{$activities->user->getNameOrUsername()}} {{$name}} a comment on this
 						post.</p>
 					<h4 class="convert-emoji"><a
-								href="{{ route('get.post', ['url' => $activities->$type-> url]) }}"> {{$activities->$type->body}} </a>
+								href="{{ route('get.post', ['url' => $activities->$type->reply-> url]) }}"> {{$activities->$type->reply->body}} </a>
 						<small class='pull-right'>By, <a
 									href="{{ route('profile.index', ['username' => $activities->$type->user->username]) }}"> {{$activities->$type->user->getNameOrUsername()}}</a>
 						</small>

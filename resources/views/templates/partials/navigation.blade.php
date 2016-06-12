@@ -20,20 +20,25 @@
 						</li>
 					@endif
 					<li>
-						<a class="sidebarIcon icon icon-play" href="#">T.V.</a>
-						@if(Auth::check())
+					{{--<ul class="submenu">--}}
+					<li><a class="sidebarIcon icon icon-play" href="#">Videos</a></li>
+					<li><a href="#" class="sidebarIcon icon icon-key">Blogs</a></li>
+					{{--</ul>--}}
+					@if(Auth::check())
+						<li>
 							<ul class="submenu">
 								<li><a href="{{ route('profile.edit') }}" class="sidebarIcon icon icon-user">Update
 										Account</a></li>
 								<li><a href="{{ route('auth.signout')}}" class="sidebarIcon icon icon-sign-out">Sign
 										Out</a></li>
 							</ul>
-							<!-- SubMenu -->
+						</li>
+						<!-- SubMenu -->
 						@else
-					</li>
-					<li class="mobileSignIn"><a href="{{ route('auth.signin')}}" class="sidebarIcon icon icon-sign-in">Sign
-							In</a></li>
-					<li><a href="{{ route('auth.signup')}}" class="sidebarIcon icon icon-key">Sign Up</a></li>
+						</li>
+						<li class="mobileSignIn"><a href="{{ route('auth.signin')}}"
+													class="sidebarIcon icon icon-sign-in">Sign In</a></li>
+						<li><a href="{{ route('auth.signup')}}" class="sidebarIcon icon icon-key">Sign Up</a></li>
 					@endif
 				</ul>
 				<!-- Menu -->
