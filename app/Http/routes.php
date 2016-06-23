@@ -17,143 +17,148 @@
  */
 Route::get('/', [
 	'uses' => '\MotherOfBanter\Http\Controllers\HomeController@index',
-	'as'   => 'home',
+	'as' => 'home',
 ]);
 /**
  *Authentication
  */
 Route::get('/signup', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@getSignup',
-	'as'         => 'auth.signup',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSignup',
+	'as' => 'auth.signup',
 	'middleware' => ['guest'],
 ]);
 Route::post('/signup', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@postSignup',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@postSignup',
 	'middleware' => ['guest'],
 ]);
 Route::get('/signin', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@getSignin',
-	'as'         => 'auth.signin',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSignin',
+	'as' => 'auth.signin',
 	'middleware' => ['guest'],
 ]);
 Route::post('/signin', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@postSignin',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@postSignin',
 	'middleware' => ['guest'],
 ]);
 Route::get('/signout', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@getSignout',
-	'as'         => 'auth.signout',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSignout',
+	'as' => 'auth.signout',
 	'middleware' => ['auth'],
 ]);
 Route::get('/register/activate/{code}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@activateAccount',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@activateAccount',
 	'middleware' => ['guest'],
 ]);
 Route::get('/register/activate/signedup/{identifier}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@resendSignedUpUserMail',
-	'as'         => 'auth.activate',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@resendSignedUpUserMail',
+	'as' => 'auth.activate',
 	'middleware' => ['guest'],
 ]);
 Route::get('/register/forgot_password', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\PasswordController@getForgotPassword',
-	'as'         => 'forgot.password',
+	'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@getForgotPassword',
+	'as' => 'forgot.password',
 	'middleware' => ['guest'],
 ]);
 Route::post('/register/forgot_password', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\PasswordController@postForgotPassword',
+	'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@postForgotPassword',
 	'middleware' => ['guest'],
 ]);
 Route::get('/register/forgot_password/proceed/{code}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\PasswordController@getResetPasswordCode',
-	'as'         => 'reset.password',
+	'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@getResetPasswordCode',
+	'as' => 'reset.password',
 	'middleware' => ['guest'],
 ]);
 Route::post('/register/forgot_password/proceed/{code}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\PasswordController@postResetPasswordCode',
+	'uses' => '\MotherOfBanter\Http\Controllers\PasswordController@postResetPasswordCode',
 	'middleware' => ['guest'],
 ]);
 Route::get('/social/redirect/{provider?}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@getSocialRedirect',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSocialRedirect',
 	'middleware' => ['guest'],
-	'as'         => 'social.redirect',
+	'as' => 'social.redirect',
 ]);
 Route::get('/social/handle/{provider?}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@getSocialHandle',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@getSocialHandle',
 	'middleware' => ['guest'],
-	'as'         => 'social.handle',
+	'as' => 'social.handle',
 ]);
 Route::get('/signup/unique/username/', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\AuthController@usernameExists',
+	'uses' => '\MotherOfBanter\Http\Controllers\AuthController@usernameExists',
 	'middleware' => ['guest'],
-	'as'         => 'unique.username',
+	'as' => 'unique.username',
 ]);
 /**
  *Search
  */
 Route::get('/search', [
 	'uses' => '\MotherOfBanter\Http\Controllers\SearchController@getResults',
-	'as'   => 'search.results',
+	'as' => 'search.results',
 ]);
 /**
  * User Profile
  */
 Route::get('/user/{username}', [
 	'uses' => '\MotherOfBanter\Http\Controllers\ProfileController@getProfile',
-	'as'   => 'profile.index',
+	'as' => 'profile.index',
 ]);
 Route::get('/profile/edit', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ProfileController@getEdit',
-	'as'         => 'profile.edit',
+	'uses' => '\MotherOfBanter\Http\Controllers\ProfileController@getEdit',
+	'as' => 'profile.edit',
 	'middleware' => ['auth'],
 ]);
 Route::post('/profile/edit', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ProfileController@postEdit',
-	'as'         => 'post.edit',
+	'uses' => '\MotherOfBanter\Http\Controllers\ProfileController@postEdit',
+	'as' => 'post.edit',
 	'middleware' => ['auth'],
 ]);
 /**
  * Images
  */
 Route::post('/image', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@postImage',
-	'as'         => 'image.post',
+	'uses' => '\MotherOfBanter\Http\Controllers\ImageController@postImage',
+	'as' => 'image.post',
 	'middleware' => ['auth'],
 ]);
 Route::get('/image/{url}', [
 	'uses' => '\MotherOfBanter\Http\Controllers\ImageController@getPost',
-	'as'   => 'get.post',
+	'as' => 'get.post',
 ]);
 Route::post('/image/delete/{imageURL}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\ImageController@deleteImage',
-	'as'         => 'delete.image',
+	'uses' => '\MotherOfBanter\Http\Controllers\ImageController@deleteImage',
+	'as' => 'delete.image',
 	'middleware' => ['auth'],
 ]);
 /**
  * Likes
  */
 Route::get('/like/{imageId}/post', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\LikeController@getLike',
-	'as'         => 'image.like',
+	'uses' => '\MotherOfBanter\Http\Controllers\LikeController@getLike',
+	'as' => 'image.like',
 	'middleware' => ['auth'],
 ]);
 Route::get('/dislike/{imageId}/post', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\LikeController@getDislike',
-	'as'         => 'image.dislike',
+	'uses' => '\MotherOfBanter\Http\Controllers\LikeController@getDislike',
+	'as' => 'image.dislike',
 	'middleware' => ['auth'],
 ]);
-
 /**
  * Comments
  */
-
 Route::post('/reply/image/{imageId}/', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\CommentController@postReply',
-	'as'         => 'image.reply',
+	'uses' => '\MotherOfBanter\Http\Controllers\CommentController@postReply',
+	'as' => 'image.reply',
+	'middleware' => ['auth'],
+]);
+Route::post('/image/{imageURL}/comment/delete/{commentId}', [
+	'uses' => '\MotherOfBanter\Http\Controllers\CommentController@deleteComment',
+	'as' => 'delete.image.comment',
 	'middleware' => ['auth'],
 ]);
 
-Route::post('/image/{imageURL}/comment/delete/{commentId}', [
-	'uses'       => '\MotherOfBanter\Http\Controllers\CommentController@deleteComment',
-	'as'         => 'delete.image.comment',
-	'middleware' => ['auth'],
+/*
+ * Videos
+ */
+Route::get('/videos', [
+	'uses' => '\MotherOfBanter\Http\Controllers\VideoController@getVideoPage',
+	'as' => 'video.home'
 ]);

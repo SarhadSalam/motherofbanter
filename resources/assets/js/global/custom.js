@@ -4,7 +4,7 @@
 
 $(document).on('ready', function () {
     $("#input-4").fileinput({
-        allowedFileExtensions: ["jpg", "png", "gif"],
+        allowedFileExtensions: ["jpg", "png", "gif", "jpeg"],
         previewFileType: "image",
         showCaption: false,
         showUpload: false,
@@ -12,7 +12,7 @@ $(document).on('ready', function () {
         browseIcon: "<i class=\"icon icon-image\"></i> ",
         removeClass: "btn btn-danger",
         removeLabel: "Delete",
-        removeIcon: "<i class=\"icon icon-trash\"></i> ",
+        removeIcon: "<i class=\"icon icon-trash\"></i> "
     });
 });
 $(document).on('ready', function () {
@@ -25,12 +25,25 @@ $(document).on('ready', function () {
         browseIcon: "<i class=\"icon icon-image\"></i> ",
         removeClass: "btn btn-danger",
         removeLabel: "Delete",
-        removeIcon: "<i class=\"icon icon-trash\"></i> ",
+        removeIcon: "<i class=\"icon icon-trash\"></i> "
+    });
+});
+$(document).on('ready', function () {
+    $("#input-vid").fileinput({
+        allowedFileExtensions: ["mp4", "mov", "avi"],
+        previewFileType: "video",
+        showCaption: false,
+        showUpload: false,
+        browseClass: "btn btn-primary",
+        browseIcon: "<i class=\"icon icon-play\"></i> ",
+        removeClass: "btn btn-danger",
+        removeLabel: "Delete",
+        removeIcon: "<i class=\"icon icon-trash\"></i> "
     });
 });
 $(document).on('ready', function () {
     $("#input-3").fileinput({
-        allowedFileExtensions: ["jpg", "png", "gif"],
+        allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
         previewFileType: "image",
         showCaption: false,
         showUpload: false,
@@ -38,29 +51,22 @@ $(document).on('ready', function () {
         browseIcon: "<i class=\"icon icon-image\"></i> ",
         removeClass: "btn btn-danger",
         removeLabel: "Delete",
-        removeIcon: "<i class=\"icon icon-trash\"></i> ",
+        removeIcon: "<i class=\"icon icon-trash\"></i> "
     });
 });
-
 $(document).ready(function () {
+    var left = 300;
+    var textarea = '#postStatus';
     var textCounter = "#text_counter";
-    var overlimit = "#overlimit",
-        overlimitText  = "#overlimitText";
-    var left = 2000;
-    $(textCounter).text(left);
-    $('#status').keyup(function () {
-        left = 2000 - $(this).val().length;
-        if (left < 0) {
-            $(textCounter).addClass(overlimit);
-            $('#status').addClass(overlimitText);
-            $('#posting').attr("disabled", true);
-        } else {
-            $(textCounter).removeClass(overlimit);
-            $('#status').removeClass("overlimitText");
-            $('#posting').attr("disabled", false);
-        }
-        $(textCounter).text(left);
-    });
+    var buttonName = "#postStatusButton";
+    textCounters(textarea, textCounter, buttonName, left);
+});
+$(document).ready(function () {
+    var left = 300;
+    var textarea = '#postVideo';
+    var textCounter = "#videoCounter";
+    var buttonName = "#postVideoButton";
+    textCounters(textarea, textCounter, buttonName, left);
 });
 $(function () {
     $('[data-toggle="post"]').tooltip()

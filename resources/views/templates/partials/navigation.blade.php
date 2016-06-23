@@ -21,7 +21,7 @@
 					@endif
 					<li>
 					{{--<ul class="submenu">--}}
-					<li><a class="sidebarIcon icon icon-play" href="#">Videos</a></li>
+					<li><a class="sidebarIcon icon icon-play" href="{{route('video.home')}}">Videos</a></li>
 					<li><a href="#" class="sidebarIcon icon icon-key">Blogs</a></li>
 					{{--</ul>--}}
 					@if(Auth::check())
@@ -81,7 +81,7 @@
 			});
 		</script>
 	@endif
-	<form role="form" action="{{ route('image.post')}}" method="post" method="post" enctype="multipart/form-data"
+	<form role="form" action="{{ route('image.post')}}" method="post" enctype="multipart/form-data"
 		  data-parsley-validate>
 		<!-- Modal -->
 		<div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -90,14 +90,14 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 									aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title Status" id="myModalLabel Status">Post something funny: </h4>
+						<h4 class="modal-title Status" id="myModalLabel Status">Post a funny image: </h4>
 					</div>
-					<div class="modal-body form-group{{ $errors->has('status') ? ' has-error': '' }} test11">
-						<textarea id="status"
+					<div class="modal-body form-group{{ $errors->has('status') ? ' has-error': '' }}">
+						<textarea
 								  placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'"
 								  name="status" class="form-control emojiArea" rows="2" id="postStatus" required=""
 								  data-parsley-required-message="You must add a heading!"
-								  data-parsley-trigger="change focusout" data-parsley-maxlength="2000"></textarea>
+								  data-parsley-trigger="change focusout" data-parsley-maxlength="300"></textarea>
 						@if($errors->has('status'))
 							<span class="help-block">{{ $errors->first('status') }}</span>
 						@endif
@@ -118,7 +118,7 @@
 								</div>
 							</div>
 							<div class="col-md-2 pull-right socialButton">
-								<button type="submit" class="btn btn-primary" id="posting" data-toggle="post"
+								<button type="submit" class="btn btn-primary" id="postStatusButton" data-toggle="post"
 										data-placement="top" title="You Must Add An Image!">Post
 								</button>
 							</div>

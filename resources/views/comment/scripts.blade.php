@@ -1,20 +1,10 @@
 <script>
 	$(document).ready(function () {
-		var left = 1000
-		$('#commentCounter').text(left);
-		$('#commentArea').keyup(function () {
-			left = 1000 - $(this).val().length;
-			if (left < 0) {
-				$('#commentCounter').addClass("overlimit");
-				$('#commentArea').addClass("overlimitText");
-				$('#commentPost').attr("disabled", true);
-			} else {
-				$('#commentCounter').removeClass("overlimit");
-				$('#commentArea').removeClass("overlimitText");
-				$('#commentPost').attr("disabled", false);
-			}
-			$('#commentCounter').text(left);
-		});
+		var left = 1000;
+		var textarea = '#commentArea';
+		var textCounter = "#commentCounter";
+		var buttonName = "#commentPost";
+		textCounters(textarea, textCounter, buttonName, left);
 	});
 </script>
 <script type="text/javascript">

@@ -24,7 +24,6 @@ elixir(function (mix) {
 
     //The javascript files
     var vendor = 'vendor/';
-    var npmDir = 'node_modules/';
     var jsDir = 'resources/assets/js/';
     var global = 'global/';
     var scope = 'scope/';
@@ -34,8 +33,9 @@ elixir(function (mix) {
         'node_modules/emojione/lib/js/emojione.js': jsDir + 'vendor/emoji',
         'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js': jsDir + 'vendor/bootstrap',
         'node_modules/vue/dist/vue.js': jsDir + '/vendor/vue',
-        'node_modules/jscroll/jquery.jscroll.js': jsDir + 'vendor/jscroll'
-}
+        'node_modules/jscroll/jquery.jscroll.js': jsDir + 'vendor/jscroll',
+        'vendor/kartik-v/bootstrap-fileinput/js/fileinput.js': jsDir + 'vendor/fileinput'
+};
 
     for (directory in directories) {
         mix.copy(directory, directories[directory]);
@@ -44,11 +44,12 @@ elixir(function (mix) {
     mix.scripts([
         global + 'copyrights.js',
         vendor + 'jquery/jquery.js',
-        vendor + 'fileinput.min.js',
+        vendor + 'fileinput/fileinput.js',
         vendor + 'bootstrap/bootstrap.js',
         global + 'navbar.js',
         global + 'modal.js',
         global + 'alerts.js',
+        global + 'textcounter.js',
         global + 'custom.js',
         vendor + 'jscroll/jquery.jscroll.js',
         vendor + 'emoji/textcomplete.js',

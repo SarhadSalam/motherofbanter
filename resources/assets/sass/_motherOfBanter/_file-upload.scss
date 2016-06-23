@@ -1,10 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2016. All rights reserved. Sarhad Maisoon Salam.
- ******************************************************************************/
-
-/*This is ends the overtyping text*/
-
-/*File Upload Data Starts Here*/
+/*!
+ * bootstrap-fileinput v4.3.2
+ * http://plugins.krajee.com/file-input
+ *
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2016, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
+ */
+$image-path: "../img" !default;
+$preview-size: 160px !default;
 
 .file-loading {
   top: 0;
@@ -12,9 +17,9 @@
   width: 25px;
   height: 25px;
   font-size: 999px;
-  text-align: right;
+  text-align:center;
   color: #fff;
-  background: transparent url('../img/loading.gif') top left no-repeat;
+  background: transparent url('#{$image-path}/loading.gif') top left no-repeat;
   border: none;
 }
 
@@ -26,19 +31,19 @@
 .btn-file {
   position: relative;
   overflow: hidden;
-}
 
-.btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  text-align: right;
-  opacity: 0;
-  background: none repeat scroll 0 0 transparent;
-  cursor: inherit;
-  display: block;
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    text-align: right;
+    opacity: 0;
+    background: none repeat scroll 0 0 transparent;
+    cursor: inherit;
+    display: block;
+  }
 }
 
 .file-caption-name {
@@ -52,22 +57,24 @@
   height: 25px;
 }
 
-.file-preview-detail-modal {
+.file-zoom-dialog {
   text-align: left;
 }
 
 .file-error-message {
-  background-color: #f2dede;
   color: #a94442;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 10px 5px 5px;
-}
-
-.file-error-message pre,
-.file-error-message ul {
-  margin: 5px 0;
-  text-align: left;
+  background-color: #f2dede;
+  margin: 5px;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+  padding: 15px;
+  pre, ul {
+    margin: 0;
+    text-align: left;
+  }
+  pre {
+    margin: 5px 0;
+  }
 }
 
 .file-caption-disabled {
@@ -85,75 +92,87 @@
 }
 
 .file-preview-frame {
+  position: relative;
   display: table;
   margin: 8px;
-  height: 160px;
+  height: $preview-size;
   border: 1px solid #ddd;
   box-shadow: 1px 1px 5px 0 #a2958a;
   padding: 6px;
   float: left;
   text-align: center;
   vertical-align: middle;
-}
-
-.file-preview-frame:not(.file-preview-error):hover {
-  box-shadow: 3px 3px 5px 0 #333;
+  &:not(.file-preview-error):hover {
+    box-shadow: 3px 3px 5px 0 #333;
+  }
 }
 
 .file-preview-image {
-  height: 160px;
   vertical-align: middle;
 }
 
 .file-preview-text {
-  text-align: left;
-  width: 160px;
-  margin-bottom: 2px;
+  display: block;
   color: #428bca;
-  background: #fff;
-  overflow-x: hidden;
+  border: 1px solid #ddd;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  outline: none;
+  padding: 8px;
+  resize: none;
 }
 
-.file-preview-other {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  width: 160px;
-  height: 160px;
-  border: 2px solid #999;
-  border-radius: 30px;
-  opacity: 0.8;
+.file-preview-html {
+  border: 1px solid #ddd;
+  padding: 8px;
+  overflow: auto;
 }
 
-.file-actions,
-.file-other-error {
-  text-align: left;
-}
-
-.file-icon-lg {
+.file-zoom-dialog .file-preview-text {
   font-size: 1.2em;
 }
 
-.file-icon-2x {
-  font-size: 2.4em;
+.file-preview-other {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.file-icon-4x {
+.file-actions, .file-other-error {
+  text-align: left;
+}
+
+.file-other-icon {
   font-size: 4.8em;
 }
 
-.file-input-new .file-preview,
-.file-input-new .close,
-.file-input-new .glyphicon-file,
-.file-input-new .fileinput-remove-button,
-.file-input-new .fileinput-upload-button,
-.file-input-ajax-new .fileinput-remove-button,
-.file-input-ajax-new .fileinput-upload-button {
-  display: none;
+/* noinspection CssOverwrittenProperties */
+.file-zoom-dialog .file-other-icon {
+  font-size: 8em;
+  font-size: 55vmin;
+}
+
+.file-input-new {
+  .file-preview, .close, .glyphicon-file, .fileinput-remove-button, .fileinput-upload-button {
+    display: none;
+  }
+}
+
+.file-input-ajax-new {
+  .fileinput-remove-button, .fileinput-upload-button {
+    display: none;
+  }
 }
 
 .file-thumb-loading {
-  background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
+  background: transparent url('#{$image-path}/loading.gif') no-repeat scroll center center content-box !important;
 }
 
 .file-actions {
@@ -165,15 +184,14 @@
 }
 
 .file-upload-indicator {
-  padding-top: 2px;
+  display: inline;
   cursor: default;
   opacity: 0.8;
   width: 60%;
-}
-
-.file-upload-indicator:hover {
-  font-weight: bold;
-  opacity: 1;
+  &:hover {
+    font-weight: bold;
+    opacity: 1;
+  }
 }
 
 .file-footer-caption {
@@ -181,12 +199,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 160px;
+  width: $preview-size;
   text-align: center;
   padding-top: 4px;
   font-size: 11px;
   color: #777;
-  margin: 5px auto 10px auto;
+  margin: 5px auto;
 }
 
 .file-preview-error {
@@ -220,19 +238,17 @@
 }
 
 .file-uploading {
-  background: url('../img/loading-sm.gif') no-repeat center bottom 10px;
+  background: url('#{$image-path}/loading-sm.gif') no-repeat center bottom 10px;
   opacity: 0.65;
 }
 
-.file-error-message .close {
-  margin-top: 5px;
-}
-
-.file-thumb-progress .progress,
-.file-thumb-progress .progress-bar {
+.file-thumb-progress {
   height: 10px;
-  font-size: 9px;
-  line-height: 10px;
+  .progress, .progress-bar {
+    height: 10px;
+    font-size: 9px;
+    line-height: 10px;
+  }
 }
 
 .file-thumbnail-footer {
@@ -241,42 +257,117 @@
 
 .file-thumb-progress {
   position: absolute;
-  top: 22px;
+  top: 35px;
   left: 0;
   right: 0;
 }
 
+.file-zoom-fullscreen {
+  &.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .modal-dialog {
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .modal-content {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .modal-body {
+    overflow-y: auto;
+  }
+}
+
+.file-zoom-dialog {
+  .modal-body {
+    position: relative !important;
+  }
+  .btn-navigate {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    text-decoration: none;
+    outline: none;
+    opacity: 0.7;
+    top: 45%;
+    font-size: 4em;
+    color: #1c94c4;
+  }
+  .floating-buttons {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+.floating-buttons {
+  z-index: 3000;
+  .btn {
+    z-index: 3000;
+  }
+}
+
+.file-zoom-dialog .kv-zoom-actions .btn, .floating-buttons .btn {
+  margin-left: 3px;
+}
+
+.file-zoom-dialog {
+  .btn-navigate {
+    &:not([disabled]) {
+      &:hover, &:focus {
+        outline: none;
+        box-shadow: none;
+        opacity: 0.5;
+      }
+    }
+    &[disabled] {
+      opacity: 0.3;
+    }
+  }
+  .btn-prev {
+    left: 1px;
+  }
+  .btn-next {
+    right: 1px;
+  }
+}
+
+.file-drag-handle {
+  display: inline;
+  margin-right: 2px;
+  font-size: 16px;
+  cursor: move;
+  cursor: -webkit-grabbing;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.file-zoom-content {
+  height: 480px;
+  text-align: center;
+}
+
+.file-preview-initial.sortable-chosen {
+  background-color: #d9edf7;
+}
+
+.file-preview-frame.sortable-ghost {
+  background-color: #eee;
+}
+
 /* IE 10 fix */
 
-.btn-file::-ms-browse {
+.btn-file ::-ms-browse {
   width: 100%;
   height: 100%;
 }
-
-.image-preview-input {
-  position: relative;
-  overflow: hidden;
-  margin: 0px;
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.image-preview-input input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-
-.image-preview-input-title {
-  margin-left: 2px;
-}
-
-/*File Upload Data Ends Here
-*/
