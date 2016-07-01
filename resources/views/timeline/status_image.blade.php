@@ -50,7 +50,7 @@
 		{{-- User posted Images Ends --}}
 		{{-- Ad Banner --}}
 		<div class="col-lg-8">
-			<div class="span 8 adBanner">I am so ugly because advertisements are ugly but gains money so :\</div>
+			<div class="span 8 ad-banner">I am so ugly because advertisements are ugly but gains money so :\</div>
 			<hr>
 		</div>
 	@include('comment.comments')

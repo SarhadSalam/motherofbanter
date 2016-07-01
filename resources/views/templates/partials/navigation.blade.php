@@ -1,44 +1,44 @@
-<ul id="menu" class="menuMain fixedBar">
+<ul id="menu" class="menu-main fixed-bar">
 	<li class="trigger"><a class="icon icon-menu" href="#"><span>Menu</span></a>
-		<nav class="menuWrapper">
+		<nav class="menu-wrapper">
 			<div class="scroller">
 				<ul class="menu">
-					<li class="searchItem">
+					<li class="search-item">
 						<form action="{{ route('search.results') }}" role="search">
 							<input type="text" class="search" name="query" placeholder="Find Posts and People">
-							<a class="sidebarIcon icon icon-search" href="#button1"><span>Search</span></a>
-							<button type="submit" class="btn btn-primary searchButton">Search</button>
+							<a class="sidebar-icon icon icon-search" href="#button1"><span>Search</span></a>
+							<button type="submit" class="btn btn-primary search-button">Search</button>
 						</form>
 					</li>
 					<li>
-						<a href="{{ route('home') }}" class="sidebarIcon icon icon-home">Home</a>
+						<a href="{{ route('home') }}" class="sidebar-icon icon icon-home">Home</a>
 					</li>
 					@if(Auth::check())
-						<li class="mobileUpload">
-							<a class="sidebarIcon icon icon-cloud-upload" type="button" data-toggle="modal"
+						<li class="mobile-upload">
+							<a class="sidebar-icon icon icon-cloud-upload" type="button" data-toggle="modal"
 							   data-target="#imagesModal">Upload</a>
 						</li>
 					@endif
 					<li>
 					{{--<ul class="submenu">--}}
-					<li><a class="sidebarIcon icon icon-play" href="{{route('video.home')}}">Videos</a></li>
-					<li><a href="#" class="sidebarIcon icon icon-key">Blogs</a></li>
+					<li><a class="sidebar-icon icon icon-play" href="{{route('video.home')}}">Videos</a></li>
+					<li><a href="#" class="sidebar-icon icon icon-key">Blogs</a></li>
 					{{--</ul>--}}
 					@if(Auth::check())
 						<li>
 							<ul class="submenu">
-								<li><a href="{{ route('profile.edit') }}" class="sidebarIcon icon icon-user">Update
+								<li><a href="{{ route('profile.edit') }}" class="sidebar-icon icon icon-user">Update
 										Account</a></li>
-								<li><a href="{{ route('auth.signout')}}" class="sidebarIcon icon icon-sign-out">Sign
+								<li><a href="{{ route('auth.signout')}}" class="sidebar-icon icon icon-sign-out">Sign
 										Out</a></li>
 							</ul>
 						</li>
 						<!-- SubMenu -->
 						@else
 						</li>
-						<li class="mobileSignIn"><a href="{{ route('auth.signin')}}"
-													class="sidebarIcon icon icon-sign-in">Sign In</a></li>
-						<li><a href="{{ route('auth.signup')}}" class="sidebarIcon icon icon-key">Sign Up</a></li>
+						<li class="mobile-sign-in"><a href="{{ route('auth.signin')}}"
+													class="sidebar-icon icon icon-sign-in">Sign In</a></li>
+						<li><a href="{{ route('auth.signup')}}" class="sidebar-icon icon icon-key">Sign Up</a></li>
 					@endif
 				</ul>
 				<!-- Menu -->
@@ -57,7 +57,7 @@
 	</li>
 	@if(Auth::check())
 		<li>
-			<div class="userImage">
+			<div class="user-image">
 				<a href="{{ route('profile.index', ['username' => Auth::user()-> username]) }}">
 					<img src="{{ Auth::user()->getAvatarUrl() }}" alt="" class="img-circle"></a>
 			</div>
@@ -72,7 +72,7 @@
 		<li class="signIn"><a href="{{ route('auth.signin')}}" class="icon icon-sign-in">Sign In</a></li>
 	@endif
 </ul>
-<!--menuMain-->
+<!--menu-main-->
 @if(Auth::check())
 	@if ($errors->count())
 		<script type="text/javascript">
@@ -105,7 +105,7 @@
 					<div class="modal-footer">
 						<div class="row">
 							<div class="col-md-6 pull-left text-left">
-								<div class="form-group{{ $errors->has('images') ? ' has-error': '' }} imageButton">
+								<div class="form-group{{ $errors->has('images') ? ' has-error': '' }} image-button">
 									<input id="input-4" type="file" name="images" accept="image/*" class="file-loading"
 										   alt="Please select an image to upload."
 										   data-parsley-filemimetypes="image/jpeg, image/png, image/gif"
@@ -117,7 +117,7 @@
 									@endif
 								</div>
 							</div>
-							<div class="col-md-2 pull-right socialButton">
+							<div class="col-md-2 pull-right social-button">
 								<button type="submit" class="btn btn-primary" id="postStatusButton" data-toggle="post"
 										data-placement="top" title="You Must Add An Image!">Post
 								</button>

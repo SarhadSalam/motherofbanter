@@ -15,8 +15,8 @@ body {
 	padding-top: 50px;
 }
 
-.menuMain,
-.menuMain ul {
+.menu-main,
+.menu-main ul {
 	margin: 0;
 	padding: 0;
 	background: $white-color;
@@ -29,7 +29,7 @@ body {
 	line-height: 60px;
 }
 
-.menuMain {
+.menu-main {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -45,14 +45,14 @@ body {
 	}
 }
 
-.no-touch .menuMain a:hover,
-.no-touch .menu li.searchItem:hover,
-.no-touch .menu li.searchItem:hover a {
+.no-touch .menu-main a:hover,
+.no-touch .menu li.search-item:hover,
+.no-touch .menu li.search-item:hover a {
 	background: $navbar-main-color;
 	color: $white-color;
 }
 
-.menuMain {
+.menu-main {
 	> li {
 		display: block;
 		float: left;
@@ -90,7 +90,7 @@ body {
 	}
 }
 
-.menuWrapper {
+.menu-wrapper {
 	position: fixed;
 	top: 60px;
 	bottom: 0;
@@ -187,7 +187,7 @@ input.search:focus {
 	color: $white-color
 }
 
-.menuMain a.icon-search {
+.menu-main a.icon-search {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -208,11 +208,11 @@ input.search:focus {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.sidebarIcon::before {
+.sidebar-icon::before {
 	width: 60px;
 }
 
-.fixedBar {
+.fixed-bar {
 	position: fixed;
 	right: 0;
 	left: 0;
@@ -249,30 +249,30 @@ input.search:focus {
 
 /* styles for opening menu */
 
-.menuWrapper.openAll,
-.menuWrapper.openPart {
+.menu-wrapper.open-all,
+.menu-wrapper.open-part {
 	@include vendor-prefix('transform', 'translateX(0px)');
 }
 
-.menuWrapper.openAll {
+.menu-wrapper.open-all {
 	width: 340px
 }
 
-.menuWrapper.openAll .submenu li {
+.menu-wrapper.open-all .submenu li {
 	height: 60px
 }
 
 @media screen and (max-width: 422px) {
-	.menuWrapper.openAll {
+	.menu-wrapper.open-all {
 		@include vendor-prefix('transform', 'translateX(0px)');
 		width: 100%;
 	}
 
-	.menuWrapper.openAll .scroller {
+	.menu-wrapper.open-all .scroller {
 		width: 130%
 	}
 
-	.searchButton {
+	.search-button {
 		right: 20px;
 	}
 }
@@ -286,7 +286,7 @@ input.search:focus {
 	}
 }
 
-.userImage {
+.user-image {
 	width: 40px;
 	height: 60px;
 	.img-circle {
@@ -295,25 +295,25 @@ input.search:focus {
 	}
 }
 
-.mobileSignIn,
-.mobileUpload {
+.mobile-sign-in,
+.mobile-upload {
 	display: none;
 }
 
 @media screen and (max-width: 544px) {
-	.menuMain > li:last-child,
-	.menuMain > li:nth-child(3) {
+	.menu-main > li:last-child,
+	.menu-main > li:nth-child(3) {
 		display: none;
 	}
 
-	.mobileSignIn,
-	.mobileUpload {
+	.mobile-sign-in,
+	.mobile-upload {
 		display: inherit;
 	}
 }
 
 @media screen and (max-width: 422px) {
-	.menuMain > li:nth-child(2) > a {
+	.menu-main > li:nth-child(2) > a {
 		padding: 0 10px;
 	}
 
@@ -328,7 +328,7 @@ input.search:focus {
 }
 
 @media screen and (max-width: 340px) {
-	.menuMain > li:nth-child(2) > a {
+	.menu-main > li:nth-child(2) > a {
 		padding: 0 10px;
 	}
 
@@ -342,7 +342,7 @@ input.search:focus {
 	}
 }
 
-.menuWrapper a:hover,
+.menu-wrapper a:hover,
 .signIn a:hover {
 	color: $primary-color;
 }

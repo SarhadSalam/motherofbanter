@@ -23,7 +23,7 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-md-6 pull-left text-left">
-							<div class="imageButton">
+							<div class="image-button">
 								<input id="input-vid" type="file" name="images" accept="video/*" class="file-loading"
 									   alt="Please select a video to upload."
 									   data-parsley-filemimetypes="video/mp4, video/mpeg, video/mov, video/avi"
@@ -34,7 +34,7 @@
 								{{--Errors goes in here--}}
 							</div>
 						</div>
-						<div class="col-md-2 pull-right socialButton">
+						<div class="col-md-2 pull-right social-button">
 							<button type="submit" class="btn btn-primary" id="postVideoButton" data-toggle="post"
 									data-placement="top" title="You Must Add An Video!">Post
 							</button>

@@ -14,3 +14,4 @@ class HomeController extends Controller {
 		return view('timeline.index')->with('image', $image);
 	}
 }
+  

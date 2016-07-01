@@ -20,7 +20,7 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-md-6 pull-left">
-							<div class="form-group{{ $errors->has('images') ? ' has-error': '' }} imageButton">
+							<div class="form-group{{ $errors->has('images') ? ' has-error': '' }} image-button">
 								<input id="input-2" type="file" name="images" accept="image/*"
 									   class="file-loading" alt="Please select an image to upload."
 									   data-parsley-filemimetypes="image/jpeg, image/png, image/gif"
@@ -32,7 +32,7 @@
 								@endif
 							</div>
 						</div>
-						<div class="col-md-2 pull-right socialButton">
+						<div class="col-md-2 pull-right social-button">
 							<button type="submit" id="commentPost" class="btn btn-primary"
 									alt="Post a comment, {{ Auth::user()->getFirstNameOrUsername() }}">Comment
 							</button>

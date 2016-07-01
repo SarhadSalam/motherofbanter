@@ -24,33 +24,33 @@ body {
 	color: red;
 }
 
-.overlimitText {
+.overlimit-text {
 	color: red;
 }
 
-.overlimitText:focus {
+.overlimit-text:focus {
 	border-color: #FF0000;
 }
 
 /*This is for the comments divider*/
 
-.specialHr {
+.special-hr {
 	width: 75%;
 }
 
 /*This fixes the comment and status box buttons*/
 
-.imageButton {
+.image-button {
 	margin-left: 15px;
 }
 
-.socialButton {
+.social-button {
 	margin-right: 15px;
 }
 
 /*Size for the comment images*/
 
-.commentImages {
+.comment-images {
 	width: 75%;
 	height: 300px;
 }

@@ -30,7 +30,7 @@
 				autoTrigger: true,
 				nextSelector: '.pagination li.active + li a',
 				contentSelector: 'div.infinite-loading-image-posts',
-				loadingHtml: '<div class="col-lg-8"><img class="loadingImage" src="{{ URL::asset('assets/img/ajax-loader.svg')}}" alt="Loading"/></div>',
+				loadingHtml: '<div class="col-lg-8"><img class="loading-image" src="{{ URL::asset('assets/img/ajax-loader.svg')}}" alt="Loading"/></div>',
 				callback: function () {
 					$('ul.pagination:visible:first').hide();
 				}

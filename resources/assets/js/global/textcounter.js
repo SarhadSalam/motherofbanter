@@ -4,7 +4,7 @@
 
 function textCounters(textarea, textCounter, buttonName, left) {
     var overlimit = "overlimit",
-        overlimitText = "overlimitText";
+        overlimitText = "overlimit-text";
     var finalCount = left;
     $(textCounter).text(left);
     $(textarea).keyup(function () {

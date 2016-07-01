@@ -4,12 +4,12 @@
 			  action="{{ route('image.like', ['imageId' => $images->id]) }}" method="get" role="form">
 			@if(Auth::user()->hasLikedAlready($images->id))
 				<li>
-					<button type="submit" class="like_btn"><i
+					<button type="submit" class="like-btn"><i
 								class="unused-icon icon icon-thumbs-o-up"></i></button>
 				</li>
 			@else
 				<li>
-					<button type="submit" class="like_btn" href=""><i
+					<button type="submit" class="like-btn" href=""><i
 								class="icon icon-thumbs-o-up"></i></button>
 				</li>
 			@endif
@@ -20,12 +20,12 @@
 			  role="form">
 			@if(Auth::user()->hasDislikedAlready($images->id))
 				<li>
-					<button type="submit" class="dislike_btn"><i
+					<button type="submit" class="dislike-btn"><i
 								class="unused-icon icon icon-thumbs-o-down"></i></button>
 				</li>
 			@else
 				<li>
-					<button type="submit" class="dislike_btn"><i
+					<button type="submit" class="dislike-btn"><i
 								class="icon icon-thumbs-o-down"></i></button>
 				</li>
 			@endif
@@ -44,7 +44,7 @@
 						<form
 								action="{{route('delete.image', ['$imageURL' => $images->url])}}"
 								method="post">
-							<button class="btn-link" type="submit">Delete</button>
+							<button class="btn-link delete-post" type="submit">Delete</button>
 							<input type="hidden" name="_token" value="{{ Session::token() }}">
 						</form>
 					</li>
