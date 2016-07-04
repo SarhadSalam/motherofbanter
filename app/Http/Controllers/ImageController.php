@@ -24,23 +24,21 @@ class ImageController extends Controller {
 		if (Input::hasFile('images')) {
 			//The variable containing the image
 			$imageFile = Input::file('images');
-			//The Filename and path is created
-			$uniqid = uniqid();
-			$filenameWithoutExtension = $imageFile->getClientOriginalName() . $uniqid;
-			$filename = str_slug($filenameWithoutExtension . '.' . $imageFile->getClientOriginalExtension());
-			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/images' . '/';
-			//We use this for our URL.
+			
 			$urlString = strtolower($request->input('status'));
-			$urlString = preg_replace("/[^a-z0-9_\s-]/", "", $urlString);//make alphanumeric
-			$urlString = preg_replace("/[\s-]+/", " ", $urlString);//remove multiple dashes and whitespaces
-			$urlString = preg_replace("/[\s_]/", "-", $urlString);//convert the above to dashes
-			$urlPath = $uniqid . $urlString;
+			$urlString = preg_replace("/[^a-z0-9_\s-]/", "", $urlString);
+			
+			//The Filename and path is created
+			$filename = str_slug($imageFile->getClientOriginalName() . substr(5,uniqid())).'.'.$imageFile->getClientOriginalExtension();
+			$path = 'uploads/statusImages/' . Auth::user()->getIdentifier() . '/images' . '/';
+			$urlString = $urlString.$filename;
+			
 			//Dealing with large images.
 			$userImage = Images::make($imageFile);
 			$height = $userImage->height();
 			if ($height > '999') {
 				$largeThumbnailPath = public_path($path);
-				$largeThumbnailName = 'LARGE_Image' . $filename;
+				$largeThumbnailName = 'lg' . $filename;
 				$this->largeImageHandler($userImage, $largeThumbnailPath, $largeThumbnailName);
 			};
 			$imageFile->move($path, $filename);
@@ -50,13 +48,13 @@ class ImageController extends Controller {
 												  'body' => $request->input('status'),
 												  'image_path' => $request->input($path, $path . $largeThumbnailName),
 												  'largeImage_path' => $request->input($path, $path . $filename),
-												  'url' => $request->input($path, $urlPath)
+												  'url' => $request->input($path, $urlString)
 											  ]);
 			} else {
 				Auth::user()->image()->create([
 												  'body' => $request->input('status'),
 												  'image_path' => $request->input($path, $path . $filename),
-												  'url' => $request->input($path, $urlPath)
+												  'url' => $request->input($path, $urlString)
 											  ]);
 			}
 		}

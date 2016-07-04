@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bc0f3ae-209f-488a-975d-dea0a78f4103" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/assets/css/MotherOfBanter-78e25926b9.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/assets/js/MotherOfBanter-50a65cee70.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/build/assets/js/MotherOfBanterScope-014d88d355.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/statusImages/5756f2877874c706a64f94a76372ab4c4347b50a4126ded1ee48e1465315975SOSNUPFB/images/request-a-sample-547-p-1jpg575de547b36d7jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/statusImages/5756f2877874c706a64f94a76372ab4c4347b50a4126ded1ee48e1465315975SOSNUPFB/images/xmenapocalypse20161080phdtcaacx264-etrgmp40222png575c91e280609png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/MotherOfBanter.css" afterPath="$PROJECT_DIR$/public/assets/css/MotherOfBanter.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/MotherOfBanter.css.map" afterPath="$PROJECT_DIR$/public/assets/css/MotherOfBanter.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/js/MotherOfBanter.js" afterPath="$PROJECT_DIR$/public/assets/js/MotherOfBanter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/js/MotherOfBanter.js.map" afterPath="$PROJECT_DIR$/public/assets/js/MotherOfBanter.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/js/MotherOfBanterScope.js" afterPath="$PROJECT_DIR$/public/assets/js/MotherOfBanterScope.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/assets/css/MotherOfBanter.css.map" afterPath="$PROJECT_DIR$/public/build/assets/css/MotherOfBanter.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/assets/js/MotherOfBanter.js.map" afterPath="$PROJECT_DIR$/public/build/assets/js/MotherOfBanter.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/build/rev-manifest.json" afterPath="$PROJECT_DIR$/public/build/rev-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/css/Style.css" afterPath="$PROJECT_DIR$/resources/assets/css/Style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/css/navbar.css" afterPath="$PROJECT_DIR$/resources/assets/css/navbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/css/temp/MotherOfBanterSCSS.css" afterPath="$PROJECT_DIR$/resources/assets/css/temp/MotherOfBanterSCSS.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/css/temp/MotherOfBanterSCSS.css.map" afterPath="$PROJECT_DIR$/resources/assets/css/temp/MotherOfBanterSCSS.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/global/navbar.js" afterPath="$PROJECT_DIR$/resources/assets/js/global/navbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/global/textcounter.js" afterPath="$PROJECT_DIR$/resources/assets/js/global/textcounter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_image.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_image.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_navbar.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_navbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_style.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comment/comments.blade.php" afterPath="$PROJECT_DIR$/resources/views/comment/comments.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comment/scripts.blade.php" afterPath="$PROJECT_DIR$/resources/views/comment/scripts.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comment/user_comments.blade.php" afterPath="$PROJECT_DIR$/resources/views/comment/user_comments.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/images/templates/forms.blade.php" afterPath="$PROJECT_DIR$/resources/views/images/templates/forms.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/profile/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/profile/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/templates/partials/navigation.blade.php" afterPath="$PROJECT_DIR$/resources/views/templates/partials/navigation.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/timeline/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/timeline/status_image.blade.php" afterPath="$PROJECT_DIR$/resources/views/timeline/status_image.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/video/video.blade.php" afterPath="$PROJECT_DIR$/resources/views/video/video.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" />
     </list>
     <ignored path="MotherOfBanter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,10 +90,10 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_style.scss" />
         <option value="$PROJECT_DIR$/resources/views/timeline/status_image.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_image.scss" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" />
         <option value="$PROJECT_DIR$/public/assets/css/MotherOfBanter.css" />
         <option value="$PROJECT_DIR$/resources/views/comment/user_comments.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/global/textcounter.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" />
       </list>
     </option>
   </component>
@@ -327,14 +295,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MotherOfBanter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
@@ -510,12 +471,12 @@
       <workItem from="1466705744120" duration="1160000" />
       <workItem from="1466717350068" duration="8588000" />
       <workItem from="1467412341645" duration="37000" />
-      <workItem from="1467412458078" duration="3098000" />
+      <workItem from="1467412458078" duration="4953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106880000" />
+    <option name="totallyTimeSpent" value="108735000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,20 +551,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/global/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/global/alerts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/global/modal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -623,14 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/comment/comments.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -781,15 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/video/video.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -894,14 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/_motherOfBanter/_navbar.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1196">
@@ -997,6 +919,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/.gitkeep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/comment/comments.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-260">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1846">
+          <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1170">
+          <caret line="31" column="79" selection-start-line="31" selection-start-column="79" selection-end-line="31" selection-end-column="79" />
           <folding />
         </state>
       </provider>
