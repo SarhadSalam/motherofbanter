@@ -25,7 +25,7 @@ body {
 	color: $error-color;
 }
 
-.overlimit-text {
+.overlimit__text--color {
 	color: $error-color;
 	&:focus {
 		border-color: $error-color;

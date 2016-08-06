@@ -1,23 +1,24 @@
 @extends('templates.default')
+
 @section('title')
 	Verify
 @stop
+
 @section('content')
+	
 	<div class="container">
-		<div class="alert alert-danger">
+		
+		<div class="form-authentication__alert alert-danger">
+			
 			<strong>Activate Your Account</strong>, it's not possible to log in without verifying your account. Please
 			check your email for a verification email.
+			
 		</div>
+		
 		<a href="{{ route('auth.activate', ['identifier'=>$identifier]) }}"><h4>If you haven't received one within 1
 				minute, CLICK ME!</h4></a>
-		<div class="vertical-buttons">
-			<h4>You can still use:</h4>
-			<a href="{{ route('social.redirect', ['provider' => 'facebook']) }}" class="btn btn-lg btn-block facebook">Login
-				With Facebook</a>
-			<a href="{{ route('social.redirect', ['provider' => 'twitter']) }}" class="btn btn-lg btn-block twitter">Login
-				With Twitter</a>
-			<a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg btn-block google">Login
-				With Google</a>
-		</div>
+		@extends('auth.templates.partials.social_login)
+		
 	</div>
+	
 @stop

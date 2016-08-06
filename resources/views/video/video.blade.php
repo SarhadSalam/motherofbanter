@@ -16,7 +16,7 @@
 				<div class="panel-body">
 				<textarea
 						placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'"
-						name="video" class="form-control emojiArea" rows="3" id="postVideo" required=""
+						name="video" class="form-authentication__control emojiArea" rows="3" id="postVideo" required=""
 						data-parsley-required-message="You must add a heading!"
 						data-parsley-trigger="change focusout" data-parsley-maxlength="300"></textarea>
 				</div>

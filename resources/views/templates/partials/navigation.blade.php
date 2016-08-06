@@ -35,7 +35,6 @@
 						</li>
 						<!-- SubMenu -->
 						@else
-						</li>
 						<li class="mobile-sign-in"><a href="{{ route('auth.signin')}}"
 													class="sidebar-icon icon icon-sign-in">Sign In</a></li>
 						<li><a href="{{ route('auth.signup')}}" class="sidebar-icon icon icon-key">Sign Up</a></li>
@@ -94,10 +93,10 @@
 					</div>
 					<div class="modal-body form-group{{ $errors->has('status') ? ' has-error': '' }}">
 						<textarea
-								  placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'"
-								  name="status" class="form-control emojiArea" rows="2" id="postStatus" required=""
-								  data-parsley-required-message="You must add a heading!"
-								  data-parsley-trigger="change focusout" data-parsley-maxlength="300"></textarea>
+								placeholder="Add a heading, {{ Auth::user()->getFirstNameOrUsername() }}! To use emojis from a Desktop just hit ':'"
+								name="status" class="form-authentication__control emojiArea" rows="2" id="postStatus" required=""
+								data-parsley-required-message="You must add a heading!"
+								data-parsley-trigger="change focusout" data-parsley-maxlength="300"></textarea>
 						@if($errors->has('status'))
 							<span class="help-block">{{ $errors->first('status') }}</span>
 						@endif

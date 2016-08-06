@@ -4,21 +4,21 @@
 
 /*Login & SignUp Buttons and Forms*/
 
-.form-signin {
+.form-authentication {
 	max-width: 330px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-.form-signin .form-signin-heading, .form-signin .checkbox {
+.form-authentication .form-authentication__heading, .form-authentication .form-authentication__checkbox {
 	margin-bottom: 10px;
 }
 
-.form-signin .checkbox {
+.form-authentication .form-authentication__checkbox {
 	font-weight: 400;
 }
 
-.form-signin .form-control, .form-signup .form-control {
+.form-authentication .form-authentication__control, .form-authentication__signup .form-authentication__control {
 	position: relative;
 	height: auto;
 	-webkit-box-sizing: border-box;
@@ -28,75 +28,75 @@
 	font-size: 16px;
 }
 
-.form-signin .form-control:focus, .form-signup .form-control:focus {
+.form-authentication .form-authentication__control:focus, .form-authentication__signup .form-authentication__control:focus {
 	z-index: 2;
 }
 
-.form-signin input[type="text"], .form-signup input[type="text"] {
+.form-authentication input[type="text"], .form-authentication__signup input[type="text"] {
 	margin-bottom: -1px;
 	border-top-left-radius: 1px;
 	border-top-right-radius: 1px;
 }
 
-.form-signin input[type="password"], .form-signup input[type="password"] {
+.form-authentication input[type="password"], .form-authentication__signup input[type="password"] {
 	margin-bottom: -1px;
 	border-top-left-radius: 1px;
 	border-top-right-radius: 1px;
 	border-top: none;
 }
 
-.form-signin .form-group, .form-signup .form-group {
+.form-authentication .form-authentication__group, .form-authentication__signup .form-authentication__group {
 	margin-bottom: 0;
 }
 
-.vertical-buttons {
+.social-button {
 	max-width: 300px;
 	margin: 0 auto;
 }
 
-.vertical-buttons > h4 {
+.social-button > h4 {
 	text-align: center;
 }
 
-.facebook, .twitter, .google {
+.form-authentication--facebook, .form-authentication--twitter, .form-authentication--google {
 	color: #FFF;
 	margin-bottom: 5px;
 }
 
-.facebook {
+.form-authentication--facebook {
 	background-color: #4E69A2;
 	border-color: #4E69A2;
 }
 
-.facebook:hover {
+.form-authentication--facebook:hover {
 	background-color: #47409B;
 	border-color: #47409B;
 	color: #E4E4E4;
 }
 
-.twitter {
+.form-authentication--twitter {
 	background-color: #55acce;
 	border-color: #55acce;
 }
 
-.twitter:hover {
+.form-authentication--twitter:hover {
 	background-color: #5569CE;
 	border-color: #5569CE;
 	color: #E4E4E4;
 }
 
-.google {
+.form-authentication--google {
 	background-color: #D72A1E;
 	border-color: #D72A1E;
 }
 
-.google:hover {
+.form-authentication--google:hover {
 	background-color: #C21D1B;
 	border-color: #C21D1B;
 	color: #E4E4E4;
 }
 
-.forget-password {
+.form-authentication__forget-password {
 	padding-top: 8px;
 	font-size: 13px;
 }
@@ -112,13 +112,13 @@
 	color: #FFF;
 }
 
-.form-signup {
+.form-authentication__signup {
 	max-width: 430px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-.form-signup .alert, .form-signin .alert {
+.form-authentication__signup .form-authentication__alert, .form-authentication .form-authentication__alert {
 	margin-bottom: 0;
 }
 
@@ -126,6 +126,6 @@
 	color: #FFFFFF;
 }
 
-.formsignupdisabled {
+.form-authentication__signup--disabled {
 	color: #6C6C6C;
 }

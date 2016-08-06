@@ -46,7 +46,7 @@
 	{{-- Script --}}
 	<script type="text/javascript">window.ParsleyConfig = {
 			errorsWrapper: '<div></div>',
-			errorTemplate: '<div class="alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
+			errorTemplate: '<div class="form-authentication__alert alert-danger parsley" role="alert" style="text-align:center;"></div>'
 		};</script>
 	<script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanter.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('assets/js/MotherOfBanterScope.js') }}"></script>

@@ -1,23 +1,40 @@
 {{-- User Comments --}}
+
 <div class="infinite-loading-comments">
+	
 	<div class="col-lg-8">
+		
 		@foreach($images->paginatingReplies() as $reply)
+			
 			<div class="media">
-				<a class="pull-left" href="{{ route('profile.index', ['username' => $reply -> user->username]) }}">
-					<img class="media-object" src="{{ $reply->user->getAvatarUrl() }}" width="40px" height="40px"
+				
+				<a class="pull-left"
+				   href="{{ route('profile.index', ['username' => $reply -> user->username]) }}">
+					<img class="media-object"
+					     src="{{ $reply->user->getAvatarUrl() }}" width="40px" height="40px"
 						 style="margin-top:8px;">
 				</a>
+				
 				<div class="media-body">
+					
 					<div class="media-body">
+						
 						<h5 class="media-heading"><a
 									href="{{ route('profile.index', ['username' => $reply -> user->username]) }}">{{$reply->user->getNameOrUsername()}}</a>
 						</h5>
 						<p class="convert-emoji">{{$reply->body}}</p>
+						
 						@if($reply->image_path)
-							<img class="img-responsive comment-images" alt=""
-								 src="{{URL::asset($reply->image_path)}}" style="padding-bottom:10px;">
+							
+							<img class="img-responsive comment-images"
+							     alt=""
+								 src="{{URL::asset($reply->image_path)}}"
+								 style="padding-bottom:10px;">
+							
 						@endif
+						
 						@if(Auth::check())
+							
 							<ul class="list-inline comments">
 								@if(Auth::user()->hasLikedAlready($reply->id))
 									<li>

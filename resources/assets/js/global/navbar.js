@@ -11,8 +11,25 @@ function mobilecheck() {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
 }
+
+
 var outClick = "1";
+var wrapper = '.menu-wrapper';
+var menu = '.icon-menu';
+
+
 //Check whether it's a mobile or not, and enables hover.
+function toggleNav() {
+    if ($(wrapper).hasClass('open-all')) {
+        $(wrapper).removeClass('open-all');
+        // $('.menu-wrapper').removeClass('open-part');
+        $(menu).removeClass('selected');
+    } else {
+        // $('.menu-wrapper').addClass('open-part');
+        $(wrapper).addClass('open-all');
+        $(menu).addClass('selected');
+    }
+}
 if (mobilecheck() !== true) {
     $(function () {
         $('.trigger').hover(function () {
@@ -21,89 +38,69 @@ if (mobilecheck() !== true) {
     });
 
     function hoverNav() {
-        if ($('.menu-wrapper').hasClass('open-part')) {
-            $('.menu-wrapper').removeClass('open-part');
+        if ($(wrapper).hasClass('open-part')) {
+            $(wrapper).removeClass('open-part');
         } else {
-            $('.menu-wrapper').addClass('open-part');
+            $(wrapper).addClass('open-part');
         }
     }
 
     // Experimental
     $(function () {
         $('nav').hover(function () {
-            if ($('.menu-wrapper').hasClass('open-all')) {
+            if ($(wrapper).hasClass('open-all')) {
                 // $('.menu-wrapper').removeClass('open-all');
                 // $('.icon-menu').removeClass('selected');
                 // $('.menu-wrapper').removeClass('open-part');
             } else {
-                $('.menu-wrapper').addClass('open-part');
-                $('.menu-wrapper').addClass('open-all');
-                $('.icon-menu').addClass('selected');
+                $(wrapper).addClass('open-part');
+                $(wrapper).addClass('open-all');
+                $(menu).addClass('selected');
                 // outClick = "0";
             }
         });
     });
     //Detect a click and open navbar
     $(function () {
-        $('a.icon-menu').click(function (e) {
+        $('a'+menu).click(function (e) {
             toggleNav();
             return false; // prevent default click action from happening!
             e.preventDefault(); // same thing as above
             outClick = "0";
         });
     });
-
-    function toggleNav() {
-        if ($('.menu-wrapper').hasClass('open-all')) {
-            $('.menu-wrapper').removeClass('open-all');
-            // $('.menu-wrapper').removeClass('open-part');
-            $('.icon-menu').removeClass('selected');
-        } else {
-            // $('.menu-wrapper').addClass('open-part');
-            $('.menu-wrapper').addClass('open-all');
-            $('.icon-menu').addClass('selected');
-        }
-    }
 } else {
     //Detect a click and open navbar
     $(function () {
-        $('a.icon-menu').click(function (e) {
+        $('a'+menu).click(function (e) {
             toggleNav();
             return false; // prevent default click action from happening!
             e.preventDefault(); // same thing as above
             outClick = "0";
         });
     });
-
-    function toggleNav() {
-        if ($('.menu-wrapper').hasClass('open-all')) {
-            $('.menu-wrapper').removeClass('open-all');
-            // $('.menu-wrapper').removeClass('open-part');
-            $('.icon-menu').removeClass('selected');
-        } else {
-            // $('.menu-wrapper').addClass('open-part');
-            $('.menu-wrapper').addClass('open-all');
-            $('.icon-menu').addClass('selected');
-        }
-    }
 }
 //Exit functions.
+
+
 //Exit the navbar when esc is hit
 $(document).keyup(function (e) {
     if (e.keyCode == 27) {
-        if ($('.menu-wrapper').hasClass('open-all')) {
+        if ($(wrapper).hasClass('open-all')) {
             toggleNav();
         }
     }
 });
+
+
 //This hides the menu on a click
 $(function () {
     $('.container').click(function () {
         if (outClick != "0") {
             //Hide the menus if visible
-            $('.menu-wrapper').removeClass('open-part');
-            $('.menu-wrapper').removeClass('open-all');
-            $('.icon-menu').removeClass('selected');
+            $(wrapper).removeClass('open-part');
+            $(wrapper).removeClass('open-all');
+            $(menu).removeClass('selected');
         } else {
             outClick = "1";
         }

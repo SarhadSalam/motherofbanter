@@ -24,11 +24,11 @@ body {
 	color: red;
 }
 
-.overlimit-text {
+.overlimit__text--color {
 	color: red;
 }
 
-.overlimit-text:focus {
+.overlimit__text--color:focus {
 	border-color: #FF0000;
 }
 
