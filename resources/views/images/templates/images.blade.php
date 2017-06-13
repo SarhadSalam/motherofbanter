@@ -20,7 +20,7 @@
 		</div>
 		@include('templates.partials.ajax_requests')
 	@endforeach
-	<div class="hidden-paginator">
+		<div class="hidden-paginator">
 		{!! $image->render() !!}
 	</div>
 </div>

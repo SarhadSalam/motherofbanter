@@ -69,13 +69,17 @@
 				
 			</div>
 			
+			<h4>Or In case you wanna try signing again: </h4>
+			<a href="{{route('auth.signin')}}" class="btn btn-lg btn-block btn-primary">Sign In</a>
+			<h4>Or maybe you never signed up?</h4>
+			<a href="{{route('auth.signup')}}" class="btn btn-lg btn-block btn-primary">Sign Up</a>
 			<input type="hidden"
 			       name="_token"
 			       value="{{ Session::token() }}">
 			
 		</form>
 		
-		@extends('auth.templates.partials.social_login)
+		@extends('auth.templates.partials.social_login')
 		
 	</div>
 	
